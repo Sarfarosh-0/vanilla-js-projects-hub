@@ -1,61 +1,56 @@
 # 🚀 JavaScript Vanilla Projects
 
-A production-grade, highly polished showcase of native frontend solutions built purely with vanilla **HTML5**, **CSS3 / Tailwind CSS v4**, and modern **ES6+ JavaScript**. This monorepo serves as an engineering portfolio demonstrating advanced DOM manipulation, state architecture, browser APIs, asynchronous control flow, and clean component organization without the overhead of heavy frameworks.
+A collection of 13 frontend projects built with vanilla **HTML5**, **CSS3 / Tailwind CSS v4**, and **ES6+ JavaScript**. Each project targets a specific core concept: DOM manipulation, state management, browser APIs, and async control flow. No frameworks.
+
+> Learning by building.
 
 ---
 
-## 🛠️ Core Engineering & Architecture Principles
+## 🛠️ What This Repo Demonstrates
 
-*   **Zero Framework Overhead:** Pure JavaScript rendering, avoiding virtual DOM performance tax.
-*   **State-Driven UI Updates:** Applications like *To-Do App v2* and *Expense Tracker* decouple UI rendering from data mutations using unified array states synced to `localStorage`.
-*   **Adaptive Responsive Layouts:** Responsive layouts using fluid variables (`clamp()`), flexboxes, grids, and advanced CSS custom properties.
-*   **Event Delegation & Performance:** Highly optimized event listeners, keyboard action interceptors, and strict cleanups to prevent memory leaks.
+- **No framework dependency:** plain JavaScript rendering with direct DOM updates.
+- **State-driven UI:** *To-Do App v2* and *Expense Tracker* keep data in a single array and re-render from it, synced to `localStorage`.
+- **Responsive layouts:** fluid sizing with `clamp()`, Flexbox, Grid, and CSS custom properties.
+- **Modular JS:** the Expense Tracker and Weather App split logic across ES modules.
 
 ---
 
-## 📂 Portfolio Project Directory
+## 📂 Projects
 
-The repository features **12 custom projects** demonstrating a wide range of frontend engineering challenges. Below is an exhaustive breakdown of the codebase architecture and local entry points:
-
-| Project Directory | Local Entry Point | Technical Summary & Architecture | Key Core JS Concepts Demonstrated |
-| :--- | :--- | :--- | :--- |
-| **`WEATHER-APP`** | [`/index.html`](./WEATHER-APP/index.html) | **Asynchronous Weather & Forecast Dashboard**<br>An interactive weather dashboard powered by the OpenWeatherMap API. Features real-time current conditions, hourly forecasts, quick lookup for popular cities, dynamic background updates based on atmospheric conditions, and mobile-friendly responsive navigation. | • Async/Await API Fetching (`fetch`) <br>• Dynamic DOM Content Rendering <br>• Real-time Clock & Date Formatting <br>• Conditional Background Styling <br>• Modular Script Architecture |
-| **`EXPENSE-TRACKER`** | [`Live Link`](https://stellar-basbousa-142e5f.netlify.app/#overview) | **Decoupled Financial Ledger**<br>An app split into logical modules: storage interface, ledger calculations, and dynamic layout templates. Employs transaction tracking with state logging. | • ES6 Modular architecture <br>• Structural Data mapping <br>• Reducer-like calculation pipelines <br>• Form Submission Management |
-| **`02-TO-DO-APP`** | [`/index.html`](./02-TO-DO-APP/index.html) | **Unified State To-Do Engine**<br>A comprehensive app utilizing centralized array state tracking. Features complete state syncing to browser persistent memory, multiple active filters (All / Active / Completed), and a dynamic task counter. Includes a global dark/light theme mechanism. | • `localStorage` Persistence <br>• Array mutation (`splice`, `push`) <br>• Array Filtering (`filter`) <br>• Dynamic theme injection via HTML attributes |
-| **`CALCULATOR`** | [`/index.html`](./CALCULATOR/index.html) | **Tailwind-Powered Computational Grid**<br>An interface designed around high-precision button triggers. Styled completely using modern Tailwind CSS v4 utility states. Employs advanced active-state selectors for glowing neon borders and a dual-display arithmetic layout. | • Tailwind v4 utility workflow <br>• Expression Evaluation <br>• Advanced keyboard/mouse input validation <br>• Precision Float Arithmetic |
-| **`BMI-CALCULATOR`** | [`/index.html`](./BMI-CALCULATOR/index.html) | **Biometric Indexing Dashboard**<br>A medical biometric utility featuring multi-unit conversions. Seamlessly handles automatic dropdown unit synchronization, fractional string-splitting to parse complex compound feet/inches configurations, and dynamic color categorizations. Includes an automated dashboard state reset after 30 seconds of inactivity. | • Compound String Parsing <br>• Custom input validation <br>• UI Asynchronous schedules (`setTimeout`/`clearTimeout`) <br>• Complex Conic-Gradients |
-| **`ROCK-PAPER-SCISSORS`**| [`/index.html`](./ROCK-PAPER-SCISSORS/index.html) | **Matrix-Based Game Engine**<br>Evaluates choice combinations against randomized opponent outputs using array indexing. | • Matrix combinations lookup <br>• Probability generation (`Math.random`) <br>• Dynamic score updates |
-| **`NUMBER-GUESSING-GAME`**| [`/index.html`](./NUMBER-GUESSING-GAME/index.html) | **State-Tracking Interactive Game**<br>Tracks dynamic ranges, counts historical attempts, and generates smart user feedback loops. | • Dynamic Range tracking <br>• Random integer calculations <br>• Session state logging |
-| **`DIGITAL-CLOCK`** | [`/index.html`](./DIGITAL-CLOCK/index.html) | **Asynchronous Chronological Render**<br>Real-time high-precision system clock. Polls system time and outputs dynamic locale-specific strings. | • Native `Date` objects <br>• Repetitive async routines (`setInterval`) <br>• String padding formatting |
-| **`LOGIN-SIGNUP-PAGE`**| [`/index.html`](./LOGIN-SIGNUP-PAGE/index.html) | **Client-Side Authorization UI**<br>Mock dual-page authentication flow. Validates email structures, checks password security, and matches confirmation states in real-time. | • Regular Expression validation <br>• Preventative Event Hijacking (`preventDefault`) <br>• Multi-page routing patterns |
-| **`COLOR-CHANGER-2`**| [`/index.html`](./COLOR-CHANGER-2/index.html) | **Dynamic Palette Generator**<br>Interactive system color picker and modifier to test visual palette properties directly in the browser viewport. | • Random Color Space Generation <br>• Event bubbling optimization |
-| **`COLOR-CHANGER-1`**| [`/index.html`](./COLOR-CHANGER-1/index.html) | **High-Frequency Hex & Hue Engines**<br>Dynamic CSS landscape manipulation engines that generate random palette codes or toggle mapped body backgrounds. | • Math formulation (hex strings) <br>• High frequency DOM style updating <br>• Dynamic class binding |
-| **`COUNTER-APP`** | [`/index.html`](./COUNTER-APP/index.html) | **Interactive Numeric Incrementer**<br>An atomic counter demonstrating state modification, tracking visual thresholds (under zero/above bounds), and updating visual styles dynamically. | • Mapped State Modification <br>• UI threshold evaluation <br>• Class toggling based on numeric signs |
-| **`01-TO-DO-APP`** | [`/index.html`](./01-TO-DO-APP/index.html) | **Atomic Dom Manipulation List App**<br>A lightweight task tracking UI. Directly mutates individual DOM nodes to append checks, task text, and delete commands. Uses native sibling selectors for line-through. | • Direct Node Injection (`createElement`) <br>• Event Handling (`click`) <br>• Element Traversal (`closest("li")`) <br>• Input sanitization (`trim()`) |
+| Project | Summary | Key concepts |
+|:--|:--|:--|
+| [`WEATHER-APP`](./WEATHER-APP/index.html) | Weather dashboard using the OpenWeatherMap API: current conditions, hourly forecast, popular-city lookup, background that changes with the weather. | `fetch` + `async/await`, dynamic rendering, date/time formatting |
+| [`EXPENSE-TRACKER`](./EXPENSE-TRACKER) ([Live](https://stellar-basbousa-142e5f.netlify.app/#overview)) | Transaction ledger split into storage, calculation, and template modules. | ES modules, data mapping, reducer-style calculations, form handling |
+| [`02-TO-DO-APP`](./02-TO-DO-APP/index.html) | To-do app with one central state array, `localStorage` persistence, All / Active / Completed filters, task counter, and dark/light theme. | `localStorage`, `splice`/`push`, `filter`, theme via HTML attributes |
+| [`CALCULATOR`](./CALCULATOR/index.html) | Calculator styled entirely with Tailwind v4 utilities, dual display, glowing active states. | Tailwind v4, expression evaluation, keyboard + mouse input |
+| [`BMI-CALCULATOR`](./BMI-CALCULATOR/index.html) | BMI tool with unit conversion, feet/inches string parsing, color-coded categories, and auto-reset after 30s of inactivity. | String parsing, input validation, `setTimeout`/`clearTimeout`, conic-gradient |
+| [`ROCK-PAPER-SCISSORS`](./ROCK-PAPER-SCISSORS/index.html) | Game that compares the player's choice against a random computer choice. | Array lookup, `Math.random`, score updates |
+| [`NUMBER-GUESSING-GAME`](./NUMBER-GUESSING-GAME/index.html) | Guessing game with range tracking, attempt count, and hints. | Random integers, session state |
+| [`DIGITAL CLOCK`](<./DIGITAL CLOCK/index.html>) | Live clock with locale-formatted time. | `Date`, `setInterval`, `padStart` |
+| [`LOGIN-SIGNUP-PAGE`](./LOGIN-SIGNUP-PAGE/index.html) | Mock login/signup flow with real-time email, password, and confirm-password validation. | Regex validation, `preventDefault`, multi-page flow |
+| [`COLOR-CHANGER-2`](./COLOR-CHANGER-2/index.html) | Random color generator that updates the page background. | Random color generation, event bubbling |
+| [`COLOR-CHANGER-1`](./COLOR-CHANGER-1/index.html) | Random hex generator and a button-based background switcher. | Hex string generation, DOM style updates, class toggling |
+| [`COUNTER-APP`](./COUNTER-APP/index.html) | Counter that changes style when the value goes below or above zero. | State updates, class toggling by value |
+| [`01-TO-DO-APP`](./01-TO-DO-APP/index.html) | To-do list that builds and removes DOM nodes directly (v1, no central state). | `createElement`, click events, `closest("li")`, `trim()` |
 
 ---
 
 ## ⚡ Tech Stack
 
-*   **Frontend Foundations:** HTML5 (Semantic Structure, Accessible UI Layouts), CSS3 (CSS Variables/Theming, CSS Grid, Flexbox layouts, transition animations, `@page` & Conic-Gradients).
-*   **CSS Compiler / Framework:** Tailwind CSS v4.3.3 (Modern @import pipeline, modular layer structures).
-*   **Modern JS Paradigms (ES6+):**
-    *   Stateful client caching via `localStorage` API.
-    *   Dynamic, non-destructive DOM generation (`document.createElement`, `append()`).
-    *   State-driven list filtering.
-    *   Robust validation systems (String regex matching, metric splits, input sanitization).
+- **HTML5:** semantic structure
+- **CSS3:** variables, Grid, Flexbox, transitions, conic-gradients
+- **Tailwind CSS v4:** used in the Calculator
+- **JavaScript (ES6+):** modules, `localStorage`, `fetch`, `async/await`
 
 ---
 
-## 🚀 Quick Start & Runtime Environment
-
-### Local Setup
-
-To clone and explore the applications locally, execute the following commands in your terminal:
+## 🚀 Run Locally
 
 ```bash
-# Clone this repository
-git clone [https://github.com/Sarfarosh-0/JavaScript-Vanilla-Projects.git](https://github.com/Sarfarosh-0/JavaScript-Vanilla-Projects.git)
-
-# Navigate into the project directory
+git clone https://github.com/Sarfarosh-0/JavaScript-Vanilla-Projects.git
 cd JavaScript-Vanilla-Projects
+```
+
+Each project is self-contained. Open its `index.html` in a browser, or use a local server such as the VS Code Live Server extension.
+
+The Weather App needs your own OpenWeatherMap API key.
