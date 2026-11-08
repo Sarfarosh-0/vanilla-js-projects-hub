@@ -156,6 +156,16 @@ body {
     transform: scale(0.95);
 }
 
+.CountOption:focus-visible {
+    outline: 3px solid #ffffff;
+    outline-offset: 4px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.CountOption:focus:not(:focus-visible) {
+    outline: none;
+}
+
 .CounterMessage {
     display: inline-flex;
     align-items: center;
