@@ -1,0 +1,9 @@
+{
+  "name": "BMI Calculator",
+  "description": "Calculate Body Mass Index with unit conversion, category gauge, and auto-reset after inactivity.",
+  "author": "Sarfarosh-0",
+  "difficulty": "beginner",
+  "tags": ["calculator", "bmi", "forms", "validation"],
+  "requiresApiKey": false,
+  "contributors": []
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Rock Paper Scissors",
+  "description": "Classic Rock Paper Scissors game played against a computer with score tracking and round results.",
+  "author": "Sarfarosh-0",
+  "difficulty": "beginner",
+  "tags": ["game", "math-random", "state", "dom"],
+  "requiresApiKey": false,
+  "contributors": []
+}

@@ -1,0 +1,10 @@
+
+{
+  "name": "Basic To-Do App",
+  "description": "Simple to-do list with task creation, completion toggling, and deletion using direct DOM manipulation.",
+  "author": "Sarfarosh-0",
+  "difficulty": "beginner",
+  "tags": ["todo", "dom", "event-listener", "crud"],
+  "requiresApiKey": false,
+  "contributors": []
+}

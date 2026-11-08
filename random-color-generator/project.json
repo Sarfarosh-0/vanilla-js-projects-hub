@@ -1,0 +1,9 @@
+{
+  "name": "Random Color Generator",
+  "description": "Generate random RGB or hex background colors with live interactive controls and code displays.",
+  "author": "Sarfarosh-0",
+  "difficulty": "beginner",
+  "tags": ["colors", "random", "rgb", "background"],
+  "requiresApiKey": false,
+  "contributors": []
+}

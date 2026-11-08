@@ -1,0 +1,47 @@
+name: Validate PR
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Verify PR Scope
+        run: |
+          # Get list of changed files relative to target branch
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          echo "Changed files:"
+          echo "$CHANGED_FILES"
+
+          # Check if non-maintainers touched workflow or system files
+          PROTECTED_FILES=$(echo "$CHANGED_FILES" | grep -E '^(\.github/workflows/|scripts/|cdn-whitelist\.json)' || true)
+          if [ -n "$PROTECTED_FILES" ]; then
+            echo "::error::Modifications to workflow or automation files are restricted to maintainers."
+            echo "$PROTECTED_FILES"
+            exit 1
+          fi
+
+          # Extract top-level project folders changed
+          PROJECT_FOLDERS=$(echo "$CHANGED_FILES" | grep -v -E '^(README\.md|\.github/|docs/|LICENSE|CONTRIBUTING\.md|PROJECT_IDEAS\.md)' | cut -d/ -f1 | sort -u || true)
+          FOLDER_COUNT=$(echo "$PROJECT_FOLDERS" | grep -v '^$' | wc -l)
+
+          if [ "$FOLDER_COUNT" -gt 1 ]; then
+            echo "::error::Pull request must only affect one project folder at a time. Found changes in: $PROJECT_FOLDERS"
+            exit 1
+          fi
+
+      - name: Run Project Validation
+        run: node scripts/validate.js

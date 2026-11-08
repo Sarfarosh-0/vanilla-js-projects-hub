@@ -1,0 +1,9 @@
+{
+  "name": "Login & Signup Form",
+  "description": "Interactive authentication UI featuring tab switching and real-time form validation with regex patterns.",
+  "author": "Sarfarosh-0",
+  "difficulty": "beginner",
+  "tags": ["form-validation", "regex", "auth", "tabs"],
+  "requiresApiKey": false,
+  "contributors": []
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Advanced To-Do App",
+  "description": "Feature-packed to-do app with persistent storage, filter views (All, Active, Completed), and theme switching.",
+  "author": "Sarfarosh-0",
+  "difficulty": "intermediate",
+  "tags": ["todo", "localstorage", "filtering", "dark-mode"],
+  "requiresApiKey": false,
+  "contributors": []
+}

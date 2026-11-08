@@ -1,0 +1,9 @@
+{
+  "name": "Number Guessing Game",
+  "description": "Guessing game with random number generation, attempt tracking, and high/low feedback hints.",
+  "author": "Sarfarosh-0",
+  "difficulty": "beginner",
+  "tags": ["game", "math-random", "conditionals", "inputs"],
+  "requiresApiKey": false,
+  "contributors": []
+}

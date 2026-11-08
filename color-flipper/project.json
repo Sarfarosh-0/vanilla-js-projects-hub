@@ -1,0 +1,9 @@
+{
+  "name": "Color Flipper",
+  "description": "Switch between preset color themes or generate random hex codes with a single click.",
+  "author": "Sarfarosh-0",
+  "difficulty": "beginner",
+  "tags": ["color", "dom", "random", "hex-code"],
+  "requiresApiKey": false,
+  "contributors": []
+}

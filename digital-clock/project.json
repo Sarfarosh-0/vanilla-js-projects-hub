@@ -1,0 +1,9 @@
+{
+  "name": "Digital Clock",
+  "description": "Clean digital clock displaying the current time with live updates every second.",
+  "author": "Sarfarosh-0",
+  "difficulty": "beginner",
+  "tags": ["clock", "date", "setinterval", "time"],
+  "requiresApiKey": false,
+  "contributors": []
+}

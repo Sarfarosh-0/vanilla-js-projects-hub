@@ -1,0 +1,9 @@
+{
+  "name": "Neon Calculator",
+  "description": "Responsive calculator featuring a dual-line LCD display, expression evaluation, and neon glowing effects.",
+  "author": "Sarfarosh-0",
+  "difficulty": "beginner",
+  "tags": ["calculator", "math", "keyboard-events", "tailwind"],
+  "requiresApiKey": false,
+  "contributors": []
+}

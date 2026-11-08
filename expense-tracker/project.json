@@ -1,0 +1,9 @@
+{
+  "name": "Expense Tracker",
+  "description": "Track income and expenses with balance calculations, transaction history, and localStorage persistence.",
+  "author": "Sarfarosh-0",
+  "difficulty": "intermediate",
+  "tags": ["finance", "localstorage", "es-modules", "state"],
+  "requiresApiKey": false,
+  "contributors": []
+}

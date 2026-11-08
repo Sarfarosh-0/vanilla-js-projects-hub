@@ -1,0 +1,26 @@
+name: Stale PR Monitor
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+
+permissions:
+  pull-requests: write
+  issues: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-pr-message: "👋 This pull request has been open for 14 days with no recent activity. If you're still working on it, please leave a comment or push an update! Otherwise, it will be automatically closed in 16 days to keep the project backlog clean."
+          close-pr-message: "This pull request was closed due to 30 days of inactivity. If you'd like to continue working on this, feel free to reopen it or submit a new PR anytime!"
+          days-before-pr-stale: 14
+          days-before-pr-close: 16
+          stale-pr-label: "stale"
+          # Only mark PRs as stale (do not auto-close issues)
+          days-before-issue-stale: -1
+          days-before-issue-close: -1

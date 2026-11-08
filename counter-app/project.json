@@ -1,0 +1,9 @@
+{
+  "name": "Counter App",
+  "description": "Interactive number counter supporting increment, decrement, and reset with dynamic value-based colors.",
+  "author": "Sarfarosh-0",
+  "difficulty": "beginner",
+  "tags": ["counter", "state", "dom", "click-events"],
+  "requiresApiKey": false,
+  "contributors": []
+}

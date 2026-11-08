@@ -1,0 +1,9 @@
+{
+  "name": "Weather App",
+  "description": "Real-time weather dashboard with OpenWeatherMap API, dynamic weather backgrounds, and hourly forecasts.",
+  "author": "Sarfarosh-0",
+  "difficulty": "intermediate",
+  "tags": ["weather", "api", "async-await", "fetch"],
+  "requiresApiKey": true,
+  "contributors": []
+}
