@@ -1,0 +1,212 @@
+/* ── Google Font ── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* ── Design tokens ── */
+:root {
+  --clr-work-bg: #c0392b;
+  --clr-work-ring: #e74c3c;
+  --clr-break-bg: #27ae60;
+  --clr-break-ring: #2ecc71;
+  --clr-bg: #1a1a2e;
+  --clr-surface: #16213e;
+  --clr-text: #eaeaea;
+  --clr-muted: #a0a0b0;
+  --clr-btn-primary: #e74c3c;
+  --clr-btn-primary-hover: #c0392b;
+  --clr-btn-secondary: #2c3e50;
+  --clr-btn-secondary-hover: #34495e;
+  --radius: 1rem;
+  --transition: 0.25s ease;
+}
+
+/* ── Reset / base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--clr-bg);
+  color: var(--clr-text);
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+/* ── Focus-visible outlines (accessibility) ── */
+:focus-visible {
+  outline: 3px solid #f39c12;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ── Card ── */
+.card {
+  background: var(--clr-surface);
+  border-radius: calc(var(--radius) * 1.5);
+  padding: 2.5rem 2rem;
+  width: min(100%, 400px);
+  text-align: center;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Header ── */
+.app-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--clr-muted);
+  margin-bottom: 0.4rem;
+}
+
+/* ── Mode badge ── */
+#mode-label {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.8rem;
+  transition: color var(--transition);
+}
+#mode-label.work  { color: var(--clr-work-ring);  }
+#mode-label.break { color: var(--clr-break-ring); }
+
+/* ── Circular ring timer ── */
+.ring-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* ── Digital display overlaid on SVG ── */
+.ring-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.ring-svg {
+  position: absolute;
+  inset: 0;
+  width: 200px;
+  height: 200px;
+  transform: rotate(-90deg);
+}
+
+.ring-track {
+  fill: none;
+  stroke: #2c2c4a;
+  stroke-width: 10;
+}
+
+.ring-progress {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  transition: stroke-dashoffset var(--transition), stroke var(--transition);
+}
+
+/* Respect reduced-motion: disable SVG transition */
+@media (prefers-reduced-motion: reduce) {
+  .ring-progress { transition: none; }
+}
+
+#time-display {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+/* ── Controls ── */
+.controls {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  transition: background var(--transition), transform var(--transition), opacity var(--transition);
+}
+
+/* Respect reduced-motion: disable button transform */
+@media (prefers-reduced-motion: reduce) {
+  button { transition: background var(--transition), opacity var(--transition); }
+}
+
+button:active:not([aria-disabled="true"]) {
+  transform: scale(0.96);
+}
+
+/* Primary: Start / Pause */
+#btn-start-pause {
+  background: var(--clr-btn-primary);
+  color: #fff;
+  min-width: 110px;
+}
+#btn-start-pause:hover:not([aria-disabled="true"]) {
+  background: var(--clr-btn-primary-hover);
+}
+#btn-start-pause[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Secondary: Reset */
+#btn-reset {
+  background: var(--clr-btn-secondary);
+  color: var(--clr-text);
+}
+#btn-reset:hover {
+  background: var(--clr-btn-secondary-hover);
+}
+
+/* ── Session dots ── */
+.session-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.6rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #2c2c4a;
+  transition: background var(--transition);
+}
+
+.dot.filled { background: var(--clr-work-ring); }
+
+/* ── Visually-hidden live region for screen readers ── */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Footer ── */
+footer {
+  margin-top: 2rem;
+  font-size: 0.8rem;
+  color: var(--clr-muted);
+}

@@ -1,0 +1,9 @@
+{
+  "name": "Pomodoro Focus Timer",
+  "description": "A 25/5 Pomodoro timer with start, pause, reset, and auto-switching between work and break sessions.",
+  "author": "the-fahyan",
+  "difficulty": "beginner",
+  "tags": ["timer", "dom", "date", "accessibility", "productivity"],
+  "requiresApiKey": false,
+  "contributors": []
+}
