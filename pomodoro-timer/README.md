@@ -37,4 +37,4 @@ When time runs out the timer automatically switches to the next session (Work â†
 
 ## Credits
 
-Built by [YOUR_GITHUB_USERNAME](https://github.com/the-fahyan).
+Built by [the-fahyan](https://github.com/the-fahyan).
