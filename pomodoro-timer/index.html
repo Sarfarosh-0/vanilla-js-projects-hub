@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pomodoro Focus Timer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="card" role="main">
+    <p class="app-title">Pomodoro Focus Timer</p>
+    <h1 id="mode-label" class="work">Work</h1>
+
+    <div class="ring-wrapper">
+      <div class="ring-container" aria-hidden="true">
+        <!-- SVG progress ring (decorative, aria-hidden) -->
+        <svg class="ring-svg" viewBox="0 0 200 200" aria-hidden="true">
+          <circle class="ring-track"    cx="100" cy="100" r="88" />
+          <circle class="ring-progress" cx="100" cy="100" r="88"
+                  id="ring-progress-circle" />
+        </svg>
+        <!-- Time readout -->
+        <div id="time-display" aria-hidden="true">25:00</div>
+      </div>
+    </div>
+
+    <!-- Accessible time + status announcements -->
+    <div class="sr-only" role="status" id="sr-status" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Controls -->
+    <div class="controls">
+      <button id="btn-start-pause"
+              aria-label="Start timer"
+              aria-disabled="false">
+        Start
+      </button>
+      <button id="btn-reset" aria-label="Reset timer">
+        Reset
+      </button>
+    </div>
+
+    <!-- Session progress dots (4 pomodoros per cycle) -->
+    <div class="session-dots" aria-label="Completed pomodoros" role="img">
+      <span class="dot" aria-hidden="true"></span>
+      <span class="dot" aria-hidden="true"></span>
+      <span class="dot" aria-hidden="true"></span>
+      <span class="dot" aria-hidden="true"></span>
+    </div>
+  </main>
+
+  <footer>
+    <p>Open <code>index.html</code> in any modern browser — no install needed.</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
