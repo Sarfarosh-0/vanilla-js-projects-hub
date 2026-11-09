@@ -21,6 +21,7 @@ async function citiesWeather() {
       if (cityTemp) cityTemp.textContent = Math.floor(data.main.temp);
       if (cityIcon)
         cityIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+      cityIcon.alt = `${data.weather[0].description} weather in ${data.name}`;
     } catch (err) {
       console.error(`Error fetching weather for ${cityName}:`, err);
     }

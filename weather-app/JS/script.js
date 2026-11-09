@@ -65,6 +65,7 @@ async function fetchWeather(queryParam = "Lucknow") {
     country.textContent = countryName;
     weatherType.textContent = data.weather[0].description;
     weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+    weatherIcon.alt = `${data.weather[0].description} weather in ${data.name}`;
 
     const weatherCondition = data.weather[0].main;
 
@@ -133,7 +134,7 @@ async function hourlyForecast(queryParam = "Lucknow") {
       if (hourlyIcon[index]) {
         hourlyIcon[index].src =
           `https://openweathermap.org/img/wn/${data.icon}@2x.png`;
-        hourlyIcon[index].alt = data.description;
+        hourlyIcon[index].alt = `${data.description} weather forecast`;
       }
     });
   } catch (error) {
