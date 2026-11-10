@@ -8,6 +8,74 @@
 (function () {
   'use strict';
 
+  /* -------------------------------------------------------------------------
+     Theme toggle
+     The inline <head> script has already picked the palette before first
+     paint. Here we keep the button state in sync, persist explicit choices,
+     and keep following the operating system until one is made.
+     ------------------------------------------------------------------------- */
+  var THEME_KEY = 'vanilla-hub:theme';
+  var root = document.documentElement;
+  var themeToggle = document.getElementById('theme-toggle');
+  var themeColorMeta = document.querySelector('meta[name="theme-color"]');
+  var darkQuery =
+    window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+
+  function readStoredTheme() {
+    try {
+      var value = window.localStorage.getItem(THEME_KEY);
+      return value === 'dark' || value === 'light' ? value : null;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function applyTheme(theme) {
+    var isDark = theme === 'dark';
+    root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+
+    if (themeToggle) {
+      var label = isDark ? 'Switch to light theme' : 'Switch to dark theme';
+      themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+      themeToggle.setAttribute('aria-label', label);
+      themeToggle.setAttribute('title', label);
+    }
+
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute('content', isDark ? '#10150f' : '#315b3d');
+    }
+  }
+
+  applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      var nextTheme =
+        root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(nextTheme);
+
+      try {
+        window.localStorage.setItem(THEME_KEY, nextTheme);
+      } catch (error) {
+        /* The choice still applies to this page view. */
+      }
+    });
+  }
+
+  if (darkQuery) {
+    var handleSystemTheme = function (event) {
+      if (!readStoredTheme()) {
+        applyTheme(event.matches ? 'dark' : 'light');
+      }
+    };
+
+    if (darkQuery.addEventListener) {
+      darkQuery.addEventListener('change', handleSystemTheme);
+    } else if (darkQuery.addListener) {
+      darkQuery.addListener(handleSystemTheme);
+    }
+  }
+
   var grid = document.querySelector('[data-project-grid]');
   if (!grid) {
     return;
