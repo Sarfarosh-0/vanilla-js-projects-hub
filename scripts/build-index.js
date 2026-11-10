@@ -257,15 +257,21 @@ function renderCard(project, index) {
               <p class="project-note">${ICON_KEY}<span>API key required</span></p>`
     : '';
 
+  const author = typeof project.author === 'string' ? project.author.trim() : '';
+  const byline = author
+    ? `
+              <p class="project-author">by <a class="project-author-name" href="https://github.com/${escapeAttr(encodeURIComponent(author))}" target="_blank" rel="noopener noreferrer">${escapeHtml(author)}</a></p>`
+    : '';
+
   return `          <article class="project-card${isExtra ? ' is-extra' : ''}" data-project-card data-difficulty="${escapeAttr(project.difficulty)}" data-tags="${escapeAttr(project.tags.join(' '))}" data-search="${escapeAttr(searchBlob)}">
             <div class="project-thumb">
-              <img src="${escapeAttr(project.thumbnail)}" alt="" width="115" height="130" loading="lazy" decoding="async">
+              <img src="${escapeAttr(project.thumbnail)}" alt="" width="115" height="130" loading="lazy" decoding="async" draggable="false">
             </div>
             <div class="project-body">
               <div class="project-title-row">
                 <h3 class="project-title"><a href="${escapeAttr(project.demoUrl)}">${escapeHtml(project.name)}</a></h3>
                 <span class="badge badge-${escapeAttr(project.difficulty)}">${titleCaseDifficulty(project.difficulty)}</span>
-              </div>
+              </div>${byline}
               <p class="project-desc">${escapeHtml(project.description)}</p>${note}
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
