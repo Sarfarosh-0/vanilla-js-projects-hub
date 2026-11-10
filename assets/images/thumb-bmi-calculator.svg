@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img">
+  <rect width="240" height="280" fill="#e7eedb"/>
+  <circle cx="196" cy="48" r="42" fill="#d9e5c6"/>
+  <circle cx="34" cy="242" r="30" fill="#dce8cb"/>
+  <path d="M64 176a56 56 0 0 1 20-45" fill="none" stroke="#b5d957" stroke-width="18" stroke-linecap="round"/>
+  <path d="M90 127a56 56 0 0 1 60 0" fill="none" stroke="#258447" stroke-width="18" stroke-linecap="round"/>
+  <path d="M156 132a56 56 0 0 1 20 44" fill="none" stroke="#668b63" stroke-width="18" stroke-linecap="round"/>
+  <line x1="120" y1="176" x2="148" y2="140" stroke="#183629" stroke-width="5" stroke-linecap="round"/>
+  <circle cx="120" cy="176" r="10" fill="#183629"/>
+  <circle cx="120" cy="176" r="4" fill="#fffdf4"/>
+  <text x="120" y="214" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="22" font-weight="800" fill="#183629">BMI</text>
+  <text x="120" y="234" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10" font-weight="600" fill="#668b63">HEALTH SCORE</text>
+</svg>

@@ -10,7 +10,9 @@ const IGNORED_DIRS = new Set([
   'node_modules',
   'scripts',
   'docs',
-  'scratch'
+  'scratch',
+  // Shared assets for the root landing page, not a project folder.
+  'assets'
 ]);
 
 let errors = [];

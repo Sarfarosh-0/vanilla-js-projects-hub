@@ -1,4 +1,4 @@
-name: Build Index Table
+name: Build Project Index
 
 on:
   push:
@@ -20,17 +20,17 @@ jobs:
         with:
           node-version: 20
 
-      - name: Regenerate README index table
+      - name: Regenerate project index and landing page
         run: node scripts/build-index.js
 
-      - name: Commit and push updated README if changed
+      - name: Commit and push generated files if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          if [ -n "$(git status --porcelain README.md)" ]; then
-            git add README.md
-            git commit -m "docs: regenerate project index table [skip ci]"
+          if [ -n "$(git status --porcelain README.md index.html)" ]; then
+            git add README.md index.html
+            git commit -m "docs: regenerate project index [skip ci]"
             git push
           else
-            echo "README.md is up to date."
+            echo "README.md and index.html are up to date."
           fi

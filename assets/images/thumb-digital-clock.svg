@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img">
+  <rect width="240" height="280" fill="#e7eedb"/>
+  <circle cx="196" cy="48" r="42" fill="#d9e5c6"/>
+  <circle cx="34" cy="242" r="30" fill="#dce8cb"/>
+  <rect x="52" y="86" width="136" height="92" rx="18" fill="#183629"/>
+  <rect x="64" y="98" width="112" height="68" rx="10" fill="#204832"/>
+  <text x="116" y="143" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="30" font-weight="700" fill="#b5d957">12:45</text>
+  <text x="166" y="158" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="9" font-weight="600" fill="#8baf78">PM</text>
+  <rect x="104" y="178" width="32" height="12" fill="#315b3d"/>
+  <rect x="84" y="190" width="72" height="10" rx="5" fill="#315b3d"/>
+  <g fill="#8baf78">
+    <circle cx="104" cy="66" r="4"/>
+    <circle cx="120" cy="66" r="4" opacity="0.7"/>
+    <circle cx="136" cy="66" r="4" opacity="0.45"/>
+  </g>
+</svg>

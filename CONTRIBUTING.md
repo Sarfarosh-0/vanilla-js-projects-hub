@@ -26,6 +26,7 @@ We encourage contributors of all skill levels to participate:
   - `project.json` (metadata for directory & index generation)
 - **Single project per PR**: All changes in your pull request must be contained within that single project folder.
 - **Relative paths only**: Always reference local assets relatively (`style.css` or `./style.css`, **never** `/style.css`).
+- **Generated files**: The project table in `README.md` and the root `index.html` landing page are generated from project metadata. After changing a `project.json`, run `node scripts/build-index.js` and commit the regenerated files. Do not hand-edit `index.html`; its source template lives in `scripts/templates/` (maintainers only).
 
 ### 2. Technology Constraints
 - **Pure Vanilla**: HTML5, CSS3, vanilla JavaScript (ES6+), and standard browser APIs only.

@@ -36,6 +36,8 @@ No frameworks, no complex build steps—just pure **HTML5**, **CSS3 / Tailwind**
 
 <!-- PROJECTS-TABLE-END -->
 
+> This table and the [landing page](./index.html) are generated from each project's `project.json`. Run `node scripts/build-index.js` after changing project metadata.
+
 ---
 
 ## 🧗 Contribution Ladder

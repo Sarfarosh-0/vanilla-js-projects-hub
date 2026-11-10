@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 280" role="img">
+  <rect width="240" height="280" fill="#e7eedb"/>
+  <circle cx="196" cy="48" r="42" fill="#d9e5c6"/>
+  <circle cx="34" cy="242" r="30" fill="#dce8cb"/>
+  <circle cx="120" cy="132" r="68" fill="#fffdf4" stroke="#ccd9bd" stroke-width="2"/>
+  <circle cx="120" cy="132" r="54" fill="none" stroke="#e3ebd5" stroke-width="10"/>
+  <path d="M120 78a54 54 0 0 1 46 26" fill="none" stroke="#b5d957" stroke-width="10" stroke-linecap="round"/>
+  <path d="M120 186a54 54 0 0 1-46-26" fill="none" stroke="#8baf78" stroke-width="10" stroke-linecap="round"/>
+  <text x="120" y="140" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="30" font-weight="800" fill="#183629">25:00</text>
+  <text x="120" y="158" text-anchor="middle" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="9" font-weight="600" letter-spacing="1.5" fill="#668b63">FOCUS</text>
+  <path d="M120 38v10" stroke="#315b3d" stroke-width="5" stroke-linecap="round"/>
+  <path d="M132 40c0-6 5-8 9-6" fill="none" stroke="#315b3d" stroke-width="4" stroke-linecap="round"/>
+  <path d="M96 216c0 10 6 18 12 20 6-2 12-10 12-20" fill="#668b63"/>
+  <circle cx="60" cy="80" r="5" fill="#b5d957"/>
+  <circle cx="184" cy="204" r="4" fill="#8baf78"/>
+</svg>

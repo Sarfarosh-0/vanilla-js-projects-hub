@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 170" role="img">
+  <defs>
+    <path id="footerLeaf" d="M0 0C16-9 34-6 41 7 29 22 9 22 0 0Z"/>
+  </defs>
+
+  <path d="M0 152c46-24 92-30 138-16 44 14 84 8 128-8 46-16 96-12 154 10v32H0Z" fill="#1c4630"/>
+  <path d="M0 168c60-20 118-22 176-6 52 15 104 9 152-8 34-12 64-10 92-2v18H0Z" fill="#163b27"/>
+
+  <g opacity="0.55">
+    <use href="#footerLeaf" transform="translate(268 96) rotate(-34) scale(1.1)" fill="#8baf78"/>
+    <use href="#footerLeaf" transform="translate(312 74) rotate(-10) scale(0.9)" fill="#b5d957"/>
+    <use href="#footerLeaf" transform="translate(350 104) rotate(18) scale(1)" fill="#668b63"/>
+    <use href="#footerLeaf" transform="translate(240 120) rotate(-62) scale(0.8)" fill="#b5d957"/>
+  </g>
+
+  <g stroke="#8baf78" stroke-width="3" stroke-linecap="round" fill="none" opacity="0.45">
+    <path d="M280 124c10-18 24-28 44-34"/>
+    <path d="M352 118c2-16 8-26 18-34"/>
+  </g>
+</svg>
