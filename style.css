@@ -385,7 +385,7 @@ button {
   font-size: 14px;
   font-weight: 600;
   color: var(--color-text-primary);
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .nav-link .icon {
@@ -402,13 +402,13 @@ button {
 }
 
 .nav-link.is-active {
-  background: var(--color-primary);
-  color: var(--color-on-primary);
-  box-shadow: 0 6px 14px #315b3d21;
+  background: var(--color-surface-highlight);
+  color: var(--color-text-primary);
+  box-shadow: inset 0 0 0 1px var(--color-border-strong), 0 4px 10px #315b3d14;
 }
 
 .nav-link.is-active .icon {
-  color: var(--color-on-primary);
+  color: var(--color-primary);
 }
 
 .nav-link.is-active:focus-visible {
@@ -1449,6 +1449,10 @@ html.js .project-grid.is-filtering .project-card.is-extra {
     padding: 12px 16px;
   }
 
+  .header-actions {
+    margin-left: auto;
+  }
+
   .menu-toggle {
     display: grid;
   }
@@ -1456,6 +1460,43 @@ html.js .project-grid.is-filtering .project-card.is-extra {
   .nav-toggle:focus-visible~.header-actions .menu-toggle {
     outline: 3px solid var(--color-accent);
     outline-offset: 2px;
+  }
+
+  .filter-groups {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+  }
+
+  .filter-group {
+    flex-wrap: nowrap;
+  }
+
+  .filter-separator {
+    display: none;
+  }
+
+  .chip {
+    padding: 11px 18px;
+    font-size: 14px;
+  }
+
+  .chip-count {
+    font-size: 12px;
+  }
+
+  /* The chip strip scrolls horizontally, which would clip an absolutely
+     positioned dropdown. Turn the "More" panel into a bottom sheet instead. */
+  .more-menu {
+    position: fixed;
+    top: auto;
+    right: 16px;
+    bottom: 16px;
+    left: 16px;
+    width: auto;
+    max-height: min(60vh, 360px);
+    z-index: 60;
   }
 
   .hero-inner {
@@ -1523,34 +1564,6 @@ html.js .project-grid.is-filtering .project-card.is-extra {
   .search {
     order: -1;
     width: 100%;
-  }
-
-  .filter-groups {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    padding-bottom: 6px;
-    scrollbar-width: thin;
-  }
-
-  .filter-group {
-    flex-wrap: nowrap;
-  }
-
-  .filter-separator {
-    display: none;
-  }
-
-  /* The chip strip scrolls horizontally, which would clip an absolutely
-     positioned dropdown. Turn the "More" panel into a bottom sheet instead. */
-  .more-menu {
-    position: fixed;
-    top: auto;
-    right: 16px;
-    bottom: 16px;
-    left: 16px;
-    width: auto;
-    max-height: min(60vh, 360px);
-    z-index: 60;
   }
 
   .contribute-banner {
@@ -1648,11 +1661,6 @@ html.js .project-grid.is-filtering .project-card.is-extra {
 
   .hero-actions .btn {
     justify-content: center;
-  }
-
-  .chip {
-    padding: 8px 13px;
-    font-size: 12px;
   }
 }
 

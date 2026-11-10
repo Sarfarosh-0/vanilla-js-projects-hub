@@ -76,6 +76,24 @@
     }
   }
 
+  var navLinks = Array.prototype.slice.call(
+    document.querySelectorAll('.main-nav .nav-link')
+  );
+
+  navLinks.forEach(function (link) {
+    link.addEventListener('click', function () {
+      navLinks.forEach(function (item) {
+        var isCurrent = item === link;
+        item.classList.toggle('is-active', isCurrent);
+        if (isCurrent) {
+          item.setAttribute('aria-current', 'page');
+        } else {
+          item.removeAttribute('aria-current');
+        }
+      });
+    });
+  });
+
   var grid = document.querySelector('[data-project-grid]');
   if (!grid) {
     return;
