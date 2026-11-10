@@ -73,7 +73,7 @@ async function fetchWeather(queryParam = "Lucknow") {
       weatherCard.style.backgroundImage = `url('${backgroundMap[weatherCondition]}')`;
     } else if (atmosphereConditions.includes(weatherCondition)) {
       weatherCard.style.backgroundImage =
-        "url('Resources/backgrounds/fog.png')";
+        "url('Resources/backgrounds/Fog.png')";
     } else if (weatherCondition === "Clear") {
       const isNight = data.weather[0].icon.includes("n");
       weatherCard.style.backgroundImage = isNight

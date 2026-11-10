@@ -84,7 +84,7 @@ Every project requires a `project.json` file in its folder root:
 
 ## 🔄 Step-by-Step Contribution Flow
 
-If you are new to Git and GitHub, read our comprehensive [First Contribution Guide](docs/first-contribution.md).
+If you are new to Git and GitHub, read our comprehensive [First Contribution Guide](first-contribution.md).
 
 1. **Find or create an issue**:
    - Check open issues with labels like `good first issue` or `help wanted`.

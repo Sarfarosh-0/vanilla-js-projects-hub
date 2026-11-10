@@ -48,7 +48,7 @@ We welcome contributors of all experience levels! You can climb the ladder at yo
 - **Level 2 — Enhancements**: Fix bugs, add responsive touches, or introduce new features to existing projects.
 - **Level 3 — New Project**: Build a brand-new vanilla JS project and add it to the hub!
 
-Check out our [Contributing Guide](CONTRIBUTING.md) and [First Contribution Guide](docs/first-contribution.md) to get started!
+Check out our [Contributing Guide](CONTRIBUTING.md) and [First Contribution Guide](first-contribution.md) to get started!
 
 ---
 
