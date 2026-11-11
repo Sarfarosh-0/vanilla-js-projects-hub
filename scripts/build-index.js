@@ -10,6 +10,8 @@ const PLACEHOLDER_THUMBNAIL = 'assets/images/thumb-placeholder.svg';
 const SITE_URL = 'https://sarfarosh-0.github.io/vanilla-js-projects-hub/';
 const REPO_URL = 'https://github.com/Sarfarosh-0/vanilla-js-projects-hub';
 const SITE_NAME = 'Vanilla JS Projects Hub';
+const SITE_IMAGE_URL = `${SITE_URL}assets/icons/logo.png`;
+const SITE_IMAGE_ALT = 'Vanilla JS Projects Hub logo';
 
 // Cards shown before "View All Projects". Any project not listed here is still
 // rendered, but appears after these six and starts hidden. Keep this in sync
@@ -320,9 +322,13 @@ function renderSeoMeta(projects) {
   <meta property="og:title" content="${escapeAttr(title)}">
   <meta property="og:description" content="${escapeAttr(description)}">
   <meta property="og:url" content="${SITE_URL}">
+  <meta property="og:image" content="${SITE_IMAGE_URL}">
+  <meta property="og:image:alt" content="${escapeAttr(SITE_IMAGE_ALT)}">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${escapeAttr(title)}">
-  <meta name="twitter:description" content="${escapeAttr(description)}">`;
+  <meta name="twitter:description" content="${escapeAttr(description)}">
+  <meta name="twitter:image" content="${SITE_IMAGE_URL}">
+  <meta name="twitter:image:alt" content="${escapeAttr(SITE_IMAGE_ALT)}">`;
 }
 
 function renderJsonLd(projects) {
