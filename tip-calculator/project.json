@@ -1,7 +1,7 @@
 {
   "name": "Tip Calculator",
   "description": "Calculate the tip and split the bill per person with preset or custom tip percentages.",
-  "author": "YOUR_GITHUB_USERNAME",
+  "author": "mohdhamza-4",
   "difficulty": "beginner",
   "tags": ["calculator", "tip", "forms", "dom"],
   "requiresApiKey": false,

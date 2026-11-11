@@ -26,4 +26,4 @@ A simple tip calculator that works out the tip, the total bill, and what each pe
 This project helped solidify turning form input into reliable numbers, handling invalid values gracefully, and keeping the displayed results in sync with the inputs.
 
 ## Credits
-Built by [YOUR_GITHUB_USERNAME](https://github.com/YOUR_GITHUB_USERNAME).
+Built by [mohdhamza-4](https://github.com/mohdhamza-4).
