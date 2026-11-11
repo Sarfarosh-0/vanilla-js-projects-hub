@@ -111,6 +111,9 @@
     document.querySelectorAll('[data-filter="tag"]')
   );
   var searchInput = document.getElementById('project-search');
+  var clearFilterButtons = Array.prototype.slice.call(
+    document.querySelectorAll('[data-clear-filters]')
+  );
   var viewAllButton = document.querySelector('[data-view-all]');
   var status = document.getElementById('filter-status');
   var emptyState = document.querySelector('[data-empty-state]');
@@ -203,13 +206,35 @@
 
     setPressed(difficultyButtons, 'data-value', state.difficulty);
     setPressed(tagButtons, 'data-value', state.tag);
+    clearFilterButtons.forEach(function (button) {
+      button.hidden = !filtering;
+    });
     updateMoreLabel();
+  }
+
+  function clearFilters() {
+    state.difficulty = '';
+    state.tag = '';
+    state.query = '';
+    state.expanded = true;
+
+    if (searchInput) {
+      searchInput.value = '';
+    }
+    if (moreFilter) {
+      moreFilter.open = false;
+    }
+
+    render();
+
+    if (searchInput) {
+      searchInput.focus();
+    }
   }
 
   difficultyButtons.forEach(function (button) {
     button.addEventListener('click', function () {
       state.difficulty = button.getAttribute('data-value') || '';
-      state.expanded = false;
       render();
     });
   });
@@ -218,12 +243,15 @@
     button.addEventListener('click', function () {
       var value = button.getAttribute('data-value') || '';
       state.tag = state.tag === value ? '' : value;
-      state.expanded = false;
       if (moreFilter) {
         moreFilter.open = false;
       }
       render();
     });
+  });
+
+  clearFilterButtons.forEach(function (button) {
+    button.addEventListener('click', clearFilters);
   });
 
   if (searchInput) {

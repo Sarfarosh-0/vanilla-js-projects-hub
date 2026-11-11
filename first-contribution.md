@@ -56,7 +56,11 @@ If you are adding a new project:
 3. Check relative links and verify that everything loads cleanly when opening `index.html`.
 
 ### Step 6: Validate Your Changes Locally
-We provide a local validation script that mirrors our automated CI checks:
+If you added or changed a `project.json`, regenerate the README project table and landing page:
+```bash
+node scripts/build-index.js
+```
+Then run the validation script that mirrors our automated CI checks:
 ```bash
 node scripts/validate.js
 ```

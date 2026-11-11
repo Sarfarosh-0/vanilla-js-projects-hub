@@ -10,6 +10,8 @@ const PLACEHOLDER_THUMBNAIL = 'assets/images/thumb-placeholder.svg';
 const SITE_URL = 'https://sarfarosh-0.github.io/vanilla-js-projects-hub/';
 const REPO_URL = 'https://github.com/Sarfarosh-0/vanilla-js-projects-hub';
 const SITE_NAME = 'Vanilla JS Projects Hub';
+const SITE_IMAGE_URL = `${SITE_URL}assets/icons/logo.png`;
+const SITE_IMAGE_ALT = 'Vanilla JS Projects Hub logo';
 
 // Cards shown before "View All Projects". Any project not listed here is still
 // rendered, but appears after these six and starts hidden. Keep this in sync
@@ -195,14 +197,12 @@ function renderDifficultyChips(projects) {
 
   for (const difficulty of DIFFICULTIES) {
     const count = counts.get(difficulty);
-    const label = titleCaseDifficulty(difficulty);
     if (count === 0) {
-      chips.push(
-        `              <button type="button" class="chip" data-filter="difficulty" data-value="${difficulty}" aria-pressed="false" disabled title="No ${label.toLowerCase()} projects yet">${label} <span class="chip-count">0</span></button>`
-      );
-    } else {
-      chips.push(chip(label, `data-filter="difficulty" data-value="${difficulty}" aria-pressed="false"`, count));
+      // Hide difficulty categories with no projects rather than show a dead chip.
+      continue;
     }
+    const label = titleCaseDifficulty(difficulty);
+    chips.push(chip(label, `data-filter="difficulty" data-value="${difficulty}" aria-pressed="false"`, count));
   }
 
   return chips.join('\n');
@@ -262,6 +262,13 @@ function renderCard(project, index) {
     ? `
               <p class="project-author">by <a class="project-author-name" href="https://github.com/${escapeAttr(encodeURIComponent(author))}" target="_blank" rel="noopener noreferrer">${escapeHtml(author)}</a></p>`
     : '';
+  const tagList = project.tags
+    .map((tag) => `<li class="project-tag">${escapeHtml(formatTag(tag))}</li>`)
+    .join('');
+  const tags = tagList
+    ? `
+              <ul class="project-tags" aria-label="Technologies">${tagList}</ul>`
+    : '';
 
   return `          <article class="project-card${isExtra ? ' is-extra' : ''}" data-project-card data-difficulty="${escapeAttr(project.difficulty)}" data-tags="${escapeAttr(project.tags.join(' '))}" data-search="${escapeAttr(searchBlob)}">
             <div class="project-thumb">
@@ -272,14 +279,16 @@ function renderCard(project, index) {
                 <h3 class="project-title"><a href="${escapeAttr(project.demoUrl)}">${escapeHtml(project.name)}</a></h3>
                 <span class="badge badge-${escapeAttr(project.difficulty)}">${titleCaseDifficulty(project.difficulty)}</span>
               </div>${byline}
-              <p class="project-desc">${escapeHtml(project.description)}</p>${note}
+              <p class="project-desc">${escapeHtml(project.description)}</p>${tags}${note}
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="${escapeAttr(project.demoUrl)}" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="${escapeAttr(project.demoUrl)}" target="_blank"
+                  rel="noopener noreferrer" aria-label="Live demo of ${escapeAttr(project.name)}">
                   <span>Live Demo</span>
                   ${ICON_EXTERNAL}
                 </a>
-                <a class="btn-card btn-card-outline" href="${escapeAttr(project.codeUrl)}" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="${escapeAttr(project.codeUrl)}" target="_blank"
+                  rel="noopener noreferrer" aria-label="View code for ${escapeAttr(project.name)}">
                   <span>View Code</span>
                   ${ICON_GITHUB}
                 </a>
@@ -313,9 +322,13 @@ function renderSeoMeta(projects) {
   <meta property="og:title" content="${escapeAttr(title)}">
   <meta property="og:description" content="${escapeAttr(description)}">
   <meta property="og:url" content="${SITE_URL}">
+  <meta property="og:image" content="${SITE_IMAGE_URL}">
+  <meta property="og:image:alt" content="${escapeAttr(SITE_IMAGE_ALT)}">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="${escapeAttr(title)}">
-  <meta name="twitter:description" content="${escapeAttr(description)}">`;
+  <meta name="twitter:description" content="${escapeAttr(description)}">
+  <meta name="twitter:image" content="${SITE_IMAGE_URL}">
+  <meta name="twitter:image:alt" content="${escapeAttr(SITE_IMAGE_ALT)}">`;
 }
 
 function renderJsonLd(projects) {

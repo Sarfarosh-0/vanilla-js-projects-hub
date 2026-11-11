@@ -152,7 +152,7 @@
 
   <main id="main">
     <!-- ============ 2. Hero ============ -->
-    <section class="hero" id="home">
+    <section class="hero" id="home" aria-labelledby="hero-title">
       <div class="container hero-inner">
         <div class="hero-copy">
           <p class="hero-badge">
@@ -163,13 +163,13 @@
             <span>Learn · Build · Contribute</span>
           </p>
 
-          <h1 class="hero-title">
+          <h1 class="hero-title" id="hero-title">
             Vanilla JavaScript
             <span>Projects Hub.</span>
           </h1>
 
           <p class="hero-lead">
-            Build projects. Strengthen your JavaScript fundamentals, and contribute to open source.
+            Build projects, strengthen your JavaScript fundamentals, and contribute to open source.
           </p>
 
           <div class="hero-actions">
@@ -204,7 +204,7 @@
         <div class="hero-art">
           <img src="assets/images/hero-laptop.svg"
             alt="An open laptop displaying JavaScript code, surrounded by green leaves and floating code symbols."
-            width="640" height="560" draggable="false">
+            width="640" height="560" fetchpriority="high" decoding="async" draggable="false">
         </div>
       </div>
     </section>
@@ -219,7 +219,7 @@
               <path
                 d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
             </svg>
-            <span class="stat-value">{{PROJECT_COUNT}}+</span>
+            <span class="stat-value">{{PROJECT_COUNT}}</span>
             <span class="stat-label">Projects</span>
           </div>
           <div class="stat">
@@ -249,7 +249,7 @@
               <circle cx="6" cy="18" r="3" />
               <path d="M18 9a9 9 0 0 1-9 9" />
             </svg>
-            <span class="stat-value">251+</span>
+            <span class="stat-value">260+</span>
             <span class="stat-label">Commits</span>
           </div>
         </div>
@@ -257,7 +257,7 @@
     </section>
 
     <!-- ============ 4 & 5. Filters + Projects ============ -->
-    <section class="section projects-section" id="projects">
+    <section class="section projects-section" id="projects" aria-labelledby="projects-heading">
       <div class="container">
         <div class="filters">
           <div class="filter-groups">
@@ -272,28 +272,40 @@
             </div>
           </div>
 
-          <div class="search">
+          <div class="search" role="search" aria-label="Search projects">
             <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.3-4.3" />
             </svg>
             <label class="sr-only" for="project-search">Search projects</label>
-            <input id="project-search" type="search" name="q" placeholder="Search projects...">
+            <input id="project-search" type="search" name="q" placeholder="Search projects..." aria-controls="project-grid"
+              aria-describedby="filter-status">
           </div>
+
+          <button type="button" class="clear-filters" data-clear-filters hidden>
+            <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+            <span>Clear filters</span>
+          </button>
         </div>
 
         <div class="section-head">
           <div class="section-head-copy">
             <div class="section-title-row">
-              <img class="title-leaf" src="assets/icons/logo.png" alt="" width="28" height="28" draggable="false">
-              <h2>Explore Our Projects</h2>
+              <img class="title-leaf" src="assets/icons/logo.png" alt="" width="28" height="28" loading="lazy"
+                decoding="async" draggable="false">
+              <h2 id="projects-heading">Explore Our Projects</h2>
             </div>
             <p class="section-sub">A collection of beginner-friendly and advanced JavaScript projects.</p>
           </div>
           <p class="head-note">
-            <img class="curved-arrow" src="assets/images/curved-arrow.svg" alt="" width="56" height="28" draggable="false">
-            <span>{{PROJECT_COUNT}}+ Amazing Projects</span>
+            <img class="curved-arrow" src="assets/images/curved-arrow.svg" alt="" width="56" height="28"
+              loading="lazy" decoding="async" draggable="false">
+            <span>Open to contributions</span>
           </p>
         </div>
 
@@ -303,7 +315,16 @@
           {{PROJECT_CARDS}}
         </div>
 
-        <p class="empty-state" data-empty-state hidden>No projects match those filters yet. Try clearing them.</p>
+        <div class="empty-state" data-empty-state hidden>
+          <svg class="icon empty-state-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+          <h3>No projects found</h3>
+          <p>No projects match your current search and filters. Try a different keyword or clear the filters to see every project.</p>
+          <button type="button" class="btn btn-secondary empty-state-action" data-clear-filters>Clear filters</button>
+        </div>
 
         <div class="view-all-wrap">
           {{VIEW_ALL}}
@@ -312,19 +333,20 @@
     </section>
 
     <!-- ============ 6. Contribution banner ============ -->
-    <section class="section contribute-section" id="contribute">
+    <section class="section contribute-section" id="contribute" aria-labelledby="contribute-heading">
       <div class="container">
         <div class="contribute-banner">
           <div class="banner-plant">
-            <img src="assets/images/plant.svg" alt="" width="150" height="180" draggable="false">
+            <img src="assets/images/plant.svg" alt="" width="150" height="180" loading="lazy" decoding="async"
+              draggable="false">
           </div>
           <div class="banner-copy">
-            <h2>Ready to Contribute?</h2>
+            <h2 id="contribute-heading">Ready to Contribute?</h2>
             <p>Help improve projects, fix issues, and build something new.</p>
           </div>
           <a class="btn btn-primary banner-cta"
             href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/blob/main/CONTRIBUTING.md" target="_blank"
-            rel="noopener">
+            rel="noopener noreferrer">
             <span>Start Contributing</span>
             <svg class="icon icon-sm arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -417,20 +439,19 @@
         </ul>
       </nav>
 
-      <div class="footer-col footer-newsletter">
-        <h3>Stay Connected</h3>
-        <p>Get updates about new projects and contributions.</p>
-        <div class="subscribe">
-          <label class="sr-only" for="newsletter-email">Email address</label>
-          <input id="newsletter-email" type="email" name="email" placeholder="you@example.com" autocomplete="email">
-          <button type="button" class="subscribe-btn" aria-label="Subscribe to updates">
-            <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="m22 2-7 20-4-9-9-4Z" />
-              <path d="M22 2 11 13" />
-            </svg>
-          </button>
-        </div>
+      <div class="footer-col footer-involved">
+        <h3>Get Involved</h3>
+        <p>Find a project to improve, open an issue, or share your first pull request with the community.</p>
+        <a class="footer-cta" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/issues" target="_blank"
+          rel="noopener noreferrer">
+          <span>Browse Open Issues</span>
+          <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 3h6v6" />
+            <path d="M10 14 21 3" />
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          </svg>
+        </a>
       </div>
     </div>
 
@@ -440,7 +461,8 @@
       <p>MIT License</p>
     </div>
 
-    <img class="footer-decor" src="assets/images/footer-leaves.svg" alt="" width="420" height="170" aria-hidden="true" draggable="false">
+    <img class="footer-decor" src="assets/images/footer-leaves.svg" alt="" width="420" height="170"
+      aria-hidden="true" loading="lazy" decoding="async" draggable="false">
   </footer>
   <script src="assets/js/site.js" defer></script>
 </body>

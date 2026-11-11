@@ -2,7 +2,9 @@
 
 A curated collection of vanilla JavaScript projects built for beginners and developers to learn, build, and master open-source contributions.
 
-No frameworks, no complex build steps—just pure **HTML5**, **CSS3 / Tailwind**, and **ES6+ JavaScript**.
+**[Browse the live hub →](https://sarfarosh-0.github.io/vanilla-js-projects-hub/)**
+
+No JavaScript frameworks or complex build steps—just pure **HTML5**, **CSS3 / Tailwind**, and **ES6+ JavaScript**.
 
 ---
 
@@ -32,6 +34,7 @@ No frameworks, no complex build steps—just pure **HTML5**, **CSS3 / Tailwind**
 | [Pomodoro Focus Timer](./pomodoro-timer/index.html) | A 25/5 Pomodoro timer with start, pause, reset, and auto-switching between work and break sessions. | Beginner | `timer` `dom` `date` `accessibility` `productivity` |
 | [Random Color Generator](./random-color-generator/index.html) | Generate random RGB or hex background colors with live interactive controls and code displays. | Beginner | `colors` `random` `rgb` `background` |
 | [Rock Paper Scissors](./rock-paper-scissors/index.html) | Classic Rock Paper Scissors game played against a computer with score tracking and round results. | Beginner | `game` `math-random` `state` `dom` |
+| [Tip Calculator](./tip-calculator/index.html) | Calculate the tip and split the bill per person with preset or custom tip percentages. | Beginner | `calculator` `tip` `forms` `dom` |
 | [Weather App](./weather-app/index.html) | Real-time weather dashboard with OpenWeatherMap API, dynamic weather backgrounds, and hourly forecasts. *(🔑 API key required)* | Intermediate | `weather` `api` `async-await` `fetch` |
 
 <!-- PROJECTS-TABLE-END -->
