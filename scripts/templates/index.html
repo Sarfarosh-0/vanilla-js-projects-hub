@@ -152,7 +152,7 @@
 
   <main id="main">
     <!-- ============ 2. Hero ============ -->
-    <section class="hero" id="home">
+    <section class="hero" id="home" aria-labelledby="hero-title">
       <div class="container hero-inner">
         <div class="hero-copy">
           <p class="hero-badge">
@@ -163,7 +163,7 @@
             <span>Learn · Build · Contribute</span>
           </p>
 
-          <h1 class="hero-title">
+          <h1 class="hero-title" id="hero-title">
             Vanilla JavaScript
             <span>Projects Hub.</span>
           </h1>
@@ -257,7 +257,7 @@
     </section>
 
     <!-- ============ 4 & 5. Filters + Projects ============ -->
-    <section class="section projects-section" id="projects">
+    <section class="section projects-section" id="projects" aria-labelledby="projects-heading">
       <div class="container">
         <div class="filters">
           <div class="filter-groups">
@@ -272,14 +272,15 @@
             </div>
           </div>
 
-          <div class="search">
+          <div class="search" role="search" aria-label="Search projects">
             <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.3-4.3" />
             </svg>
             <label class="sr-only" for="project-search">Search projects</label>
-            <input id="project-search" type="search" name="q" placeholder="Search projects...">
+            <input id="project-search" type="search" name="q" placeholder="Search projects..." aria-controls="project-grid"
+              aria-describedby="filter-status">
           </div>
 
           <button type="button" class="clear-filters" data-clear-filters hidden>
@@ -296,7 +297,7 @@
           <div class="section-head-copy">
             <div class="section-title-row">
               <img class="title-leaf" src="assets/icons/logo.png" alt="" width="28" height="28" draggable="false">
-              <h2>Explore Our Projects</h2>
+              <h2 id="projects-heading">Explore Our Projects</h2>
             </div>
             <p class="section-sub">A collection of beginner-friendly and advanced JavaScript projects.</p>
           </div>
@@ -330,14 +331,14 @@
     </section>
 
     <!-- ============ 6. Contribution banner ============ -->
-    <section class="section contribute-section" id="contribute">
+    <section class="section contribute-section" id="contribute" aria-labelledby="contribute-heading">
       <div class="container">
         <div class="contribute-banner">
           <div class="banner-plant">
             <img src="assets/images/plant.svg" alt="" width="150" height="180" draggable="false">
           </div>
           <div class="banner-copy">
-            <h2>Ready to Contribute?</h2>
+            <h2 id="contribute-heading">Ready to Contribute?</h2>
             <p>Help improve projects, fix issues, and build something new.</p>
           </div>
           <a class="btn btn-primary banner-cta"

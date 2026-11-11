@@ -280,11 +280,13 @@ function renderCard(project, index) {
               <p class="project-desc">${escapeHtml(project.description)}</p>${tags}${note}
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="${escapeAttr(project.demoUrl)}" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="${escapeAttr(project.demoUrl)}" target="_blank" rel="noopener"
+                  aria-label="Live demo of ${escapeAttr(project.name)}">
                   <span>Live Demo</span>
                   ${ICON_EXTERNAL}
                 </a>
-                <a class="btn-card btn-card-outline" href="${escapeAttr(project.codeUrl)}" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="${escapeAttr(project.codeUrl)}" target="_blank" rel="noopener"
+                  aria-label="View code for ${escapeAttr(project.name)}">
                   <span>View Code</span>
                   ${ICON_GITHUB}
                 </a>

@@ -278,7 +278,7 @@
 
   <main id="main">
     <!-- ============ 2. Hero ============ -->
-    <section class="hero" id="home">
+    <section class="hero" id="home" aria-labelledby="hero-title">
       <div class="container hero-inner">
         <div class="hero-copy">
           <p class="hero-badge">
@@ -289,7 +289,7 @@
             <span>Learn · Build · Contribute</span>
           </p>
 
-          <h1 class="hero-title">
+          <h1 class="hero-title" id="hero-title">
             Vanilla JavaScript
             <span>Projects Hub.</span>
           </h1>
@@ -383,7 +383,7 @@
     </section>
 
     <!-- ============ 4 & 5. Filters + Projects ============ -->
-    <section class="section projects-section" id="projects">
+    <section class="section projects-section" id="projects" aria-labelledby="projects-heading">
       <div class="container">
         <div class="filters">
           <div class="filter-groups">
@@ -452,14 +452,15 @@
             </div>
           </div>
 
-          <div class="search">
+          <div class="search" role="search" aria-label="Search projects">
             <svg class="icon search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.3-4.3" />
             </svg>
             <label class="sr-only" for="project-search">Search projects</label>
-            <input id="project-search" type="search" name="q" placeholder="Search projects...">
+            <input id="project-search" type="search" name="q" placeholder="Search projects..." aria-controls="project-grid"
+              aria-describedby="filter-status">
           </div>
 
           <button type="button" class="clear-filters" data-clear-filters hidden>
@@ -476,7 +477,7 @@
           <div class="section-head-copy">
             <div class="section-title-row">
               <img class="title-leaf" src="assets/icons/logo.png" alt="" width="28" height="28" draggable="false">
-              <h2>Explore Our Projects</h2>
+              <h2 id="projects-heading">Explore Our Projects</h2>
             </div>
             <p class="section-sub">A collection of beginner-friendly and advanced JavaScript projects.</p>
           </div>
@@ -503,11 +504,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Calculator</li><li class="project-tag">Math</li><li class="project-tag">Keyboard Events</li><li class="project-tag">Tailwind</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./calculator/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./calculator/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Neon Calculator">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/calculator" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/calculator" target="_blank" rel="noopener"
+                  aria-label="View code for Neon Calculator">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -529,11 +532,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Todo</li><li class="project-tag">localStorage</li><li class="project-tag">Filtering</li><li class="project-tag">Dark Mode</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./todo-app/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./todo-app/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Advanced To-Do App">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/todo-app" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/todo-app" target="_blank" rel="noopener"
+                  aria-label="View code for Advanced To-Do App">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -555,11 +560,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Color</li><li class="project-tag">DOM</li><li class="project-tag">Random</li><li class="project-tag">Hex Code</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./color-flipper/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./color-flipper/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Color Flipper">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/color-flipper" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/color-flipper" target="_blank" rel="noopener"
+                  aria-label="View code for Color Flipper">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -581,11 +588,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Clock</li><li class="project-tag">Date</li><li class="project-tag">setInterval</li><li class="project-tag">Time</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./digital-clock/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./digital-clock/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Digital Clock">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/digital-clock" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/digital-clock" target="_blank" rel="noopener"
+                  aria-label="View code for Digital Clock">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -607,11 +616,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Game</li><li class="project-tag">Math Random</li><li class="project-tag">Conditionals</li><li class="project-tag">Inputs</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./number-guessing-game/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./number-guessing-game/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Number Guessing Game">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/number-guessing-game" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/number-guessing-game" target="_blank" rel="noopener"
+                  aria-label="View code for Number Guessing Game">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -633,11 +644,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Finance</li><li class="project-tag">localStorage</li><li class="project-tag">ES Modules</li><li class="project-tag">State</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./expense-tracker/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./expense-tracker/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Expense Tracker">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/expense-tracker" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/expense-tracker" target="_blank" rel="noopener"
+                  aria-label="View code for Expense Tracker">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -659,11 +672,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Todo</li><li class="project-tag">DOM</li><li class="project-tag">Event Listener</li><li class="project-tag">CRUD</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./basic-todo-app/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./basic-todo-app/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Basic To-Do App">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/basic-todo-app" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/basic-todo-app" target="_blank" rel="noopener"
+                  aria-label="View code for Basic To-Do App">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -685,11 +700,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Calculator</li><li class="project-tag">BMI</li><li class="project-tag">Forms</li><li class="project-tag">Validation</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./bmi-calculator/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./bmi-calculator/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of BMI Calculator">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/bmi-calculator" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/bmi-calculator" target="_blank" rel="noopener"
+                  aria-label="View code for BMI Calculator">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -711,11 +728,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Counter</li><li class="project-tag">State</li><li class="project-tag">DOM</li><li class="project-tag">Click Events</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./counter-app/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./counter-app/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Counter App">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/counter-app" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/counter-app" target="_blank" rel="noopener"
+                  aria-label="View code for Counter App">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -737,11 +756,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Form Validation</li><li class="project-tag">Regex</li><li class="project-tag">Auth</li><li class="project-tag">Tabs</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./login-signup-form/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./login-signup-form/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Login &amp; Signup Form">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/login-signup-form" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/login-signup-form" target="_blank" rel="noopener"
+                  aria-label="View code for Login &amp; Signup Form">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -763,11 +784,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Timer</li><li class="project-tag">DOM</li><li class="project-tag">Date</li><li class="project-tag">Accessibility</li><li class="project-tag">Productivity</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./pomodoro-timer/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./pomodoro-timer/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Pomodoro Focus Timer">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/pomodoro-timer" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/pomodoro-timer" target="_blank" rel="noopener"
+                  aria-label="View code for Pomodoro Focus Timer">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -789,11 +812,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Colors</li><li class="project-tag">Random</li><li class="project-tag">RGB</li><li class="project-tag">Background</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./random-color-generator/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./random-color-generator/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Random Color Generator">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/random-color-generator" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/random-color-generator" target="_blank" rel="noopener"
+                  aria-label="View code for Random Color Generator">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -815,11 +840,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Game</li><li class="project-tag">Math Random</li><li class="project-tag">State</li><li class="project-tag">DOM</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./rock-paper-scissors/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./rock-paper-scissors/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Rock Paper Scissors">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/rock-paper-scissors" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/rock-paper-scissors" target="_blank" rel="noopener"
+                  aria-label="View code for Rock Paper Scissors">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -841,11 +868,13 @@
               <ul class="project-tags" aria-label="Technologies"><li class="project-tag">Calculator</li><li class="project-tag">Tip</li><li class="project-tag">Forms</li><li class="project-tag">DOM</li></ul>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./tip-calculator/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./tip-calculator/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Tip Calculator">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/tip-calculator" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/tip-calculator" target="_blank" rel="noopener"
+                  aria-label="View code for Tip Calculator">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -868,11 +897,13 @@
               <p class="project-note"><svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg><span>API key required</span></p>
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
-                <a class="btn-card btn-card-primary" href="./weather-app/index.html" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-primary" href="./weather-app/index.html" target="_blank" rel="noopener"
+                  aria-label="Live demo of Weather App">
                   <span>Live Demo</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
                 </a>
-                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/weather-app" target="_blank" rel="noopener">
+                <a class="btn-card btn-card-outline" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/tree/main/weather-app" target="_blank" rel="noopener"
+                  aria-label="View code for Weather App">
                   <span>View Code</span>
                   <svg class="icon icon-xs" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
                 </a>
@@ -903,14 +934,14 @@
     </section>
 
     <!-- ============ 6. Contribution banner ============ -->
-    <section class="section contribute-section" id="contribute">
+    <section class="section contribute-section" id="contribute" aria-labelledby="contribute-heading">
       <div class="container">
         <div class="contribute-banner">
           <div class="banner-plant">
             <img src="assets/images/plant.svg" alt="" width="150" height="180" draggable="false">
           </div>
           <div class="banner-copy">
-            <h2>Ready to Contribute?</h2>
+            <h2 id="contribute-heading">Ready to Contribute?</h2>
             <p>Help improve projects, fix issues, and build something new.</p>
           </div>
           <a class="btn btn-primary banner-cta"
