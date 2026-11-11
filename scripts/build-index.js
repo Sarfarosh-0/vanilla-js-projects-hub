@@ -260,6 +260,13 @@ function renderCard(project, index) {
     ? `
               <p class="project-author">by <a class="project-author-name" href="https://github.com/${escapeAttr(encodeURIComponent(author))}" target="_blank" rel="noopener noreferrer">${escapeHtml(author)}</a></p>`
     : '';
+  const tagList = project.tags
+    .map((tag) => `<li class="project-tag">${escapeHtml(formatTag(tag))}</li>`)
+    .join('');
+  const tags = tagList
+    ? `
+              <ul class="project-tags" aria-label="Technologies">${tagList}</ul>`
+    : '';
 
   return `          <article class="project-card${isExtra ? ' is-extra' : ''}" data-project-card data-difficulty="${escapeAttr(project.difficulty)}" data-tags="${escapeAttr(project.tags.join(' '))}" data-search="${escapeAttr(searchBlob)}">
             <div class="project-thumb">
@@ -270,7 +277,7 @@ function renderCard(project, index) {
                 <h3 class="project-title"><a href="${escapeAttr(project.demoUrl)}">${escapeHtml(project.name)}</a></h3>
                 <span class="badge badge-${escapeAttr(project.difficulty)}">${titleCaseDifficulty(project.difficulty)}</span>
               </div>${byline}
-              <p class="project-desc">${escapeHtml(project.description)}</p>${note}
+              <p class="project-desc">${escapeHtml(project.description)}</p>${tags}${note}
               <span class="project-divider" aria-hidden="true"></span>
               <div class="project-actions">
                 <a class="btn-card btn-card-primary" href="${escapeAttr(project.demoUrl)}" target="_blank" rel="noopener">
