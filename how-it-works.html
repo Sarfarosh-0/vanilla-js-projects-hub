@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      var root = document.documentElement;
+      root.classList.add("js");
+
+      var stored = null;
+      try {
+        stored = window.localStorage.getItem("vanilla-hub:theme");
+      } catch (error) {
+        stored = null;
+      }
+
+      var prefersDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var theme =
+        stored === "dark" || stored === "light"
+          ? stored
+          : prefersDark
+            ? "dark"
+            : "light";
+
+      root.setAttribute("data-theme", theme);
+    })();
+  </script>
+  <title>How It Works — Vanilla JS Projects Hub</title>
+  <meta name="description"
+    content="Learn how the Vanilla JS Projects Hub works: project rules, automated checks, the contribution flow, review expectations, and how a pull request becomes a live project card.">
+  <link rel="canonical" href="https://sarfarosh-0.github.io/vanilla-js-projects-hub/how-it-works.html">
+  <meta name="theme-color" content="#315b3d">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Vanilla JS Projects Hub">
+  <meta property="og:title" content="How It Works — Vanilla JS Projects Hub">
+  <meta property="og:description"
+    content="A behind-the-scenes look at the hub: project rules, automated checks, the contribution flow, review expectations, and how a pull request becomes a live project card.">
+  <meta property="og:url" content="https://sarfarosh-0.github.io/vanilla-js-projects-hub/how-it-works.html">
+  <meta property="og:image" content="https://sarfarosh-0.github.io/vanilla-js-projects-hub/assets/icons/logo.png">
+  <meta property="og:image:alt" content="Vanilla JS Projects Hub logo">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="How It Works — Vanilla JS Projects Hub">
+  <meta name="twitter:description"
+    content="A behind-the-scenes look at the hub: project rules, automated checks, the contribution flow, review expectations, and how a pull request becomes a live project card.">
+  <meta name="twitter:image" content="https://sarfarosh-0.github.io/vanilla-js-projects-hub/assets/icons/logo.png">
+  <meta name="twitter:image:alt" content="Vanilla JS Projects Hub logo">
+  <link rel="icon" type="image/png" href="assets/icons/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="how-it-works.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ 1. Navigation ============ -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <input type="checkbox" id="nav-toggle" class="visually-hidden nav-toggle" aria-label="Toggle navigation menu">
+
+      <a class="brand" href="index.html#home" aria-label="JS Vanilla JS Projects Hub — home">
+        <span class="brand-logo" aria-hidden="true">JS</span>
+        <span class="brand-name">
+          <span>Vanilla JS</span>
+          <span>Projects Hub</span>
+        </span>
+      </a>
+
+      <nav class="main-nav" aria-label="Primary">
+        <a class="nav-link" href="index.html#home">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <path d="M9 22V12h6v10" />
+          </svg>
+          <span>Home</span>
+        </a>
+        <a class="nav-link" href="index.html#projects">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path
+              d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z" />
+          </svg>
+          <span>Projects</span>
+        </a>
+        <a class="nav-link" href="index.html#contribute">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="6" cy="6" r="3" />
+            <circle cx="18" cy="18" r="3" />
+            <path d="M6 9v12" />
+            <path d="M13 6h3a2 2 0 0 1 2 2v7" />
+          </svg>
+          <span>Contribute</span>
+        </a>
+        <a class="nav-link is-active" href="how-it-works.html" aria-current="page">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 7v14" />
+            <path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z" />
+          </svg>
+          <span>How it works</span>
+        </a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme"
+          aria-pressed="false" title="Switch to dark theme">
+          <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+          </svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="m4.93 4.93 1.41 1.41" />
+            <path d="m17.66 17.66 1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="m6.34 17.66-1.41 1.41" />
+            <path d="m19.07 4.93-1.41 1.41" />
+          </svg>
+        </button>
+        <a class="gh-icon-link" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub" target="_blank"
+          rel="noopener noreferrer" aria-label="Project repository on GitHub">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path
+              d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+            <path d="M9 18c-4.51 2-5-2-7-2" />
+          </svg>
+        </a>
+        <a class="btn btn-outline btn-header" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub"
+          target="_blank" rel="noopener noreferrer">
+          <span>View on GitHub</span>
+          <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 3h6v6" />
+            <path d="M10 14 21 3" />
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          </svg>
+        </a>
+        <label class="menu-toggle" for="nav-toggle">
+          <svg class="icon icon-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 6h16" />
+            <path d="M4 12h16" />
+            <path d="M4 18h16" />
+          </svg>
+          <svg class="icon icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ 2. Compact hero ============ -->
+    <section class="hiw-hero" aria-labelledby="page-title">
+      <div class="container">
+        <p class="hero-badge">
+          <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+          </svg>
+          <span>Behind the scenes</span>
+        </p>
+
+        <h1 class="hero-title hiw-title" id="page-title">
+          How the Hub
+          <span>Works</span>
+        </h1>
+
+        <p class="hero-lead hiw-hero-lead">
+          From an idea and an issue to a merged pull request and a live project card — here is how the
+          hub is built, checked, and kept beginner-friendly.
+        </p>
+
+        <div class="hiw-highlights">
+          <div class="hiw-highlight">
+            <span class="hiw-highlight-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="m18 16 4-4-4-4" />
+                <path d="m6 8-4 4 4 4" />
+                <path d="m14.5 4-5 16" />
+              </svg>
+            </span>
+            <span class="hiw-highlight-copy">
+              <span class="hiw-highlight-title">No build step</span>
+              <span class="hiw-highlight-text">Plain HTML, CSS, and ES6+ JavaScript in every folder.</span>
+            </span>
+          </div>
+          <div class="hiw-highlight">
+            <span class="hiw-highlight-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 6 9 17l-5-5" />
+              </svg>
+            </span>
+            <span class="hiw-highlight-copy">
+              <span class="hiw-highlight-title">Automated checks</span>
+              <span class="hiw-highlight-text">Validation and generated-file checks run on every pull request.</span>
+            </span>
+          </div>
+          <div class="hiw-highlight">
+            <span class="hiw-highlight-icon" aria-hidden="true">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+                <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+              </svg>
+            </span>
+            <span class="hiw-highlight-copy">
+              <span class="hiw-highlight-title">Beginner friendly</span>
+              <span class="hiw-highlight-text">A three-level contribution ladder, from typos to new projects.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 3. Body: TOC + content ============ -->
+    <div class="hiw-body">
+      <div class="container hiw-layout">
+        <aside class="hiw-sidebar">
+          <details class="hiw-toc" open>
+            <summary class="hiw-toc-summary">
+              <span>On this page</span>
+              <svg class="icon icon-sm hiw-toc-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </summary>
+            <nav class="hiw-toc-nav" aria-label="Table of contents">
+              <p class="hiw-toc-heading">On this page</p>
+              <ol>
+                <li><a href="#intro">Introduction</a></li>
+                <li><a href="#overview">The big picture</a></li>
+                <li><a href="#ladder">Contribution ladder</a></li>
+                <li><a href="#structure">Project structure</a></li>
+                <li><a href="#rules">Rules and tech constraints</a></li>
+                <li><a href="#automation">Automation</a></li>
+                <li><a href="#flow">Step-by-step flow</a></li>
+                <li><a href="#review">Review and stale policy</a></li>
+                <li><a href="#why">Why this architecture</a></li>
+                <li><a href="#faq">FAQ</a></li>
+              </ol>
+            </nav>
+          </details>
+        </aside>
+
+        <div class="hiw-content">
+          <!-- ---------- 3.1 Introduction ---------- -->
+          <section class="hiw-section" id="intro" aria-labelledby="intro-heading">
+            <p class="hiw-eyebrow">01 — Introduction</p>
+            <h2 class="hiw-section-title" id="intro-heading">A small, open collection of vanilla JavaScript projects</h2>
+            <p class="hiw-section-lead">
+              The Vanilla JS Projects Hub is a set of self-contained projects built with HTML5, CSS3, and
+              plain JavaScript. Each project lives in its own folder, opens directly in a browser, and is open
+              to contributions.
+            </p>
+            <p>
+              It is for people making a first open source contribution as well as experienced developers who
+              want a small, focused place to practise. Every project is also a readable example: no framework,
+              no bundler, no hidden runtime.
+            </p>
+            <p>
+              This page explains the rules a project must follow, the automation that checks it, how a pull
+              request becomes a live card on the home page, and what to expect during review. If you only read
+              one section before contributing, read <a class="hiw-link" href="#flow">Step-by-step flow</a>.
+            </p>
+          </section>
+
+          <!-- ---------- 3.2 The big picture ---------- -->
+          <section class="hiw-section" id="overview" aria-labelledby="overview-heading">
+            <p class="hiw-eyebrow">02 — The big picture</p>
+            <h2 class="hiw-section-title" id="overview-heading">Four steps from issue to live project</h2>
+            <p class="hiw-section-lead">
+              Every contribution follows the same path. The details change, but the sequence does not.
+            </p>
+
+            <ol class="hiw-steps">
+              <li class="hiw-step">
+                <span class="hiw-step-number" aria-hidden="true">1</span>
+                <h3>Find or create an issue</h3>
+                <p>
+                  Look for open issues labelled <code>good first issue</code> or <code>help wanted</code>, then
+                  comment to ask for assignment. Issue claims expire after <strong>7 days</strong> if no pull
+                  request is opened.
+                </p>
+              </li>
+              <li class="hiw-step">
+                <span class="hiw-step-number" aria-hidden="true">2</span>
+                <h3>Fork and build</h3>
+                <p>
+                  Fork the repository, clone your fork, and create a descriptive branch. Add or improve one
+                  project folder, keeping every change inside that folder.
+                </p>
+              </li>
+              <li class="hiw-step">
+                <span class="hiw-step-number" aria-hidden="true">3</span>
+                <h3>Open a pull request</h3>
+                <p>
+                  Push your branch and open a PR against <code>main</code>. Fill out the PR template, including
+                  the AI disclosure. Automated checks run before a maintainer reviews.
+                </p>
+              </li>
+              <li class="hiw-step">
+                <span class="hiw-step-number" aria-hidden="true">4</span>
+                <h3>Review, merge, and ship</h3>
+                <p>
+                  A maintainer aims to review within 7 days. After merge, the index is regenerated and the site
+                  is deployed to GitHub Pages.
+                </p>
+              </li>
+            </ol>
+
+            <ol class="hiw-flow" aria-label="Pull request lifecycle">
+              <li>Your PR</li>
+              <li>Automated checks</li>
+              <li>Review</li>
+              <li>Merge</li>
+              <li>Index rebuilt</li>
+              <li>Live</li>
+            </ol>
+          </section>
+
+          <!-- ---------- 3.3 Contribution ladder ---------- -->
+          <section class="hiw-section" id="ladder" aria-labelledby="ladder-heading">
+            <p class="hiw-eyebrow">03 — Contribution ladder</p>
+            <h2 class="hiw-section-title" id="ladder-heading">Pick the level that fits you today</h2>
+            <p class="hiw-section-lead">
+              Contributions of every size are welcome. Start where you are comfortable — you can always move up.
+            </p>
+
+            <div class="hiw-grid hiw-grid-three">
+              <article class="hiw-card hiw-level">
+                <span class="hiw-level-badge">Level 1</span>
+                <h3>Quick fixes</h3>
+                <p>Small, useful changes that need little context:</p>
+                <ul class="hiw-list">
+                  <li>Fix typos and broken links</li>
+                  <li>Add missing <code>alt</code> text or accessibility attributes</li>
+                  <li>Improve documentation</li>
+                  <li>Submit screenshots</li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-level">
+                <span class="hiw-level-badge">Level 2</span>
+                <h3>Improvements</h3>
+                <p>Work inside an existing project and make it better:</p>
+                <ul class="hiw-list">
+                  <li>Fix bugs</li>
+                  <li>Optimise code</li>
+                  <li>Improve responsive design</li>
+                  <li>Add small enhancements</li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-level">
+                <span class="hiw-level-badge">Level 3</span>
+                <h3>New project</h3>
+                <p>Add a brand-new vanilla JS project to the hub:</p>
+                <ul class="hiw-list">
+                  <li>One project folder per PR</li>
+                  <li><code>index.html</code>, <code>README.md</code>, and <code>project.json</code></li>
+                  <li>Relative asset paths only</li>
+                  <li>Works on load with zero console errors</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <!-- ---------- 3.4 Project structure ---------- -->
+          <section class="hiw-section" id="structure" aria-labelledby="structure-heading">
+            <p class="hiw-eyebrow">04 — Project structure</p>
+            <h2 class="hiw-section-title" id="structure-heading">One folder, three required files</h2>
+            <p class="hiw-section-lead">
+              The validator and the index builder both discover projects by their folder contents, so the
+              structure has to be exact.
+            </p>
+
+            <ul class="hiw-list hiw-list-roomy">
+              <li>
+                <strong>Folder name:</strong> lowercase kebab-case, letters only, no numbers — for example
+                <code>pomodoro-timer</code>.
+              </li>
+              <li>
+                <strong>Required files:</strong> <code>index.html</code>, <code>README.md</code> with a
+                “What I learned” section, and <code>project.json</code>.
+              </li>
+              <li>
+                <strong>One project per PR:</strong> every change in the pull request must stay inside that
+                single project folder.
+              </li>
+              <li>
+                <strong>Relative paths only:</strong> use <code>style.css</code> or <code>./style.css</code>,
+                never <code>/style.css</code>.
+              </li>
+            </ul>
+
+            <div class="code-block">
+              <div class="code-block-head">
+                <span class="code-block-label">file tree</span>
+                <button class="copy-button" type="button" data-copy-button>
+                  <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                  </svg>
+                  <span data-copy-label>Copy</span>
+                </button>
+              </div>
+              <pre tabindex="0" aria-label="Example project folder structure"><code>vanilla-js-projects-hub/
+├── pomodoro-timer/
+│   ├── index.html
+│   ├── README.md
+│   └── project.json
+├── calculator/
+├── scripts/
+│   ├── build-index.js
+│   └── validate.js
+├── index.html
+└── style.css</code></pre>
+            </div>
+
+            <h3 class="hiw-subheading">The <code>project.json</code> file</h3>
+            <p>
+              Metadata drives both the README project table and the home page cards. Keep the sample below as a
+              starting point and replace the values with your own.
+            </p>
+
+            <div class="code-block">
+              <div class="code-block-head">
+                <span class="code-block-label">json</span>
+                <button class="copy-button" type="button" data-copy-button>
+                  <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                  </svg>
+                  <span data-copy-label>Copy</span>
+                </button>
+              </div>
+              <pre tabindex="0" aria-label="Example project.json file"><code>{
+  "name": "Pomodoro Timer",
+  "description": "A 25/5 focus timer with start, pause, and reset.",
+  "author": "your-github-username",
+  "difficulty": "beginner",
+  "tags": ["timer", "dom", "setinterval"],
+  "requiresApiKey": false,
+  "contributors": []
+}</code></pre>
+            </div>
+
+            <dl class="hiw-fields">
+              <div>
+                <dt><code>name</code></dt>
+                <dd>3–40 characters.</dd>
+              </div>
+              <div>
+                <dt><code>description</code></dt>
+                <dd>Maximum 120 characters.</dd>
+              </div>
+              <div>
+                <dt><code>author</code></dt>
+                <dd>Your GitHub username. It must match the author of the pull request.</dd>
+              </div>
+              <div>
+                <dt><code>difficulty</code></dt>
+                <dd>One of <code>beginner</code>, <code>intermediate</code>, or <code>advanced</code>.</dd>
+              </div>
+              <div>
+                <dt><code>tags</code></dt>
+                <dd>Up to 5 lowercase strings.</dd>
+              </div>
+              <div>
+                <dt><code>requiresApiKey</code></dt>
+                <dd><code>true</code> or <code>false</code>.</dd>
+              </div>
+              <div>
+                <dt><code>contributors</code></dt>
+                <dd>An array of GitHub usernames. Maintainers update it when a contribution is merged.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <!-- ---------- 3.5 Rules and tech constraints ---------- -->
+          <section class="hiw-section" id="rules" aria-labelledby="rules-heading">
+            <p class="hiw-eyebrow">05 — Rules and tech constraints</p>
+            <h2 class="hiw-section-title" id="rules-heading">What every project must respect</h2>
+            <p class="hiw-section-lead">
+              These rules keep projects portable, safe, and readable for the next contributor.
+            </p>
+
+            <div class="hiw-grid hiw-grid-two">
+              <article class="hiw-card">
+                <h3>Pure vanilla only</h3>
+                <p>
+                  HTML5, CSS3, vanilla JavaScript (ES6+), and standard browser APIs. No frameworks and no
+                  runtime dependencies baked into the project.
+                </p>
+              </article>
+
+              <article class="hiw-card">
+                <h3>No build steps</h3>
+                <p>
+                  No Vite, Webpack, Babel, <code>node_modules</code>, or committed minified bundles. Opening
+                  <code>index.html</code> must work as-is.
+                </p>
+              </article>
+
+              <article class="hiw-card">
+                <h3>CDN whitelist</h3>
+                <p>
+                  Only libraries on the approved list may be loaded from a CDN. The contribution guide names
+                  Tailwind CSS (standalone/CDN), Chart.js, Google Fonts, Font Awesome, and Flaticon/Icons8.
+                </p>
+                <p>
+                  <code>cdn-whitelist.json</code> holds the allowed hosts: <code>fonts.googleapis.com</code>,
+                  <code>fonts.gstatic.com</code>, <code>cdn.jsdelivr.net</code>,
+                  <code>cdnjs.cloudflare.com</code>, <code>cdn-icons-png.flaticon.com</code>, and
+                  <code>img.icons8.com</code>. Need another library? Open an issue to request it.
+                </p>
+              </article>
+
+              <article class="hiw-card">
+                <h3>Security and safety</h3>
+                <ul class="hiw-list">
+                  <li>No tracking or analytics scripts.</li>
+                  <li>No <code>eval()</code> or <code>document.write()</code>.</li>
+                  <li>No obfuscated JavaScript.</li>
+                  <li>No unsafe <code>innerHTML</code> with unvalidated user input.</li>
+                  <li>
+                    Never commit API keys. Use <code>const API_KEY = "YOUR_API_KEY_HERE";</code> and set
+                    <code>"requiresApiKey": true</code>.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="hiw-card">
+                <h3>Quality and accessibility</h3>
+                <ul class="hiw-list">
+                  <li>Opening <code>index.html</code> works with zero console errors.</li>
+                  <li>Semantic HTML and clearly labelled inputs.</li>
+                  <li>Descriptive <code>alt</code> text on images.</li>
+                  <li>Sufficient colour contrast.</li>
+                </ul>
+              </article>
+
+              <article class="hiw-card">
+                <h3>Scoped storage</h3>
+                <p>
+                  Prefix every <code>localStorage</code> key with your project folder name, for example
+                  <code>pomodoro-timer:settings</code>. Never call <code>localStorage.clear()</code>.
+                </p>
+              </article>
+
+              <article class="hiw-card">
+                <h3>Reasonable size</h3>
+                <p>
+                  Keep project folders lightweight — typically under 2 MB — and optimise images and SVGs
+                  before committing.
+                </p>
+              </article>
+
+              <article class="hiw-card">
+                <h3>Originality and AI disclosure</h3>
+                <p>
+                  Submit original work or credit the original authors and tutorials in the README
+                  <em>Credits</em> section. Disclose AI assistance in the PR template as
+                  <code>none</code>, <code>some</code>, or <code>most</code>, and say which parts. There is no
+                  penalty for using AI, but transparency is required.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <!-- ---------- 3.6 Automation ---------- -->
+          <section class="hiw-section" id="automation" aria-labelledby="automation-heading">
+            <p class="hiw-eyebrow">06 — Automation</p>
+            <h2 class="hiw-section-title" id="automation-heading">The robots that check and publish the hub</h2>
+            <p class="hiw-section-lead">
+              Four GitHub Actions workflows keep the repository consistent. Here is exactly what each one does.
+            </p>
+
+            <div class="hiw-grid hiw-grid-two">
+              <article class="hiw-card hiw-automation">
+                <span class="hiw-automation-tag">Pull requests</span>
+                <h3><code>validate.yml</code></h3>
+                <p>Runs on every pull request targeting <code>main</code>, on Node.js 20:</p>
+                <ul class="hiw-list">
+                  <li>
+                    Verifies PR scope: changes to <code>.github/workflows/</code>, <code>scripts/</code>, or
+                    <code>cdn-whitelist.json</code> are restricted to maintainers, and only one project folder
+                    may change.
+                  </li>
+                  <li>Runs <code>node scripts/validate.js</code>.</li>
+                  <li>
+                    Runs <code>node scripts/build-index.js --check</code> to confirm the generated
+                    <code>README.md</code> table and root <code>index.html</code> are committed and current.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-automation">
+                <span class="hiw-automation-tag">Validation script</span>
+                <h3><code>scripts/validate.js</code></h3>
+                <p>Checks each project folder:</p>
+                <ul class="hiw-list">
+                  <li>Folder name is lowercase kebab-case with letters only.</li>
+                  <li><code>index.html</code>, <code>README.md</code>, and <code>project.json</code> exist.</li>
+                  <li>Every <code>project.json</code> field follows the rules above.</li>
+                  <li>
+                    HTML, CSS, and JS contain no absolute local paths, <code>eval()</code>,
+                    <code>document.write()</code>, tracking scripts, or probable committed API keys.
+                  </li>
+                  <li>HTML loads only whitelisted CDN URLs.</li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-automation">
+                <span class="hiw-automation-tag">After merge</span>
+                <h3><code>build-index.yml</code></h3>
+                <p>Runs on every push to <code>main</code>:</p>
+                <ul class="hiw-list">
+                  <li>Runs <code>node scripts/build-index.js</code>.</li>
+                  <li>
+                    The script reads every <code>project.json</code> and rebuilds the README project table
+                    between its markers, plus the root <code>index.html</code> from
+                    <code>scripts/templates/index.html</code>.
+                  </li>
+                  <li>
+                    If either file changed, the workflow commits <code>README.md</code> and
+                    <code>index.html</code> as <code>github-actions[bot]</code> with a
+                    <code>[skip ci]</code> message.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-automation">
+                <span class="hiw-automation-tag">Deployment</span>
+                <h3><code>pages.yml</code></h3>
+                <p>Runs on pushes to <code>main</code> and on manual dispatch:</p>
+                <ul class="hiw-list">
+                  <li>Regenerates the landing page.</li>
+                  <li>
+                    Copies the site into <code>_site</code>, excluding <code>.git</code>, <code>.github</code>,
+                    <code>_site</code>, and <code>scripts</code>.
+                  </li>
+                  <li>Uploads the artifact and deploys it to GitHub Pages.</li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-automation hiw-automation-wide">
+                <span class="hiw-automation-tag">Housekeeping</span>
+                <h3><code>stale.yml</code></h3>
+                <p>
+                  Runs daily on a schedule and on manual dispatch. It marks pull requests with no recent
+                  activity as <code>stale</code> at day 14, then closes them 16 days later — day 30 overall.
+                  Issues are not auto-closed by this workflow.
+                </p>
+              </article>
+            </div>
+
+            <aside class="hiw-callout" aria-labelledby="generated-note-heading">
+              <span class="hiw-callout-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 9v4" />
+                  <path d="M12 17h.01" />
+                  <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                </svg>
+              </span>
+              <div>
+                <h3 id="generated-note-heading">Generated files are not hand-edited</h3>
+                <p>
+                  The root <code>index.html</code> is generated from <code>scripts/templates/index.html</code>,
+                  and the README project table is generated from project metadata. After changing a
+                  <code>project.json</code>, run <code>node scripts/build-index.js</code> and commit both
+                  generated files. Never edit <code>index.html</code> by hand.
+                </p>
+              </div>
+            </aside>
+          </section>
+
+          <!-- ---------- 3.7 Step-by-step flow ---------- -->
+          <section class="hiw-section" id="flow" aria-labelledby="flow-heading">
+            <p class="hiw-eyebrow">07 — Step-by-step flow</p>
+            <h2 class="hiw-section-title" id="flow-heading">Your first contribution, start to finish</h2>
+            <p class="hiw-section-lead">
+              The eight steps below come from the contribution guide. New to Git and GitHub? The
+              <a class="hiw-link" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/blob/main/first-contribution.md"
+                target="_blank" rel="noopener noreferrer">First Contribution Guide</a>
+              walks through the same flow in more detail.
+            </p>
+
+            <ol class="hiw-flow-steps">
+              <li>
+                <h3>Find or create an issue</h3>
+                <p>
+                  Check open issues for labels such as <code>good first issue</code> or
+                  <code>help wanted</code> and comment to ask for assignment. Claims expire after 7 days if no
+                  PR is opened.
+                </p>
+              </li>
+
+              <li>
+                <h3>Fork the repository</h3>
+                <p>Use the <strong>Fork</strong> button on GitHub to create your personal copy.</p>
+              </li>
+
+              <li>
+                <h3>Clone your fork</h3>
+                <p>Replace the placeholder with your GitHub username.</p>
+                <div class="code-block">
+                  <div class="code-block-head">
+                    <span class="code-block-label">bash</span>
+                    <button class="copy-button" type="button" data-copy-button>
+                      <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                      </svg>
+                      <span data-copy-label>Copy</span>
+                    </button>
+                  </div>
+                  <pre tabindex="0" aria-label="Clone your fork"><code>git clone https://github.com/&lt;your-username&gt;/vanilla-js-projects-hub.git
+cd vanilla-js-projects-hub</code></pre>
+                </div>
+              </li>
+
+              <li>
+                <h3>Create a descriptive branch</h3>
+                <p>Never work directly on <code>main</code>.</p>
+                <div class="code-block">
+                  <div class="code-block-head">
+                    <span class="code-block-label">bash</span>
+                    <button class="copy-button" type="button" data-copy-button>
+                      <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                      </svg>
+                      <span data-copy-label>Copy</span>
+                    </button>
+                  </div>
+                  <pre tabindex="0" aria-label="Create a branch"><code>git checkout -b add-pomodoro-timer</code></pre>
+                </div>
+              </li>
+
+              <li>
+                <h3>Develop and test your project</h3>
+                <p>
+                  Check all required files, then run the validation script that mirrors the CI checks:
+                </p>
+                <div class="code-block">
+                  <div class="code-block-head">
+                    <span class="code-block-label">bash</span>
+                    <button class="copy-button" type="button" data-copy-button>
+                      <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                      </svg>
+                      <span data-copy-label>Copy</span>
+                    </button>
+                  </div>
+                  <pre tabindex="0" aria-label="Run the validation script"><code>node scripts/validate.js</code></pre>
+                </div>
+              </li>
+
+              <li>
+                <h3>Commit your changes</h3>
+                <div class="code-block">
+                  <div class="code-block-head">
+                    <span class="code-block-label">bash</span>
+                    <button class="copy-button" type="button" data-copy-button>
+                      <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                      </svg>
+                      <span data-copy-label>Copy</span>
+                    </button>
+                  </div>
+                  <pre tabindex="0" aria-label="Commit your changes"><code>git commit -m "Add pomodoro-timer project"</code></pre>
+                </div>
+              </li>
+
+              <li>
+                <h3>Push to your fork</h3>
+                <div class="code-block">
+                  <div class="code-block-head">
+                    <span class="code-block-label">bash</span>
+                    <button class="copy-button" type="button" data-copy-button>
+                      <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                      </svg>
+                      <span data-copy-label>Copy</span>
+                    </button>
+                  </div>
+                  <pre tabindex="0" aria-label="Push your branch"><code>git push origin add-pomodoro-timer</code></pre>
+                </div>
+              </li>
+
+              <li>
+                <h3>Open a pull request</h3>
+                <p>
+                  Open a PR against the <code>main</code> branch of this repository. The PR template loads
+                  automatically — fill out every section, including the AI disclosure, then create the pull
+                  request.
+                </p>
+              </li>
+            </ol>
+
+            <h3 class="hiw-subheading">Common mistakes and how to fix them</h3>
+            <div class="hiw-details-stack">
+              <details class="hiw-details">
+                <summary>I made commits directly on <code>main</code></summary>
+                <div class="hiw-details-body">
+                  <p>Move the work onto a new branch, then reset your local <code>main</code>:</p>
+                  <div class="code-block">
+                    <div class="code-block-head">
+                      <span class="code-block-label">bash</span>
+                      <button class="copy-button" type="button" data-copy-button>
+                        <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                        </svg>
+                        <span data-copy-label>Copy</span>
+                      </button>
+                    </div>
+                    <pre tabindex="0" aria-label="Move commits off main"><code>git branch add-my-project
+git fetch upstream
+git reset --hard upstream/main
+git checkout add-my-project</code></pre>
+                  </div>
+                </div>
+              </details>
+
+              <details class="hiw-details">
+                <summary>My PR has merge conflicts</summary>
+                <div class="hiw-details-body">
+                  <p>Fetch the latest upstream changes, rebase your branch, and resolve conflicts in your editor:</p>
+                  <div class="code-block">
+                    <div class="code-block-head">
+                      <span class="code-block-label">bash</span>
+                      <button class="copy-button" type="button" data-copy-button>
+                        <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                        </svg>
+                        <span data-copy-label>Copy</span>
+                      </button>
+                    </div>
+                    <pre tabindex="0" aria-label="Resolve merge conflicts"><code>git fetch upstream
+git checkout add-my-project
+git rebase upstream/main
+
+# Resolve conflicts in your editor, then:
+git add &lt;resolved-file&gt;
+git rebase --continue
+
+git push origin add-my-project --force-with-lease</code></pre>
+                  </div>
+                </div>
+              </details>
+
+              <details class="hiw-details">
+                <summary>My fork is out of date</summary>
+                <div class="hiw-details-body">
+                  <p>Sync <code>main</code> with upstream, or use the <strong>Sync fork</strong> button on GitHub:</p>
+                  <div class="code-block">
+                    <div class="code-block-head">
+                      <span class="code-block-label">bash</span>
+                      <button class="copy-button" type="button" data-copy-button>
+                        <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                        </svg>
+                        <span data-copy-label>Copy</span>
+                      </button>
+                    </div>
+                    <pre tabindex="0" aria-label="Sync your fork"><code>git checkout main
+git fetch upstream
+git merge upstream/main
+git push origin main</code></pre>
+                  </div>
+                </div>
+              </details>
+
+              <details class="hiw-details">
+                <summary>Git says permission denied or the remote is wrong</summary>
+                <div class="hiw-details-body">
+                  <p>Check where <code>origin</code> points. If it points at the upstream repository, set it back to your fork:</p>
+                  <div class="code-block">
+                    <div class="code-block-head">
+                      <span class="code-block-label">bash</span>
+                      <button class="copy-button" type="button" data-copy-button>
+                        <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                          <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                          <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                        </svg>
+                        <span data-copy-label>Copy</span>
+                      </button>
+                    </div>
+                    <pre tabindex="0" aria-label="Fix the origin remote"><code>git remote -v
+git remote set-url origin https://github.com/&lt;your-username&gt;/vanilla-js-projects-hub.git</code></pre>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- ---------- 3.8 Review and stale policy ---------- -->
+          <section class="hiw-section" id="review" aria-labelledby="review-heading">
+            <p class="hiw-eyebrow">08 — Review and stale policy</p>
+            <h2 class="hiw-section-title" id="review-heading">What happens while your PR waits</h2>
+            <p class="hiw-section-lead">
+              Reviews are human, so timelines are expectations rather than promises. The stale policy keeps the
+              queue manageable without closing the door.
+            </p>
+
+            <ol class="hiw-timeline" aria-label="Pull request review timeline">
+              <li>
+                <span class="hiw-timeline-dot" aria-hidden="true"></span>
+                <span class="hiw-timeline-day">Day 0</span>
+                <strong>PR opened</strong>
+                <span>Automated checks run, then a maintainer picks it up.</span>
+              </li>
+              <li>
+                <span class="hiw-timeline-dot" aria-hidden="true"></span>
+                <span class="hiw-timeline-day">Day 7</span>
+                <strong>Review target</strong>
+                <span>“I aim to review PRs within 7 days. It's a goal, not a guarantee.”</span>
+              </li>
+              <li>
+                <span class="hiw-timeline-dot" aria-hidden="true"></span>
+                <span class="hiw-timeline-day">Day 14</span>
+                <strong>Stale reminder</strong>
+                <span>If changes were requested and the PR is inactive, a friendly reminder is posted.</span>
+              </li>
+              <li>
+                <span class="hiw-timeline-dot" aria-hidden="true"></span>
+                <span class="hiw-timeline-day">Day 30</span>
+                <strong>Auto-close</strong>
+                <span>No activity by day 30 closes the PR. It can be reopened when you are ready.</span>
+              </li>
+            </ol>
+
+            <div class="hiw-grid hiw-grid-two hiw-review-notes">
+              <article class="hiw-card">
+                <h3>Issue claims</h3>
+                <p>
+                  If you claim an issue but do not open a pull request within <strong>7 days</strong>, the claim
+                  expires so someone else can pick it up.
+                </p>
+              </article>
+              <article class="hiw-card">
+                <h3>Updating someone else's project</h3>
+                <p>
+                  Small bug fixes and documentation improvements can be merged directly. Significant redesigns
+                  or rewrites notify the original author, who gets a 7-day window for feedback before a
+                  decision.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <!-- ---------- 3.9 Why this architecture ---------- -->
+          <section class="hiw-section" id="why" aria-labelledby="why-heading">
+            <p class="hiw-eyebrow">09 — Why this architecture</p>
+            <h2 class="hiw-section-title" id="why-heading">Simple by design, with honest trade-offs</h2>
+            <p class="hiw-section-lead">
+              A static site and a plain folder-per-project layout are not right for every project. They are
+              right for this one.
+            </p>
+
+            <div class="hiw-grid hiw-grid-two">
+              <article class="hiw-card hiw-why-card">
+                <h3>Advantages</h3>
+                <ul class="hiw-list">
+                  <li>
+                    <strong>Zero build:</strong> each project is a set of plain files, and opening
+                    <code>index.html</code> is enough.
+                  </li>
+                  <li>
+                    <strong>Free hosting:</strong> GitHub Pages serves the site from the repository, with no
+                    server to maintain.
+                  </li>
+                  <li>
+                    <strong>Transparent history:</strong> every change, review, and merge stays in git where
+                    anyone can inspect it.
+                  </li>
+                  <li>
+                    <strong>Low contribution friction:</strong> someone can start with a typo fix and finish
+                    with a complete project.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-why-card">
+                <h3>Trade-offs</h3>
+                <ul class="hiw-list">
+                  <li>
+                    <strong>Index updates only after merge:</strong> a new project card appears when the
+                    post-merge workflow runs, not while the PR is open.
+                  </li>
+                  <li>
+                    <strong>No server-side features:</strong> static hosting means no backend, database, or
+                    private secrets.
+                  </li>
+                  <li>
+                    <strong>One project per PR:</strong> keeping changes isolated makes review easy, but it
+                    rules out broad refactors.
+                  </li>
+                  <li>
+                    <strong>Strict automation:</strong> generated files and metadata have to stay in sync, so
+                    contributors run a command before committing.
+                  </li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <!-- ---------- 3.10 FAQ ---------- -->
+          <section class="hiw-section" id="faq" aria-labelledby="faq-heading">
+            <p class="hiw-eyebrow">10 — FAQ</p>
+            <h2 class="hiw-section-title" id="faq-heading">Questions contributors actually ask</h2>
+            <p class="hiw-section-lead">
+              Short answers drawn from the contribution guide. The guide wins if anything here drifts.
+            </p>
+
+            <div class="hiw-details-stack">
+              <details class="hiw-details">
+                <summary>Can I use AI to help build my project?</summary>
+                <div class="hiw-details-body">
+                  <p>
+                    Yes. Disclose the level of assistance in the PR template as <code>none</code>,
+                    <code>some</code>, or <code>most</code>, and describe which parts were AI-assisted. There is
+                    no penalty for using AI, but transparency is required.
+                  </p>
+                </div>
+              </details>
+
+              <details class="hiw-details">
+                <summary>Can I use a library that is not on the whitelist?</summary>
+                <div class="hiw-details-body">
+                  <p>
+                    Open an issue requesting the library. Once the maintainer approves it, adding it is a
+                    single-line update to <code>cdn-whitelist.json</code>. Until then, the automated validator
+                    will reject the CDN URL.
+                  </p>
+                </div>
+              </details>
+
+              <details class="hiw-details">
+                <summary>Can I fix or improve someone else's project?</summary>
+                <div class="hiw-details-body">
+                  <p>
+                    Yes. Small bug fixes and documentation improvements are merged directly. Significant
+                    redesigns or rewrites notify the original author, who gets a 7-day window to give feedback
+                    before a decision is made.
+                  </p>
+                </div>
+              </details>
+
+              <details class="hiw-details">
+                <summary>Do I need to run the build script?</summary>
+                <div class="hiw-details-body">
+                  <p>
+                    If you changed a <code>project.json</code>, yes. Run
+                    <code>node scripts/build-index.js</code> and commit the regenerated <code>README.md</code> and
+                    <code>index.html</code>. The validation workflow runs the same script with
+                    <code>--check</code> and fails if the files are out of date.
+                  </p>
+                </div>
+              </details>
+
+              <details class="hiw-details">
+                <summary>Can my folder name contain numbers?</summary>
+                <div class="hiw-details-body">
+                  <p>
+                    No. Folder names must be lowercase kebab-case using letters only, for example
+                    <code>pomodoro-timer</code>. The validator checks this pattern.
+                  </p>
+                </div>
+              </details>
+
+              <details class="hiw-details">
+                <summary>What happens if my pull request goes quiet?</summary>
+                <div class="hiw-details-body">
+                  <p>
+                    A friendly reminder is posted at day 14. If there is still no activity by day 30, the PR is
+                    closed automatically. Closed pull requests can always be reopened once you are ready to
+                    continue.
+                  </p>
+                </div>
+              </details>
+            </div>
+          </section>
+
+          <!-- ---------- 3.11 Closing CTA ---------- -->
+          <section class="section contribute-section hiw-cta-section" aria-labelledby="cta-heading">
+            <div class="contribute-banner">
+              <div class="banner-plant">
+                <img src="assets/images/plant.svg" alt="" width="150" height="180" loading="lazy" decoding="async"
+                  draggable="false">
+              </div>
+              <div class="banner-copy">
+                <h2 id="cta-heading">Ready to Contribute?</h2>
+                <p>Read the full guide, then pick an issue and open your first pull request.</p>
+              </div>
+              <div class="banner-cta hiw-banner-actions">
+                <a class="btn btn-primary"
+                  href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/blob/main/CONTRIBUTING.md"
+                  target="_blank" rel="noopener noreferrer">
+                  <span>Read the Guide</span>
+                  <svg class="icon icon-sm arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </a>
+                <a class="btn btn-secondary" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/issues"
+                  target="_blank" rel="noopener noreferrer">
+                  <span>Browse Open Issues</span>
+                </a>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <p class="sr-only" id="copy-status" role="status" aria-live="polite"></p>
+  </main>
+
+  <!-- ============ 4. Footer ============ -->
+  <footer class="site-footer" id="about">
+    <div class="container footer-main">
+      <div class="footer-brand-col">
+        <a class="footer-brand" href="index.html#home">
+          <span class="footer-logo" aria-hidden="true">JS</span>
+          <span class="footer-brand-name">Vanilla JS<br>Projects Hub</span>
+        </a>
+        <p class="footer-tagline">Build. Learn. Grow.</p>
+        <ul class="socials" aria-label="Social media">
+          <li>
+            <a class="social-link" href="https://github.com/sarfarosh-0" target="_blank" rel="noopener noreferrer"
+              aria-label="GitHub">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path
+                  d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                <path d="M9 18c-4.51 2-5-2-7-2" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a class="social-link" href="https://www.linkedin.com/in/sarfarosh-xxi/" target="_blank"
+              rel="noopener noreferrer" aria-label="LinkedIn">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect width="4" height="12" x="2" y="9" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a class="social-link" href="https://www.instagram.com/sarfarosh_0/" target="_blank"
+              rel="noopener noreferrer" aria-label="Instagram">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <path d="M17.5 6.5h.01" />
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <nav class="footer-col" aria-label="Quick links">
+        <h3>Quick Links</h3>
+        <ul class="footer-links">
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#projects">Projects</a></li>
+          <li><a href="index.html#contribute">Contribute</a></li>
+          <li><a href="how-it-works.html" aria-current="page">How it works</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer-col" aria-label="Resources">
+        <h3>Resources</h3>
+        <ul class="footer-links">
+          <li><a href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub" target="_blank"
+              rel="noopener noreferrer">GitHub Repository</a></li>
+          <li><a href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/blob/main/CONTRIBUTING.md" target="_blank"
+              rel="noopener noreferrer">Contribution Guide</a></li>
+          <li><a href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/blob/main/CODE_OF_CONDUCT.md"
+              target="_blank" rel="noopener noreferrer">Code of Conduct</a></li>
+          <li><a href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/blob/main/LICENSE" target="_blank"
+              rel="noopener noreferrer">License</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-col footer-involved">
+        <h3>Get Involved</h3>
+        <p>Find a project to improve, open an issue, or share your first pull request with the community.</p>
+        <a class="footer-cta" href="https://github.com/Sarfarosh-0/vanilla-js-projects-hub/issues" target="_blank"
+          rel="noopener noreferrer">
+          <span>Browse Open Issues</span>
+          <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M15 3h6v6" />
+            <path d="M10 14 21 3" />
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>Made with <span class="heart" aria-hidden="true">❤️</span><span class="sr-only">love</span> by the Open Source
+        Community</p>
+      <p>MIT License</p>
+    </div>
+
+    <img class="footer-decor" src="assets/images/footer-leaves.svg" alt="" width="420" height="170"
+      aria-hidden="true" loading="lazy" decoding="async" draggable="false">
+  </footer>
+  <script src="assets/js/site.js" defer></script>
+  <script src="assets/js/how-it-works.js" defer></script>
+</body>
+
+</html>

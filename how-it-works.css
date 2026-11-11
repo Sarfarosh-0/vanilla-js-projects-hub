@@ -1,0 +1,1035 @@
+/* ==========================================================================
+   Vanilla JS Projects Hub — How it works page
+   Loaded after style.css. Sections: page tokens · hero · layout & TOC ·
+             content shell · steps & flow · ladder · code · rules ·
+             automation · contribution flow · review · why · CTA ·
+             responsive · motion
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Page tokens
+   The page reuses the site palette. No new colours are introduced here: dark
+   mode works through the tokens already defined in style.css.
+   -------------------------------------------------------------------------- */
+:root {
+  --hiw-toc-width: 240px;
+  --hiw-header-offset: 104px;
+}
+
+/* --------------------------------------------------------------------------
+   2. Compact hero
+   -------------------------------------------------------------------------- */
+.hiw-hero {
+  padding-block: clamp(28px, 4vw, 44px) clamp(24px, 3vw, 36px);
+}
+
+.hiw-title {
+  margin-top: 18px;
+  font-size: clamp(36px, 4.6vw, 54px);
+}
+
+.hiw-hero-lead {
+  max-width: 720px;
+}
+
+.hiw-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.hiw-highlight {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.hiw-highlight-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-surface-highlight);
+  color: var(--color-primary);
+}
+
+.hiw-highlight-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.hiw-highlight-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.hiw-highlight-text {
+  color: var(--color-text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------------------------------
+   3. Layout and table of contents
+   -------------------------------------------------------------------------- */
+.hiw-body {
+  padding-top: clamp(20px, 3vw, 36px);
+}
+
+.hiw-layout {
+  display: grid;
+  grid-template-columns: minmax(190px, var(--hiw-toc-width)) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(28px, 4vw, 56px);
+}
+
+.hiw-sidebar {
+  position: sticky;
+  top: var(--hiw-header-offset);
+  align-self: start;
+}
+
+.hiw-toc {
+  max-height: calc(100vh - var(--hiw-header-offset) - 16px);
+  overflow-y: auto;
+  padding: 22px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+  scrollbar-width: thin;
+}
+
+.hiw-toc-summary {
+  display: none;
+}
+
+.hiw-toc-heading {
+  margin-bottom: 12px;
+  color: var(--color-secondary-strong);
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.hiw-toc-nav ol {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hiw-toc-nav a {
+  display: block;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hiw-toc-nav a:hover {
+  background: var(--color-surface-muted);
+  color: var(--color-text-primary);
+}
+
+.hiw-toc-nav a.is-active,
+.hiw-toc-nav a[aria-current="true"] {
+  background: var(--color-surface-highlight);
+  color: var(--color-primary);
+  box-shadow: inset 0 0 0 1px var(--color-border-strong);
+}
+
+.hiw-toc-nav a:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: -2px;
+}
+
+/* --------------------------------------------------------------------------
+   4. Content shell
+   -------------------------------------------------------------------------- */
+.hiw-content {
+  min-width: 0;
+}
+
+.hiw-section {
+  padding-block: clamp(30px, 4vw, 46px);
+  border-bottom: 1px solid var(--color-border);
+  scroll-margin-top: var(--hiw-header-offset);
+}
+
+.hiw-section:first-child {
+  padding-top: 0;
+}
+
+.hiw-section:last-of-type {
+  border-bottom: 0;
+}
+
+.hiw-section > .hiw-eyebrow {
+  color: var(--color-secondary-strong);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.hiw-section-title {
+  margin-top: 10px;
+  font-size: clamp(24px, 2.8vw, 31px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.hiw-section > .hiw-section-lead {
+  max-width: 74ch;
+  margin-top: 10px;
+  color: var(--color-secondary-strong);
+  font-size: 16.5px;
+  line-height: 1.65;
+}
+
+.hiw-section > p {
+  max-width: 78ch;
+  margin-top: 14px;
+  color: var(--color-text-secondary);
+  font-size: 15.5px;
+  line-height: 1.7;
+}
+
+.hiw-subheading {
+  margin-top: 30px;
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.hiw-subheading + p {
+  max-width: 78ch;
+  margin-top: 8px;
+  color: var(--color-text-secondary);
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.hiw-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--color-border-strong);
+  text-underline-offset: 3px;
+}
+
+.hiw-link:hover {
+  color: var(--color-primary-hover);
+  text-decoration-color: currentColor;
+}
+
+.hiw-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.hiw-list li {
+  position: relative;
+  padding-left: 19px;
+  color: var(--color-text-secondary);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.hiw-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-secondary);
+}
+
+.hiw-list li strong {
+  color: var(--color-text-primary);
+}
+
+.hiw-list-roomy {
+  margin-top: 22px;
+  gap: 12px;
+}
+
+.hiw-list-roomy li {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Inline code, but never inside a code block. */
+.hiw-content p code,
+.hiw-content li code,
+.hiw-content dd code,
+.hiw-content summary code,
+.hiw-content h3 code {
+  padding: 1px 5px;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background: var(--color-surface-muted);
+  color: var(--color-text-primary);
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.86em;
+  overflow-wrap: anywhere;
+}
+
+/* --------------------------------------------------------------------------
+   5. Numbered steps and flow strip
+   -------------------------------------------------------------------------- */
+.hiw-steps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hiw-step {
+  padding: 22px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.hiw-step-number {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: var(--color-surface-highlight);
+  color: var(--color-primary);
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.hiw-step h3 {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.hiw-step p {
+  margin-top: 8px;
+  color: var(--color-text-secondary);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.hiw-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hiw-flow li {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 15px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-muted);
+  color: var(--color-text-primary);
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.hiw-flow li:not(:last-child)::after {
+  content: "→";
+  color: var(--color-secondary);
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* --------------------------------------------------------------------------
+   6. Cards and contribution ladder
+   -------------------------------------------------------------------------- */
+.hiw-grid {
+  display: grid;
+  gap: 16px;
+  margin-top: 26px;
+}
+
+.hiw-grid-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.hiw-grid-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.hiw-card {
+  padding: 22px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-card);
+}
+
+.hiw-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.hiw-card p {
+  margin-top: 8px;
+  color: var(--color-text-secondary);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.hiw-card p + p {
+  margin-top: 10px;
+}
+
+.hiw-card .hiw-list {
+  margin-top: 10px;
+}
+
+.hiw-level {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hiw-level h3 {
+  margin-top: 12px;
+}
+
+.hiw-level-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 11px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-muted);
+  color: var(--color-primary);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* Field rules for project.json */
+.hiw-fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0 0;
+}
+
+.hiw-fields > div {
+  padding: 14px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.hiw-fields dt {
+  color: var(--color-text-primary);
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.hiw-fields dd {
+  margin: 6px 0 0;
+  color: var(--color-text-secondary);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+/* --------------------------------------------------------------------------
+   7. Code blocks and copy buttons
+   -------------------------------------------------------------------------- */
+.code-block {
+  margin-top: 20px;
+  overflow: hidden;
+  border: 1px solid var(--color-footer-surface);
+  border-radius: var(--radius-md);
+  background: var(--color-footer);
+}
+
+.code-block-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--color-footer);
+  background: var(--color-footer-surface);
+}
+
+.code-block-label {
+  color: var(--color-footer-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.copy-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 11px;
+  border: 1px solid var(--color-footer-muted);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-footer-muted);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.copy-button:hover {
+  border-color: var(--color-accent);
+  background: var(--color-accent);
+  color: var(--color-footer);
+}
+
+.copy-button.is-copied {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.copy-button:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Copy needs JavaScript; hide dead buttons when the script does not run. */
+html:not(.js) .copy-button {
+  display: none;
+}
+
+.code-block pre {
+  margin: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  color: var(--color-footer-text);
+  font-size: 13.5px;
+  line-height: 1.65;
+  tab-size: 2;
+  -webkit-overflow-scrolling: touch;
+}
+
+.code-block pre:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: -3px;
+}
+
+.code-block code {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   8. Automation cards and callout
+   -------------------------------------------------------------------------- */
+.hiw-automation-tag {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--color-secondary-strong);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.hiw-automation h3 {
+  font-size: 16px;
+}
+
+.hiw-automation-wide {
+  grid-column: 1 / -1;
+}
+
+.hiw-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-top: 22px;
+  padding: 20px 22px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-highlight);
+  box-shadow: var(--shadow-card);
+}
+
+.hiw-callout-icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-primary);
+}
+
+.hiw-callout h3 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.hiw-callout p {
+  margin-top: 6px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* --------------------------------------------------------------------------
+   9. Step-by-step contribution flow
+   -------------------------------------------------------------------------- */
+.hiw-flow-steps {
+  display: grid;
+  gap: 24px;
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: hiw-step;
+}
+
+.hiw-flow-steps > li {
+  position: relative;
+  padding-left: 52px;
+  counter-increment: hiw-step;
+}
+
+.hiw-flow-steps > li::before {
+  content: counter(hiw-step);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.hiw-flow-steps h3 {
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.hiw-flow-steps p {
+  max-width: 76ch;
+  margin-top: 6px;
+  color: var(--color-text-secondary);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+.hiw-flow-steps .code-block {
+  margin-top: 12px;
+}
+
+/* Expandable details — used for common mistakes and the FAQ. */
+.hiw-details-stack {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.hiw-details {
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+
+.hiw-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 18px;
+  color: var(--color-text-primary);
+  font-size: 14.5px;
+  font-weight: 600;
+  line-height: 1.45;
+  list-style: none;
+  cursor: pointer;
+}
+
+.hiw-details summary::-webkit-details-marker {
+  display: none;
+}
+
+.hiw-details summary::after {
+  content: "";
+  flex: none;
+  width: 8px;
+  height: 8px;
+  margin-right: 3px;
+  border-right: 2px solid var(--color-secondary);
+  border-bottom: 2px solid var(--color-secondary);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.hiw-details[open] summary::after {
+  transform: rotate(225deg);
+}
+
+.hiw-details summary:hover {
+  background: var(--color-surface-muted);
+}
+
+.hiw-details summary:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: -3px;
+}
+
+.hiw-details[open] summary {
+  border-bottom: 1px solid var(--color-border);
+}
+
+.hiw-details-body {
+  padding: 16px 18px 18px;
+}
+
+.hiw-details-body p {
+  color: var(--color-text-secondary);
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+.hiw-details-body .code-block {
+  margin-top: 12px;
+}
+
+/* --------------------------------------------------------------------------
+   10. Review timeline
+   -------------------------------------------------------------------------- */
+.hiw-timeline {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.hiw-timeline li {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 24px;
+  border-top: 2px solid var(--color-border-strong);
+}
+
+.hiw-timeline-dot {
+  position: absolute;
+  top: -7px;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--color-background);
+}
+
+.hiw-timeline-day {
+  color: var(--color-secondary-strong);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.hiw-timeline strong {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.hiw-timeline li > span:last-child {
+  color: var(--color-text-secondary);
+  font-size: 13.5px;
+  line-height: 1.55;
+}
+
+.hiw-review-notes {
+  margin-top: 24px;
+}
+
+/* --------------------------------------------------------------------------
+   11. Why this architecture
+   -------------------------------------------------------------------------- */
+.hiw-why-card h3 {
+  font-size: 18px;
+}
+
+.hiw-why-card .hiw-list li {
+  font-size: 14.5px;
+}
+
+/* --------------------------------------------------------------------------
+   12. Closing CTA
+   -------------------------------------------------------------------------- */
+.hiw-cta-section {
+  padding-top: clamp(30px, 4vw, 46px);
+  padding-bottom: 0;
+}
+
+.hiw-banner-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+/* --------------------------------------------------------------------------
+   13. Responsive — tablet
+   -------------------------------------------------------------------------- */
+@media (max-width: 1080px) {
+  :root {
+    --hiw-toc-width: 210px;
+  }
+
+  .hiw-grid-three {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* --------------------------------------------------------------------------
+   14. Responsive — below 900px, TOC collapses into <details>
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .hiw-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .hiw-sidebar {
+    position: static;
+  }
+
+  .hiw-toc {
+    max-height: none;
+    overflow: visible;
+    padding: 0;
+  }
+
+  .hiw-toc-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 15px 18px;
+    color: var(--color-text-primary);
+    font-size: 14.5px;
+    font-weight: 700;
+    line-height: 1.3;
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .hiw-toc-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .hiw-toc-chevron {
+    color: var(--color-secondary);
+    transition: transform 0.2s ease;
+  }
+
+  .hiw-toc[open] .hiw-toc-chevron {
+    transform: rotate(180deg);
+  }
+
+  .hiw-toc-summary:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: -3px;
+  }
+
+  .hiw-toc-heading {
+    display: none;
+  }
+
+  .hiw-toc-nav {
+    padding: 6px 10px 12px;
+  }
+
+  .hiw-toc[open] .hiw-toc-summary {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .hiw-section:first-child {
+    padding-top: clamp(6px, 2vw, 12px);
+  }
+
+  .hiw-grid-two,
+  .hiw-grid-three {
+    grid-template-columns: 1fr;
+  }
+
+  .hiw-automation-wide {
+    grid-column: auto;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   15. Responsive — mobile
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .hiw-steps {
+    grid-template-columns: 1fr;
+  }
+
+  .hiw-fields {
+    grid-template-columns: 1fr;
+  }
+
+  .hiw-flow {
+    gap: 6px;
+  }
+
+  .hiw-flow li {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .hiw-flow-steps > li {
+    padding-left: 46px;
+  }
+
+  .hiw-flow-steps > li::before {
+    width: 30px;
+    height: 30px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hiw-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .hiw-timeline {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .hiw-timeline li {
+    padding: 0 0 24px 24px;
+    border-top: 0;
+    border-left: 2px solid var(--color-border-strong);
+  }
+
+  .hiw-timeline li:last-child {
+    padding-bottom: 0;
+  }
+
+  .hiw-timeline-dot {
+    top: 4px;
+    left: -7px;
+  }
+
+  .hiw-section > p,
+  .hiw-section > .hiw-section-lead,
+  .hiw-flow-steps p {
+    font-size: 15px;
+  }
+
+  .code-block pre {
+    font-size: 12.5px;
+    padding: 14px 15px;
+  }
+
+  .hiw-callout {
+    flex-direction: column;
+  }
+
+  .hiw-banner-actions {
+    width: 100%;
+  }
+
+  .hiw-banner-actions .btn {
+    flex: 1 1 auto;
+  }
+}
+
+@media (max-width: 420px) {
+  .hiw-banner-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hiw-banner-actions .btn {
+    justify-content: center;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   16. Motion preferences
+   -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .hiw-toc-chevron,
+  .hiw-details summary::after {
+    transition-duration: 0.01ms !important;
+  }
+}
