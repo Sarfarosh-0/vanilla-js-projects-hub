@@ -2,7 +2,9 @@
 
 A curated collection of vanilla JavaScript projects built for beginners and developers to learn, build, and master open-source contributions.
 
-No frameworks, no complex build steps—just pure **HTML5**, **CSS3 / Tailwind**, and **ES6+ JavaScript**.
+**[Browse the live hub →](https://sarfarosh-0.github.io/vanilla-js-projects-hub/)**
+
+No JavaScript frameworks or complex build steps—just pure **HTML5**, **CSS3 / Tailwind**, and **ES6+ JavaScript**.
 
 ---
 
