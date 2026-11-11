@@ -252,11 +252,11 @@
               <ol>
                 <li><a href="#intro">Introduction</a></li>
                 <li><a href="#overview">The big picture</a></li>
+                <li><a href="#flow">Step-by-step flow</a></li>
                 <li><a href="#ladder">Contribution ladder</a></li>
                 <li><a href="#structure">Project structure</a></li>
                 <li><a href="#rules">Rules and tech constraints</a></li>
                 <li><a href="#automation">Automation</a></li>
-                <li><a href="#flow">Step-by-step flow</a></li>
                 <li><a href="#review">Review and stale policy</a></li>
                 <li><a href="#why">Why this architecture</a></li>
                 <li><a href="#faq">FAQ</a></li>
@@ -341,369 +341,9 @@
             </ol>
           </section>
 
-          <!-- ---------- 3.3 Contribution ladder ---------- -->
-          <section class="hiw-section" id="ladder" aria-labelledby="ladder-heading">
-            <p class="hiw-eyebrow">03 — Contribution ladder</p>
-            <h2 class="hiw-section-title" id="ladder-heading">Pick the level that fits you today</h2>
-            <p class="hiw-section-lead">
-              Contributions of every size are welcome. Start where you are comfortable — you can always move up.
-            </p>
-
-            <div class="hiw-grid hiw-grid-three">
-              <article class="hiw-card hiw-level">
-                <span class="hiw-level-badge">Level 1</span>
-                <h3>Quick fixes</h3>
-                <p>Small, useful changes that need little context:</p>
-                <ul class="hiw-list">
-                  <li>Fix typos and broken links</li>
-                  <li>Add missing <code>alt</code> text or accessibility attributes</li>
-                  <li>Improve documentation</li>
-                  <li>Submit screenshots</li>
-                </ul>
-              </article>
-
-              <article class="hiw-card hiw-level">
-                <span class="hiw-level-badge">Level 2</span>
-                <h3>Improvements</h3>
-                <p>Work inside an existing project and make it better:</p>
-                <ul class="hiw-list">
-                  <li>Fix bugs</li>
-                  <li>Optimise code</li>
-                  <li>Improve responsive design</li>
-                  <li>Add small enhancements</li>
-                </ul>
-              </article>
-
-              <article class="hiw-card hiw-level">
-                <span class="hiw-level-badge">Level 3</span>
-                <h3>New project</h3>
-                <p>Add a brand-new vanilla JS project to the hub:</p>
-                <ul class="hiw-list">
-                  <li>One project folder per PR</li>
-                  <li><code>index.html</code>, <code>README.md</code>, and <code>project.json</code></li>
-                  <li>Relative asset paths only</li>
-                  <li>Works on load with zero console errors</li>
-                </ul>
-              </article>
-            </div>
-          </section>
-
-          <!-- ---------- 3.4 Project structure ---------- -->
-          <section class="hiw-section" id="structure" aria-labelledby="structure-heading">
-            <p class="hiw-eyebrow">04 — Project structure</p>
-            <h2 class="hiw-section-title" id="structure-heading">One folder, three required files</h2>
-            <p class="hiw-section-lead">
-              The validator and the index builder both discover projects by their folder contents, so the
-              structure has to be exact.
-            </p>
-
-            <ul class="hiw-list hiw-list-roomy">
-              <li>
-                <strong>Folder name:</strong> lowercase kebab-case, letters only, no numbers — for example
-                <code>pomodoro-timer</code>.
-              </li>
-              <li>
-                <strong>Required files:</strong> <code>index.html</code>, <code>README.md</code> with a
-                “What I learned” section, and <code>project.json</code>.
-              </li>
-              <li>
-                <strong>One project per PR:</strong> every change in the pull request must stay inside that
-                single project folder.
-              </li>
-              <li>
-                <strong>Relative paths only:</strong> use <code>style.css</code> or <code>./style.css</code>,
-                never <code>/style.css</code>.
-              </li>
-            </ul>
-
-            <div class="code-block">
-              <div class="code-block-head">
-                <span class="code-block-label">file tree</span>
-                <button class="copy-button" type="button" data-copy-button>
-                  <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-                  </svg>
-                  <span data-copy-label>Copy</span>
-                </button>
-              </div>
-              <pre tabindex="0" aria-label="Example project folder structure"><code>vanilla-js-projects-hub/
-├── pomodoro-timer/
-│   ├── index.html
-│   ├── README.md
-│   └── project.json
-├── calculator/
-├── scripts/
-│   ├── build-index.js
-│   └── validate.js
-├── index.html
-└── style.css</code></pre>
-            </div>
-
-            <h3 class="hiw-subheading">The <code>project.json</code> file</h3>
-            <p>
-              Metadata drives both the README project table and the home page cards. Keep the sample below as a
-              starting point and replace the values with your own.
-            </p>
-
-            <div class="code-block">
-              <div class="code-block-head">
-                <span class="code-block-label">json</span>
-                <button class="copy-button" type="button" data-copy-button>
-                  <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
-                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
-                  </svg>
-                  <span data-copy-label>Copy</span>
-                </button>
-              </div>
-              <pre tabindex="0" aria-label="Example project.json file"><code>{
-  "name": "Pomodoro Timer",
-  "description": "A 25/5 focus timer with start, pause, and reset.",
-  "author": "your-github-username",
-  "difficulty": "beginner",
-  "tags": ["timer", "dom", "setinterval"],
-  "requiresApiKey": false,
-  "contributors": []
-}</code></pre>
-            </div>
-
-            <dl class="hiw-fields">
-              <div>
-                <dt><code>name</code></dt>
-                <dd>3–40 characters.</dd>
-              </div>
-              <div>
-                <dt><code>description</code></dt>
-                <dd>Maximum 120 characters.</dd>
-              </div>
-              <div>
-                <dt><code>author</code></dt>
-                <dd>Your GitHub username. It must match the author of the pull request.</dd>
-              </div>
-              <div>
-                <dt><code>difficulty</code></dt>
-                <dd>One of <code>beginner</code>, <code>intermediate</code>, or <code>advanced</code>.</dd>
-              </div>
-              <div>
-                <dt><code>tags</code></dt>
-                <dd>Up to 5 lowercase strings.</dd>
-              </div>
-              <div>
-                <dt><code>requiresApiKey</code></dt>
-                <dd><code>true</code> or <code>false</code>.</dd>
-              </div>
-              <div>
-                <dt><code>contributors</code></dt>
-                <dd>An array of GitHub usernames. Maintainers update it when a contribution is merged.</dd>
-              </div>
-            </dl>
-          </section>
-
-          <!-- ---------- 3.5 Rules and tech constraints ---------- -->
-          <section class="hiw-section" id="rules" aria-labelledby="rules-heading">
-            <p class="hiw-eyebrow">05 — Rules and tech constraints</p>
-            <h2 class="hiw-section-title" id="rules-heading">What every project must respect</h2>
-            <p class="hiw-section-lead">
-              These rules keep projects portable, safe, and readable for the next contributor.
-            </p>
-
-            <div class="hiw-grid hiw-grid-two">
-              <article class="hiw-card">
-                <h3>Pure vanilla only</h3>
-                <p>
-                  HTML5, CSS3, vanilla JavaScript (ES6+), and standard browser APIs. No frameworks and no
-                  runtime dependencies baked into the project.
-                </p>
-              </article>
-
-              <article class="hiw-card">
-                <h3>No build steps</h3>
-                <p>
-                  No Vite, Webpack, Babel, <code>node_modules</code>, or committed minified bundles. Opening
-                  <code>index.html</code> must work as-is.
-                </p>
-              </article>
-
-              <article class="hiw-card">
-                <h3>CDN whitelist</h3>
-                <p>
-                  Only libraries on the approved list may be loaded from a CDN. The contribution guide names
-                  Tailwind CSS (standalone/CDN), Chart.js, Google Fonts, Font Awesome, and Flaticon/Icons8.
-                </p>
-                <p>
-                  <code>cdn-whitelist.json</code> holds the allowed hosts: <code>fonts.googleapis.com</code>,
-                  <code>fonts.gstatic.com</code>, <code>cdn.jsdelivr.net</code>,
-                  <code>cdnjs.cloudflare.com</code>, <code>cdn-icons-png.flaticon.com</code>, and
-                  <code>img.icons8.com</code>. Need another library? Open an issue to request it.
-                </p>
-              </article>
-
-              <article class="hiw-card">
-                <h3>Security and safety</h3>
-                <ul class="hiw-list">
-                  <li>No tracking or analytics scripts.</li>
-                  <li>No <code>eval()</code> or <code>document.write()</code>.</li>
-                  <li>No obfuscated JavaScript.</li>
-                  <li>No unsafe <code>innerHTML</code> with unvalidated user input.</li>
-                  <li>
-                    Never commit API keys. Use <code>const API_KEY = "YOUR_API_KEY_HERE";</code> and set
-                    <code>"requiresApiKey": true</code>.
-                  </li>
-                </ul>
-              </article>
-
-              <article class="hiw-card">
-                <h3>Quality and accessibility</h3>
-                <ul class="hiw-list">
-                  <li>Opening <code>index.html</code> works with zero console errors.</li>
-                  <li>Semantic HTML and clearly labelled inputs.</li>
-                  <li>Descriptive <code>alt</code> text on images.</li>
-                  <li>Sufficient colour contrast.</li>
-                </ul>
-              </article>
-
-              <article class="hiw-card">
-                <h3>Scoped storage</h3>
-                <p>
-                  Prefix every <code>localStorage</code> key with your project folder name, for example
-                  <code>pomodoro-timer:settings</code>. Never call <code>localStorage.clear()</code>.
-                </p>
-              </article>
-
-              <article class="hiw-card">
-                <h3>Reasonable size</h3>
-                <p>
-                  Keep project folders lightweight — typically under 2 MB — and optimise images and SVGs
-                  before committing.
-                </p>
-              </article>
-
-              <article class="hiw-card">
-                <h3>Originality and AI disclosure</h3>
-                <p>
-                  Submit original work or credit the original authors and tutorials in the README
-                  <em>Credits</em> section. Disclose AI assistance in the PR template as
-                  <code>none</code>, <code>some</code>, or <code>most</code>, and say which parts. There is no
-                  penalty for using AI, but transparency is required.
-                </p>
-              </article>
-            </div>
-          </section>
-
-          <!-- ---------- 3.6 Automation ---------- -->
-          <section class="hiw-section" id="automation" aria-labelledby="automation-heading">
-            <p class="hiw-eyebrow">06 — Automation</p>
-            <h2 class="hiw-section-title" id="automation-heading">The robots that check and publish the hub</h2>
-            <p class="hiw-section-lead">
-              Four GitHub Actions workflows keep the repository consistent. Here is exactly what each one does.
-            </p>
-
-            <div class="hiw-grid hiw-grid-two">
-              <article class="hiw-card hiw-automation">
-                <span class="hiw-automation-tag">Pull requests</span>
-                <h3><code>validate.yml</code></h3>
-                <p>Runs on every pull request targeting <code>main</code>, on Node.js 20:</p>
-                <ul class="hiw-list">
-                  <li>
-                    Verifies PR scope: changes to <code>.github/workflows/</code>, <code>scripts/</code>, or
-                    <code>cdn-whitelist.json</code> are restricted to maintainers, and only one project folder
-                    may change.
-                  </li>
-                  <li>Runs <code>node scripts/validate.js</code>.</li>
-                  <li>
-                    Runs <code>node scripts/build-index.js --check</code> to confirm the generated
-                    <code>README.md</code> table and root <code>index.html</code> are committed and current.
-                  </li>
-                </ul>
-              </article>
-
-              <article class="hiw-card hiw-automation">
-                <span class="hiw-automation-tag">Validation script</span>
-                <h3><code>scripts/validate.js</code></h3>
-                <p>Checks each project folder:</p>
-                <ul class="hiw-list">
-                  <li>Folder name is lowercase kebab-case with letters only.</li>
-                  <li><code>index.html</code>, <code>README.md</code>, and <code>project.json</code> exist.</li>
-                  <li>Every <code>project.json</code> field follows the rules above.</li>
-                  <li>
-                    HTML, CSS, and JS contain no absolute local paths, <code>eval()</code>,
-                    <code>document.write()</code>, tracking scripts, or probable committed API keys.
-                  </li>
-                  <li>HTML loads only whitelisted CDN URLs.</li>
-                </ul>
-              </article>
-
-              <article class="hiw-card hiw-automation">
-                <span class="hiw-automation-tag">After merge</span>
-                <h3><code>build-index.yml</code></h3>
-                <p>Runs on every push to <code>main</code>:</p>
-                <ul class="hiw-list">
-                  <li>Runs <code>node scripts/build-index.js</code>.</li>
-                  <li>
-                    The script reads every <code>project.json</code> and rebuilds the README project table
-                    between its markers, plus the root <code>index.html</code> from
-                    <code>scripts/templates/index.html</code>.
-                  </li>
-                  <li>
-                    If either file changed, the workflow commits <code>README.md</code> and
-                    <code>index.html</code> as <code>github-actions[bot]</code> with a
-                    <code>[skip ci]</code> message.
-                  </li>
-                </ul>
-              </article>
-
-              <article class="hiw-card hiw-automation">
-                <span class="hiw-automation-tag">Deployment</span>
-                <h3><code>pages.yml</code></h3>
-                <p>Runs on pushes to <code>main</code> and on manual dispatch:</p>
-                <ul class="hiw-list">
-                  <li>Regenerates the landing page.</li>
-                  <li>
-                    Copies the site into <code>_site</code>, excluding <code>.git</code>, <code>.github</code>,
-                    <code>_site</code>, and <code>scripts</code>.
-                  </li>
-                  <li>Uploads the artifact and deploys it to GitHub Pages.</li>
-                </ul>
-              </article>
-
-              <article class="hiw-card hiw-automation hiw-automation-wide">
-                <span class="hiw-automation-tag">Housekeeping</span>
-                <h3><code>stale.yml</code></h3>
-                <p>
-                  Runs daily on a schedule and on manual dispatch. It marks pull requests with no recent
-                  activity as <code>stale</code> at day 14, then closes them 16 days later — day 30 overall.
-                  Issues are not auto-closed by this workflow.
-                </p>
-              </article>
-            </div>
-
-            <aside class="hiw-callout" aria-labelledby="generated-note-heading">
-              <span class="hiw-callout-icon" aria-hidden="true">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                  stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 9v4" />
-                  <path d="M12 17h.01" />
-                  <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-                </svg>
-              </span>
-              <div>
-                <h3 id="generated-note-heading">Generated files are not hand-edited</h3>
-                <p>
-                  The root <code>index.html</code> is generated from <code>scripts/templates/index.html</code>,
-                  and the README project table is generated from project metadata. After changing a
-                  <code>project.json</code>, run <code>node scripts/build-index.js</code> and commit both
-                  generated files. Never edit <code>index.html</code> by hand.
-                </p>
-              </div>
-            </aside>
-          </section>
-
-          <!-- ---------- 3.7 Step-by-step flow ---------- -->
+          <!-- ---------- 3.3 Step-by-step flow ---------- -->
           <section class="hiw-section" id="flow" aria-labelledby="flow-heading">
-            <p class="hiw-eyebrow">07 — Step-by-step flow</p>
+            <p class="hiw-eyebrow">03 — Step-by-step flow</p>
             <h2 class="hiw-section-title" id="flow-heading">Your first contribution, start to finish</h2>
             <p class="hiw-section-lead">
               The eight steps below come from the contribution guide. New to Git and GitHub? The
@@ -934,6 +574,366 @@ git remote set-url origin https://github.com/&lt;your-username&gt;/vanilla-js-pr
                 </div>
               </details>
             </div>
+          </section>
+
+          <!-- ---------- 3.4 Contribution ladder ---------- -->
+          <section class="hiw-section" id="ladder" aria-labelledby="ladder-heading">
+            <p class="hiw-eyebrow">04 — Contribution ladder</p>
+            <h2 class="hiw-section-title" id="ladder-heading">Pick the level that fits you today</h2>
+            <p class="hiw-section-lead">
+              Contributions of every size are welcome. Start where you are comfortable — you can always move up.
+            </p>
+
+            <div class="hiw-grid hiw-grid-three">
+              <article class="hiw-card hiw-level">
+                <span class="hiw-level-badge">Level 1</span>
+                <h3>Quick fixes</h3>
+                <p>Small, useful changes that need little context:</p>
+                <ul class="hiw-list">
+                  <li>Fix typos and broken links</li>
+                  <li>Add missing <code>alt</code> text or accessibility attributes</li>
+                  <li>Improve documentation</li>
+                  <li>Submit screenshots</li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-level">
+                <span class="hiw-level-badge">Level 2</span>
+                <h3>Improvements</h3>
+                <p>Work inside an existing project and make it better:</p>
+                <ul class="hiw-list">
+                  <li>Fix bugs</li>
+                  <li>Optimise code</li>
+                  <li>Improve responsive design</li>
+                  <li>Add small enhancements</li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-level">
+                <span class="hiw-level-badge">Level 3</span>
+                <h3>New project</h3>
+                <p>Add a brand-new vanilla JS project to the hub:</p>
+                <ul class="hiw-list">
+                  <li>One project folder per PR</li>
+                  <li><code>index.html</code>, <code>README.md</code>, and <code>project.json</code></li>
+                  <li>Relative asset paths only</li>
+                  <li>Works on load with zero console errors</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+
+          <!-- ---------- 3.5 Project structure ---------- -->
+          <section class="hiw-section" id="structure" aria-labelledby="structure-heading">
+            <p class="hiw-eyebrow">05 — Project structure</p>
+            <h2 class="hiw-section-title" id="structure-heading">One folder, three required files</h2>
+            <p class="hiw-section-lead">
+              The validator and the index builder both discover projects by their folder contents, so the
+              structure has to be exact.
+            </p>
+
+            <ul class="hiw-list hiw-list-roomy">
+              <li>
+                <strong>Folder name:</strong> lowercase kebab-case, letters only, no numbers — for example
+                <code>pomodoro-timer</code>.
+              </li>
+              <li>
+                <strong>Required files:</strong> <code>index.html</code>, <code>README.md</code> with a
+                “What I learned” section, and <code>project.json</code>.
+              </li>
+              <li>
+                <strong>One project per PR:</strong> every change in the pull request must stay inside that
+                single project folder.
+              </li>
+              <li>
+                <strong>Relative paths only:</strong> use <code>style.css</code> or <code>./style.css</code>,
+                never <code>/style.css</code>.
+              </li>
+            </ul>
+
+            <div class="code-block">
+              <div class="code-block-head">
+                <span class="code-block-label">file tree</span>
+                <button class="copy-button" type="button" data-copy-button>
+                  <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                  </svg>
+                  <span data-copy-label>Copy</span>
+                </button>
+              </div>
+              <pre tabindex="0" aria-label="Example project folder structure"><code>vanilla-js-projects-hub/
+├── pomodoro-timer/
+│   ├── index.html
+│   ├── README.md
+│   └── project.json
+├── calculator/
+├── scripts/
+│   ├── build-index.js
+│   └── validate.js
+├── index.html
+└── style.css</code></pre>
+            </div>
+
+            <h3 class="hiw-subheading">The <code>project.json</code> file</h3>
+            <p>
+              Metadata drives both the README project table and the home page cards. Keep the sample below as a
+              starting point and replace the values with your own.
+            </p>
+
+            <div class="code-block">
+              <div class="code-block-head">
+                <span class="code-block-label">json</span>
+                <button class="copy-button" type="button" data-copy-button>
+                  <svg class="icon icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <rect width="14" height="14" x="8" y="8" rx="2" ry="2" />
+                    <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2" />
+                  </svg>
+                  <span data-copy-label>Copy</span>
+                </button>
+              </div>
+              <pre tabindex="0" aria-label="Example project.json file"><code>{
+  "name": "Pomodoro Timer",
+  "description": "A 25/5 focus timer with start, pause, and reset.",
+  "author": "your-github-username",
+  "difficulty": "beginner",
+  "tags": ["timer", "dom", "setinterval"],
+  "requiresApiKey": false,
+  "contributors": []
+}</code></pre>
+            </div>
+
+            <dl class="hiw-fields">
+              <div>
+                <dt><code>name</code></dt>
+                <dd>3–40 characters.</dd>
+              </div>
+              <div>
+                <dt><code>description</code></dt>
+                <dd>Maximum 120 characters.</dd>
+              </div>
+              <div>
+                <dt><code>author</code></dt>
+                <dd>Your GitHub username. It must match the author of the pull request.</dd>
+              </div>
+              <div>
+                <dt><code>difficulty</code></dt>
+                <dd>One of <code>beginner</code>, <code>intermediate</code>, or <code>advanced</code>.</dd>
+              </div>
+              <div>
+                <dt><code>tags</code></dt>
+                <dd>Up to 5 lowercase strings.</dd>
+              </div>
+              <div>
+                <dt><code>requiresApiKey</code></dt>
+                <dd><code>true</code> or <code>false</code>.</dd>
+              </div>
+              <div>
+                <dt><code>contributors</code></dt>
+                <dd>An array of GitHub usernames. Maintainers update it when a contribution is merged.</dd>
+              </div>
+            </dl>
+          </section>
+
+          <!-- ---------- 3.6 Rules and tech constraints ---------- -->
+          <section class="hiw-section" id="rules" aria-labelledby="rules-heading">
+            <p class="hiw-eyebrow">06 — Rules and tech constraints</p>
+            <h2 class="hiw-section-title" id="rules-heading">What every project must respect</h2>
+            <p class="hiw-section-lead">
+              These rules keep projects portable, safe, and readable for the next contributor.
+            </p>
+
+            <div class="hiw-grid hiw-grid-two">
+              <article class="hiw-card">
+                <h3>Pure vanilla only</h3>
+                <p>
+                  HTML5, CSS3, vanilla JavaScript (ES6+), and standard browser APIs. No frameworks and no
+                  runtime dependencies baked into the project.
+                </p>
+              </article>
+
+              <article class="hiw-card">
+                <h3>No build steps</h3>
+                <p>
+                  No Vite, Webpack, Babel, <code>node_modules</code>, or committed minified bundles. Opening
+                  <code>index.html</code> must work as-is.
+                </p>
+              </article>
+
+              <article class="hiw-card">
+                <h3>CDN whitelist</h3>
+                <p>
+                  Only libraries on the approved list may be loaded from a CDN. The contribution guide names
+                  Tailwind CSS (standalone/CDN), Chart.js, Google Fonts, Font Awesome, and Flaticon/Icons8.
+                </p>
+                <p>
+                  <code>cdn-whitelist.json</code> holds the allowed hosts: <code>fonts.googleapis.com</code>,
+                  <code>fonts.gstatic.com</code>, <code>cdn.jsdelivr.net</code>,
+                  <code>cdnjs.cloudflare.com</code>, <code>cdn-icons-png.flaticon.com</code>, and
+                  <code>img.icons8.com</code>. Need another library? Open an issue to request it.
+                </p>
+              </article>
+
+              <article class="hiw-card">
+                <h3>Security and safety</h3>
+                <ul class="hiw-list">
+                  <li>No tracking or analytics scripts.</li>
+                  <li>No <code>eval()</code> or <code>document.write()</code>.</li>
+                  <li>No obfuscated JavaScript.</li>
+                  <li>No unsafe <code>innerHTML</code> with unvalidated user input.</li>
+                  <li>
+                    Never commit API keys. Use <code>const API_KEY = "YOUR_API_KEY_HERE";</code> and set
+                    <code>"requiresApiKey": true</code>.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="hiw-card">
+                <h3>Quality and accessibility</h3>
+                <ul class="hiw-list">
+                  <li>Opening <code>index.html</code> works with zero console errors.</li>
+                  <li>Semantic HTML and clearly labelled inputs.</li>
+                  <li>Descriptive <code>alt</code> text on images.</li>
+                  <li>Sufficient colour contrast.</li>
+                </ul>
+              </article>
+
+              <article class="hiw-card">
+                <h3>Scoped storage</h3>
+                <p>
+                  Prefix every <code>localStorage</code> key with your project folder name, for example
+                  <code>pomodoro-timer:settings</code>. Never call <code>localStorage.clear()</code>.
+                </p>
+              </article>
+
+              <article class="hiw-card">
+                <h3>Reasonable size</h3>
+                <p>
+                  Keep project folders lightweight — typically under 2 MB — and optimise images and SVGs
+                  before committing.
+                </p>
+              </article>
+
+              <article class="hiw-card">
+                <h3>Originality and AI disclosure</h3>
+                <p>
+                  Submit original work or credit the original authors and tutorials in the README
+                  <em>Credits</em> section. Disclose AI assistance in the PR template as
+                  <code>none</code>, <code>some</code>, or <code>most</code>, and say which parts. There is no
+                  penalty for using AI, but transparency is required.
+                </p>
+              </article>
+            </div>
+          </section>
+
+          <!-- ---------- 3.7 Automation ---------- -->
+          <section class="hiw-section" id="automation" aria-labelledby="automation-heading">
+            <p class="hiw-eyebrow">07 — Automation</p>
+            <h2 class="hiw-section-title" id="automation-heading">The robots that check and publish the hub</h2>
+            <p class="hiw-section-lead">
+              Four GitHub Actions workflows keep the repository consistent. Here is exactly what each one does.
+            </p>
+
+            <div class="hiw-grid hiw-grid-two">
+              <article class="hiw-card hiw-automation">
+                <span class="hiw-automation-tag">Pull requests</span>
+                <h3><code>validate.yml</code></h3>
+                <p>Runs on every pull request targeting <code>main</code>, on Node.js 20:</p>
+                <ul class="hiw-list">
+                  <li>
+                    Verifies PR scope: changes to <code>.github/workflows/</code>, <code>scripts/</code>, or
+                    <code>cdn-whitelist.json</code> are restricted to maintainers, and only one project folder
+                    may change.
+                  </li>
+                  <li>Runs <code>node scripts/validate.js</code>.</li>
+                  <li>
+                    Runs <code>node scripts/build-index.js --check</code> to confirm the generated
+                    <code>README.md</code> table and root <code>index.html</code> are committed and current.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-automation">
+                <span class="hiw-automation-tag">Validation script</span>
+                <h3><code>scripts/validate.js</code></h3>
+                <p>Checks each project folder:</p>
+                <ul class="hiw-list">
+                  <li>Folder name is lowercase kebab-case with letters only.</li>
+                  <li><code>index.html</code>, <code>README.md</code>, and <code>project.json</code> exist.</li>
+                  <li>Every <code>project.json</code> field follows the rules above.</li>
+                  <li>
+                    HTML, CSS, and JS contain no absolute local paths, <code>eval()</code>,
+                    <code>document.write()</code>, tracking scripts, or probable committed API keys.
+                  </li>
+                  <li>HTML loads only whitelisted CDN URLs.</li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-automation">
+                <span class="hiw-automation-tag">After merge</span>
+                <h3><code>build-index.yml</code></h3>
+                <p>Runs on every push to <code>main</code>:</p>
+                <ul class="hiw-list">
+                  <li>Runs <code>node scripts/build-index.js</code>.</li>
+                  <li>
+                    The script reads every <code>project.json</code> and rebuilds the README project table
+                    between its markers, plus the root <code>index.html</code> from
+                    <code>scripts/templates/index.html</code>.
+                  </li>
+                  <li>
+                    If either file changed, the workflow commits <code>README.md</code> and
+                    <code>index.html</code> as <code>github-actions[bot]</code> with a
+                    <code>[skip ci]</code> message.
+                  </li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-automation">
+                <span class="hiw-automation-tag">Deployment</span>
+                <h3><code>pages.yml</code></h3>
+                <p>Runs on pushes to <code>main</code> and on manual dispatch:</p>
+                <ul class="hiw-list">
+                  <li>Regenerates the landing page.</li>
+                  <li>
+                    Copies the site into <code>_site</code>, excluding <code>.git</code>, <code>.github</code>,
+                    <code>_site</code>, and <code>scripts</code>.
+                  </li>
+                  <li>Uploads the artifact and deploys it to GitHub Pages.</li>
+                </ul>
+              </article>
+
+              <article class="hiw-card hiw-automation hiw-automation-wide">
+                <span class="hiw-automation-tag">Housekeeping</span>
+                <h3><code>stale.yml</code></h3>
+                <p>
+                  Runs daily on a schedule and on manual dispatch. It marks pull requests with no recent
+                  activity as <code>stale</code> at day 14, then closes them 16 days later — day 30 overall.
+                  Issues are not auto-closed by this workflow.
+                </p>
+              </article>
+            </div>
+
+            <aside class="hiw-callout" aria-labelledby="generated-note-heading">
+              <span class="hiw-callout-icon" aria-hidden="true">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 9v4" />
+                  <path d="M12 17h.01" />
+                  <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                </svg>
+              </span>
+              <div>
+                <h3 id="generated-note-heading">Generated files are not hand-edited</h3>
+                <p>
+                  The root <code>index.html</code> is generated from <code>scripts/templates/index.html</code>,
+                  and the README project table is generated from project metadata. After changing a
+                  <code>project.json</code>, run <code>node scripts/build-index.js</code> and commit both
+                  generated files. Never edit <code>index.html</code> by hand.
+                </p>
+              </div>
+            </aside>
           </section>
 
           <!-- ---------- 3.8 Review and stale policy ---------- -->
