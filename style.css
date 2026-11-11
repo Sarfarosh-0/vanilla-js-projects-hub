@@ -693,9 +693,29 @@ html:not(.js) .theme-toggle {
   color: var(--color-on-primary);
 }
 
+.chip.is-active::before,
+.chip[aria-pressed="true"]::before,
+.more-filter.has-active .chip-summary::before {
+  content: "✓";
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
+}
+
 .chip.is-active:hover,
 .chip[aria-pressed="true"]:hover {
   background: var(--color-primary-hover);
+}
+
+.chip:focus-visible,
+.chip-summary:focus-visible,
+.more-item:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.chip[aria-pressed="true"] .chip-count {
+  opacity: 0.9;
 }
 
 .chip:disabled {
@@ -768,8 +788,8 @@ html:not(.js) .view-all-wrap {
 .more-item {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: flex-start;
+  gap: 8px;
   padding: 9px 12px;
   border-radius: 8px;
   color: var(--color-text-secondary);
@@ -783,11 +803,24 @@ html:not(.js) .view-all-wrap {
   color: var(--color-text-primary);
 }
 
+.more-item .chip-count {
+  margin-left: auto;
+}
+
 .more-item.is-active,
 .more-item[aria-pressed="true"] {
   background: var(--color-surface-highlight);
   color: var(--color-text-primary);
   font-weight: 600;
+}
+
+.more-item.is-active::before,
+.more-item[aria-pressed="true"]::before {
+  content: "✓";
+  color: var(--color-primary);
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .more-filter.has-active .chip-summary {
