@@ -1616,12 +1616,25 @@ html.js .project-grid.is-filtering .project-card.is-extra {
   }
 
   .chip {
+    min-height: 44px;
     padding: 11px 18px;
     font-size: 14px;
   }
 
   .chip-count {
     font-size: 12px;
+  }
+
+  .more-item {
+    min-height: 40px;
+  }
+
+  .search input {
+    min-height: 44px;
+  }
+
+  .clear-filters {
+    min-height: 44px;
   }
 
   /* The chip strip scrolls horizontally, which would clip an absolutely
@@ -1739,6 +1752,14 @@ html.js .project-grid.is-filtering .project-card.is-extra {
     gap: 10px;
   }
 
+  .btn-card {
+    min-height: 40px;
+  }
+
+  .view-all {
+    min-height: 44px;
+  }
+
   .brand-logo {
     width: 44px;
     height: 44px;
@@ -1764,6 +1785,20 @@ html.js .project-grid.is-filtering .project-card.is-extra {
   }
 }
 
+/* Below this width the side-by-side thumbnail leaves too little room for the
+   card copy, so let the thumbnail sit above the content. */
+@media (max-width: 520px) {
+  .project-card {
+    flex-direction: column;
+  }
+
+  .project-thumb {
+    flex: none;
+    width: 100%;
+    height: 158px;
+  }
+}
+
 @media (max-width: 420px) {
   .header-actions {
     gap: 4px;
@@ -1786,8 +1821,7 @@ html.js .project-grid.is-filtering .project-card.is-extra {
   }
 
   .project-thumb {
-    flex-basis: 92px;
-    width: 92px;
+    height: 140px;
   }
 
   .hero-actions {
