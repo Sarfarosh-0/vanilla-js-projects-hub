@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Calculate the tip and split the bill per person." />
+  <title>Tip Calculator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="receipt">
+    <header class="receipt-header">
+      <h1>Tip Calculator</h1>
+      <p>Split the bill, tip included.</p>
+    </header>
+
+    <form id="calc-form" novalidate>
+      <div class="field">
+        <label for="bill">Bill amount</label>
+        <input id="bill" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0.00" autocomplete="off" />
+        <p class="error" id="bill-error" role="alert"></p>
+      </div>
+
+      <fieldset class="field">
+        <legend>Tip</legend>
+        <div class="presets" id="presets">
+          <button type="button" class="preset" data-tip="5" aria-pressed="false">5%</button>
+          <button type="button" class="preset" data-tip="10" aria-pressed="false">10%</button>
+          <button type="button" class="preset" data-tip="15" aria-pressed="true">15%</button>
+          <button type="button" class="preset" data-tip="20" aria-pressed="false">20%</button>
+        </div>
+        <input id="custom-tip" type="number" inputmode="decimal" min="0" max="100" step="0.5" placeholder="Custom tip %" aria-label="Custom tip percentage" autocomplete="off" />
+        <p class="error" id="tip-error" role="alert"></p>
+      </fieldset>
+
+      <div class="field">
+        <label for="people">Number of people</label>
+        <input id="people" type="number" inputmode="numeric" min="1" step="1" value="1" autocomplete="off" />
+        <p class="error" id="people-error" role="alert"></p>
+      </div>
+    </form>
+
+    <section class="summary" aria-live="polite" aria-label="Results">
+      <dl>
+        <div class="row">
+          <dt>Tip amount</dt>
+          <dd id="tip-amount">$0.00</dd>
+        </div>
+        <div class="row">
+          <dt>Total bill</dt>
+          <dd id="total-bill">$0.00</dd>
+        </div>
+        <div class="row">
+          <dt>Tip per person</dt>
+          <dd id="tip-per-person">$0.00</dd>
+        </div>
+        <div class="row row-total">
+          <dt>Total per person</dt>
+          <dd id="total-per-person">$0.00</dd>
+        </div>
+      </dl>
+    </section>
+
+    <button type="button" id="reset" class="reset">Reset</button>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

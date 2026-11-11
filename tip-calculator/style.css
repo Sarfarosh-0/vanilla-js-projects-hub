@@ -1,0 +1,234 @@
+:root {
+  --bg: #12332b;
+  --paper: #fbfaf5;
+  --ink: #1c1f1d;
+  --muted: #5d6762;
+  --line: #c9cdc4;
+  --accent: #f2b134;
+  --accent-ink: #3a2700;
+  --error: #b3261e;
+  --mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Courier New", monospace;
+  --sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.5;
+}
+
+.receipt {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  padding: 28px 24px 32px;
+  background: var(--paper);
+  /* torn-paper bottom edge */
+  --tooth: 12px;
+  padding-bottom: calc(32px + var(--tooth));
+  background-image:
+    linear-gradient(135deg, var(--bg) 25%, transparent 25%),
+    linear-gradient(225deg, var(--bg) 25%, transparent 25%);
+  background-size: var(--tooth) var(--tooth);
+  background-repeat: repeat-x;
+  background-position: left bottom;
+  background-color: var(--paper);
+}
+
+.receipt::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 var(--tooth) 0;
+  background: var(--paper);
+  z-index: 0;
+}
+
+.receipt > * {
+  position: relative;
+  z-index: 1;
+}
+
+.receipt-header {
+  text-align: center;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 2px dashed var(--line);
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  letter-spacing: -0.01em;
+}
+
+.receipt-header p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.field {
+  margin: 0 0 18px;
+  padding: 0;
+  border: 0;
+  min-width: 0;
+}
+
+label,
+legend {
+  display: block;
+  padding: 0;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 12px 14px;
+  font: inherit;
+  font-family: var(--mono);
+  font-size: 1.1rem;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+}
+
+input[type="number"]::placeholder {
+  color: #9aa19c;
+}
+
+input[aria-invalid="true"] {
+  border-color: var(--error);
+}
+
+.presets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.preset {
+  padding: 10px 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.12s, border-color 0.12s;
+}
+
+.preset:hover {
+  border-color: var(--ink);
+}
+
+.preset.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+
+.error {
+  min-height: 1.2em;
+  margin: 4px 0 0;
+  color: var(--error);
+  font-size: 0.85rem;
+}
+
+.summary {
+  margin-top: 8px;
+  padding-top: 16px;
+  border-top: 2px dashed var(--line);
+}
+
+dl {
+  margin: 0;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 6px 0;
+}
+
+dt {
+  color: var(--muted);
+}
+
+dd {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 1.05rem;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+.row-total {
+  margin-top: 10px;
+  padding: 14px 12px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: 6px;
+}
+
+.row-total dt {
+  color: var(--accent-ink);
+  font-weight: 700;
+}
+
+.row-total dd {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.reset {
+  display: block;
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  font: inherit;
+  font-weight: 600;
+  color: var(--ink);
+  background: transparent;
+  border: 1.5px solid var(--ink);
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.reset:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 3px solid #1a6fe0;
+  outline-offset: 2px;
+}
+
+@media (max-width: 360px) {
+  .receipt {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .row-total dd {
+    font-size: 1.25rem;
+  }
+}
