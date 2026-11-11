@@ -114,6 +114,7 @@
   var clearFilterButtons = Array.prototype.slice.call(
     document.querySelectorAll('[data-clear-filters]')
   );
+  var filterBarClearButton = document.querySelector('.filters [data-clear-filters]');
   var viewAllButton = document.querySelector('[data-view-all]');
   var status = document.getElementById('filter-status');
   var emptyState = document.querySelector('[data-empty-state]');
@@ -206,9 +207,9 @@
 
     setPressed(difficultyButtons, 'data-value', state.difficulty);
     setPressed(tagButtons, 'data-value', state.tag);
-    clearFilterButtons.forEach(function (button) {
-      button.hidden = !filtering;
-    });
+    if (filterBarClearButton) {
+      filterBarClearButton.classList.toggle('is-visible', filtering);
+    }
     updateMoreLabel();
   }
 
