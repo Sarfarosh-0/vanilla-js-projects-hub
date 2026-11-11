@@ -195,14 +195,12 @@ function renderDifficultyChips(projects) {
 
   for (const difficulty of DIFFICULTIES) {
     const count = counts.get(difficulty);
-    const label = titleCaseDifficulty(difficulty);
     if (count === 0) {
-      chips.push(
-        `              <button type="button" class="chip" data-filter="difficulty" data-value="${difficulty}" aria-pressed="false" disabled title="No ${label.toLowerCase()} projects yet">${label} <span class="chip-count">0</span></button>`
-      );
-    } else {
-      chips.push(chip(label, `data-filter="difficulty" data-value="${difficulty}" aria-pressed="false"`, count));
+      // Hide difficulty categories with no projects rather than show a dead chip.
+      continue;
     }
+    const label = titleCaseDifficulty(difficulty);
+    chips.push(chip(label, `data-filter="difficulty" data-value="${difficulty}" aria-pressed="false"`, count));
   }
 
   return chips.join('\n');
