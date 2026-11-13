@@ -3,7 +3,7 @@ const globals = require("globals");
 
 module.exports = [
   {
-    ignores: ["node_modules/**"]
+    ignores: ["node_modules/**"],
   },
   js.configs.recommended,
   {
@@ -13,8 +13,8 @@ module.exports = [
       sourceType: "script",
       globals: {
         ...globals.browser,
-        ...globals.node
-      }
+        ...globals.node,
+      },
     },
     rules: {
       // Apps load several plain scripts per page, so shared functions are
@@ -22,8 +22,8 @@ module.exports = [
       "no-undef": "off",
       "no-unused-vars": [
         "error",
-        { argsIgnorePattern: "^_", caughtErrors: "none" }
-      ]
-    }
-  }
+        { argsIgnorePattern: "^_", caughtErrors: "none" },
+      ],
+    },
+  },
 ];

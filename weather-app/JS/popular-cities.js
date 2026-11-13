@@ -1,7 +1,5 @@
 const currentApiKey =
-  typeof apiKey !== "undefined"
-    ? apiKey
-    : window.apiKey || "";
+  typeof apiKey !== "undefined" ? apiKey : window.apiKey || "";
 
 const isApiKeyConfigured =
   Boolean(currentApiKey) && currentApiKey !== "YOUR_API_KEY_HERE";

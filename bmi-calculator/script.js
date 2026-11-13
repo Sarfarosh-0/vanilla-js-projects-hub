@@ -62,7 +62,10 @@ function Validate() {
   }
 
   if (heightUnit.value === "Feet") {
-    const parts = document.getElementById("userHeight").value.toString().split(".");
+    const parts = document
+      .getElementById("userHeight")
+      .value.toString()
+      .split(".");
     const inches = parseInt(parts[1], 10) || 0;
 
     if (inches >= 12) {

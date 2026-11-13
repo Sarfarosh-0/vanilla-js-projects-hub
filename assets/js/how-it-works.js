@@ -6,7 +6,7 @@
  * This script adds highlighting, copy buttons, and a tidier mobile TOC.
  */
 (function () {
-  'use strict';
+  "use strict";
 
   var HEADER_OFFSET = 120;
   var COPY_FEEDBACK_MS = 2000;
@@ -14,17 +14,17 @@
   /* -------------------------------------------------------------------------
      Table of contents
      ------------------------------------------------------------------------- */
-  var toc = document.querySelector('.hiw-toc');
+  var toc = document.querySelector(".hiw-toc");
   var tocLinks = Array.prototype.slice.call(
-    document.querySelectorAll('.hiw-toc-nav a[href^="#"]')
+    document.querySelectorAll('.hiw-toc-nav a[href^="#"]'),
   );
   var mobileQuery =
-    window.matchMedia && window.matchMedia('(max-width: 900px)');
+    window.matchMedia && window.matchMedia("(max-width: 900px)");
 
   tocLinks.forEach(function (link) {
-    var id = link.getAttribute('href').slice(1);
+    var id = link.getAttribute("href").slice(1);
 
-    link.addEventListener('click', function () {
+    link.addEventListener("click", function () {
       setActive(id);
 
       if (mobileQuery && mobileQuery.matches && toc) {
@@ -46,7 +46,7 @@
 
   if (mobileQuery) {
     if (mobileQuery.addEventListener) {
-      mobileQuery.addEventListener('change', syncTocMode);
+      mobileQuery.addEventListener("change", syncTocMode);
     } else if (mobileQuery.addListener) {
       mobileQuery.addListener(syncTocMode);
     }
@@ -54,13 +54,13 @@
 
   function setActive(id) {
     tocLinks.forEach(function (link) {
-      var isActive = link.getAttribute('href') === '#' + id;
-      link.classList.toggle('is-active', isActive);
+      var isActive = link.getAttribute("href") === "#" + id;
+      link.classList.toggle("is-active", isActive);
 
       if (isActive) {
-        link.setAttribute('aria-current', 'true');
+        link.setAttribute("aria-current", "true");
       } else {
-        link.removeAttribute('aria-current');
+        link.removeAttribute("aria-current");
       }
     });
   }
@@ -72,9 +72,9 @@
      section whose top has passed the header.
      ------------------------------------------------------------------------- */
   var sections = Array.prototype.slice.call(
-    document.querySelectorAll('.hiw-content section[id]')
+    document.querySelectorAll(".hiw-content section[id]"),
   );
-  var currentId = '';
+  var currentId = "";
 
   function pickActiveSection() {
     if (sections.length === 0) {
@@ -103,15 +103,15 @@
     }
   }
 
-  if ('IntersectionObserver' in window && sections.length > 0) {
+  if ("IntersectionObserver" in window && sections.length > 0) {
     var spy = new IntersectionObserver(
       function () {
         pickActiveSection();
       },
       {
-        rootMargin: '-100px 0px -45% 0px',
-        threshold: [0, 0.15, 0.5, 1]
-      }
+        rootMargin: "-100px 0px -45% 0px",
+        threshold: [0, 0.15, 0.5, 1],
+      },
     );
 
     sections.forEach(function (section) {
@@ -125,9 +125,9 @@
   /* -------------------------------------------------------------------------
      Copy buttons
      ------------------------------------------------------------------------- */
-  var liveRegion = document.getElementById('copy-status');
+  var liveRegion = document.getElementById("copy-status");
   var copyButtons = Array.prototype.slice.call(
-    document.querySelectorAll('[data-copy-button]')
+    document.querySelectorAll("[data-copy-button]"),
   );
   var copyTimers = new WeakMap();
 
@@ -136,7 +136,7 @@
       return;
     }
 
-    liveRegion.textContent = '';
+    liveRegion.textContent = "";
     window.setTimeout(function () {
       liveRegion.textContent = message;
     }, 30);
@@ -159,7 +159,7 @@
 
     var copied;
     try {
-      copied = document.execCommand('copy');
+      copied = document.execCommand("copy");
     } catch (error) {
       copied = false;
     }
@@ -169,12 +169,12 @@
   }
 
   function flashCopied(button) {
-    var label = button.querySelector('[data-copy-label]');
+    var label = button.querySelector("[data-copy-label]");
 
     if (label) {
-      label.textContent = 'Copied';
+      label.textContent = "Copied";
     }
-    button.classList.add('is-copied');
+    button.classList.add("is-copied");
 
     var existingTimer = copyTimers.get(button);
     if (existingTimer) {
@@ -183,9 +183,9 @@
 
     var timer = window.setTimeout(function () {
       if (label) {
-        label.textContent = 'Copy';
+        label.textContent = "Copy";
       }
-      button.classList.remove('is-copied');
+      button.classList.remove("is-copied");
       copyTimers.delete(button);
     }, COPY_FEEDBACK_MS);
 
@@ -193,8 +193,8 @@
   }
 
   async function copyCode(button) {
-    var block = button.closest('.code-block');
-    var code = block ? block.querySelector('pre code') : null;
+    var block = button.closest(".code-block");
+    var code = block ? block.querySelector("pre code") : null;
 
     if (!code) {
       return;
@@ -202,7 +202,10 @@
 
     var copied;
 
-    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+    if (
+      navigator.clipboard &&
+      typeof navigator.clipboard.writeText === "function"
+    ) {
       try {
         await navigator.clipboard.writeText(code.textContent);
         copied = true;
@@ -215,14 +218,14 @@
 
     if (copied) {
       flashCopied(button);
-      announce('Code copied to clipboard.');
+      announce("Code copied to clipboard.");
     } else {
-      announce('Copy failed. Select the code and copy it manually.');
+      announce("Copy failed. Select the code and copy it manually.");
     }
   }
 
   copyButtons.forEach(function (button) {
-    button.addEventListener('click', function () {
+    button.addEventListener("click", function () {
       copyCode(button);
     });
   });

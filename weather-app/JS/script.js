@@ -23,8 +23,7 @@ const API_KEY = "YOUR_API_KEY_HERE";
 window.apiKey = API_KEY;
 const apiKey = API_KEY;
 
-const isApiKeyConfigured =
-  Boolean(apiKey) && apiKey !== "YOUR_API_KEY_HERE";
+const isApiKeyConfigured = Boolean(apiKey) && apiKey !== "YOUR_API_KEY_HERE";
 const MISSING_KEY_MESSAGE =
   "Live weather is unavailable. Add your OpenWeatherMap API key in JS/script.js to enable it.";
 

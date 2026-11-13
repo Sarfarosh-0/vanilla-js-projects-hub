@@ -271,7 +271,6 @@ function sortByAmountDesc() {
   transactions.sort((a, b) => Number(b.amount) - Number(a.amount));
 }
 
-
 function applyActiveSorting() {
   const sortByElement = document.getElementById("sortBy");
   const currentValue = sortByElement ? sortByElement.value : "Descdate";

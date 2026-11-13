@@ -45,7 +45,7 @@ function checkAnswer() {
     hintElement.innerText = `Game Over! Correct Guess is ${compGuess}`;
     endGame(inputElement, submitButton);
   }
-  
+
   inputElement.value = "";
 }
 
