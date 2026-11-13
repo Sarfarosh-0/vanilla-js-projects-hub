@@ -181,6 +181,9 @@ function renderTransaction(transaction) {
 
   const delImg = document.createElement("img");
   delImg.src = "https://cdn-icons-png.flaticon.com/128/9790/9790368.png";
+  delImg.alt = "Delete transaction";
+  delImg.setAttribute("role", "button");
+  delImg.tabIndex = 0;
   delImg.classList.add(
     "w-5",
     "h-5",
@@ -196,7 +199,16 @@ function renderTransaction(transaction) {
   const delTransaction = document.createElement("li");
   delTransaction.appendChild(delImg);
 
-  delImg.addEventListener("click", () => deleteTransaction(transaction.id));
+  const removeTransaction = () => deleteTransaction(transaction.id);
+
+  delImg.addEventListener("click", removeTransaction);
+
+  delImg.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      removeTransaction();
+    }
+  });
 
   transactionUl.append(
     date,

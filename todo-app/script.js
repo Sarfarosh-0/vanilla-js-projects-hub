@@ -46,12 +46,24 @@ function renderTasks() {
 
     const delImg = document.createElement("img");
     delImg.src = "https://cdn-icons-png.flaticon.com/128/9790/9790368.png";
+    delImg.alt = "Delete task";
+    delImg.setAttribute("role", "button");
+    delImg.tabIndex = 0;
     delImg.style.cursor = "pointer";
 
-    delImg.addEventListener("click", () => {
+    const deleteTask = () => {
       toDoList.splice(index, 1);
       saveData();
       renderTasks();
+    };
+
+    delImg.addEventListener("click", deleteTask);
+
+    delImg.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        deleteTask();
+      }
     });
 
     taskDiv.append(checkbox, p, delImg);

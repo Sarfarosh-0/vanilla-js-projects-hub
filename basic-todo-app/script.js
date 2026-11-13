@@ -23,6 +23,9 @@ btn.addEventListener("click", function addTask() {
     // creating a image for deleteing the task
     const deleteTask = document.createElement("img");
     deleteTask.src = "https://cdn-icons-png.flaticon.com/128/9790/9790368.png";
+    deleteTask.alt = "Delete task";
+    deleteTask.setAttribute("role", "button");
+    deleteTask.tabIndex = 0;
     console.log(deleteTask);
 
     // adding all the 3 elemenst into a list item
@@ -39,8 +42,17 @@ btn.addEventListener("click", function addTask() {
     document.getElementById("task").value = "";
 
     //function to delete the list Item
-    deleteTask.addEventListener("click", function () {
-      this.closest("li").remove();
+    function removeTask() {
+      li.remove();
+    }
+
+    deleteTask.addEventListener("click", removeTask);
+
+    deleteTask.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        removeTask();
+      }
     });
   }
 });
