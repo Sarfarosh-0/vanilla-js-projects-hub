@@ -19,6 +19,14 @@ document
   .getElementById("JSaddExpense")
   .addEventListener("click", addTransaction);
 
+function generateTransactionId() {
+  if (window.crypto && typeof window.crypto.randomUUID === "function") {
+    return window.crypto.randomUUID();
+  }
+
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
 function addTransaction(e, forcedType) {
   const isExpense =
     forcedType === "Expense" ||
@@ -43,12 +51,12 @@ function addTransaction(e, forcedType) {
   }
 
   transactions.push({
-    id: Date.now(),
+    id: generateTransactionId(),
     date: date,
     description: description || "No description",
     type: isExpense ? "Expense" : "Income",
     category: category,
-    amount: amount,
+    amount: numericAmount,
   });
 
   saveTransactions();
