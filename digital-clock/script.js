@@ -84,13 +84,31 @@ darkBtn.addEventListener("click", () => {
 });
 
 // Calling the 12 Hour Clock on Click
-document.getElementById("Format_12").addEventListener("click", () => {
+const format12 = document.getElementById("Format_12");
+const format24 = document.getElementById("Format_24");
+
+function handleFormatKeydown(event, format) {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    startClock(format);
+  }
+}
+
+format12.addEventListener("click", () => {
   startClock("12");
 });
 
+format12.addEventListener("keydown", (event) => {
+  handleFormatKeydown(event, "12");
+});
+
 // Calling the 24 Hour Clock on Click
-document.getElementById("Format_24").addEventListener("click", () => {
+format24.addEventListener("click", () => {
   startClock("24");
+});
+
+format24.addEventListener("keydown", (event) => {
+  handleFormatKeydown(event, "24");
 });
 
 // Show the clock immediately instead of waiting for a format click.
