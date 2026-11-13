@@ -13,7 +13,6 @@ const heightUnit = document.getElementById("cm_feet");
 const weightUnit = document.getElementById("kg_pounds");
 
 heightUnit.addEventListener("change", syncUnits);
-weightUnit.addEventListener("change", syncUnits);
 
 function syncUnits() {
   if (heightUnit.value === "Cm") {
@@ -61,6 +60,17 @@ function Validate() {
     alert("Values must be greater than 0.");
     return false;
   }
+
+  if (heightUnit.value === "Feet") {
+    const parts = document.getElementById("userHeight").value.toString().split(".");
+    const inches = parseInt(parts[1], 10) || 0;
+
+    if (inches >= 12) {
+      alert("Inches must be less than 12. Use 5.11 for 5 feet 11 inches.");
+      return false;
+    }
+  }
+
   return true;
 }
 
