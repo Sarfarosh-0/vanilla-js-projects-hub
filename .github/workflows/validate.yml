@@ -17,7 +17,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint JavaScript
+        run: npm run lint
+
+      - name: Check formatting
+        run: npm run format:check
+
+      - name: Run unit tests
+        run: npm test
 
       - name: Verify PR Scope
         run: |
@@ -27,7 +40,7 @@ jobs:
           echo "$CHANGED_FILES"
 
           # Check if non-maintainers touched workflow or system files
-          PROTECTED_FILES=$(echo "$CHANGED_FILES" | grep -E '^(\.github/workflows/|scripts/|cdn-whitelist\.json)' || true)
+          PROTECTED_FILES=$(echo "$CHANGED_FILES" | grep -E '^(\.github/workflows/|scripts/|tests/|package(-lock)?\.json|eslint\.config\.js|\.prettierrc\.json|\.prettierignore|cdn-whitelist\.json)' || true)
           if [ -n "$PROTECTED_FILES" ]; then
             echo "::error::Modifications to workflow or automation files are restricted to maintainers."
             echo "$PROTECTED_FILES"
@@ -36,7 +49,7 @@ jobs:
 
           # Extract top-level project folders changed
           # Root landing page files are shared site code, not a project folder
-          PROJECT_FOLDERS=$(echo "$CHANGED_FILES" | grep -v -E '^(README\.md|\.github/|docs/|LICENSE|CONTRIBUTING\.md|PROJECT_IDEAS\.md|index\.html|style\.css|project\.json|assets/)' | cut -d/ -f1 | sort -u || true)
+          PROJECT_FOLDERS=$(echo "$CHANGED_FILES" | grep -v -E '^(README\.md|\.github/|docs/|tests/|LICENSE|CONTRIBUTING\.md|PROJECT_IDEAS\.md|index\.html|style\.css|how-it-works\.(html|css)|project\.json|package(-lock)?\.json|eslint\.config\.js|\.prettierrc\.json|\.prettierignore|\.gitignore|robots\.txt|sitemap\.xml|assets/)' | cut -d/ -f1 | sort -u || true)
           FOLDER_COUNT=$(echo "$PROJECT_FOLDERS" | grep -v '^$' | wc -l)
 
           if [ "$FOLDER_COUNT" -gt 1 ]; then
