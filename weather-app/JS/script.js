@@ -43,11 +43,11 @@ function hideStatus() {
 }
 
 const backgroundMap = {
-  Thunderstorm: "Resources/backgrounds/Thunderstorm.png",
-  Drizzle: "Resources/backgrounds/Light-Rain.png",
-  Rain: "Resources/backgrounds/Heavy-Rain.png",
-  Snow: "Resources/backgrounds/Snowfall.png",
-  Clouds: "Resources/backgrounds/Cloudy.png",
+  Thunderstorm: "Resources/backgrounds/Thunderstorm.webp",
+  Drizzle: "Resources/backgrounds/Light-Rain.webp",
+  Rain: "Resources/backgrounds/Heavy-Rain.webp",
+  Snow: "Resources/backgrounds/Snowfall.webp",
+  Clouds: "Resources/backgrounds/Cloudy.webp",
 };
 
 const atmosphereConditions = [
@@ -98,12 +98,12 @@ async function fetchWeather(queryParam = "Lucknow") {
       weatherCard.style.backgroundImage = `url('${backgroundMap[weatherCondition]}')`;
     } else if (atmosphereConditions.includes(weatherCondition)) {
       weatherCard.style.backgroundImage =
-        "url('Resources/backgrounds/Fog.png')";
+        "url('Resources/backgrounds/Fog.webp')";
     } else if (weatherCondition === "Clear") {
       const isNight = data.weather[0].icon.includes("n");
       weatherCard.style.backgroundImage = isNight
-        ? "url('Resources/backgrounds/Clear-Night.png')"
-        : "url('Resources/backgrounds/Bright-Sunny.png')";
+        ? "url('Resources/backgrounds/Clear-Night.webp')"
+        : "url('Resources/backgrounds/Bright-Sunny.webp')";
     }
 
     // Weather Data Updates

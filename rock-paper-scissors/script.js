@@ -28,9 +28,9 @@ function resetGame() {
   PlayerScore.textContent = "0";
   ComputerScore.textContent = "0";
 
-  document.getElementById("PlayerChoice").src = "photo1.png";
+  document.getElementById("PlayerChoice").src = "photo1.webp";
   document.getElementById("PlayerChoiceName").textContent = "ROCK";
-  document.getElementById("CompChoice").src = "photo3.png";
+  document.getElementById("CompChoice").src = "photo3.webp";
   document.getElementById("CompChoiceName").textContent = "SCISSORS";
   document.getElementById("WhoWins").textContent = "PLAYER WINS!";
   document.getElementById("Beats").textContent = "ROCK Beats SCISSORS";
@@ -58,7 +58,7 @@ function CheckWinner() {
 
 // FUNCTION TO CHANGE THE COMPUTER CHOICE IMAGE
 function ChangeComputerChoiceImage(compChoice) {
-  const ImageName = "photo" + compChoice + ".png";
+  const ImageName = "photo" + compChoice + ".webp";
   const CompOption = document.getElementById("CompChoice");
   CompOption.src = ImageName;
 }
@@ -78,7 +78,7 @@ function ChangeComputerChoiceName(CompChoice) {
 // IF THE PLAYER PLAYS ROCK
 Rock.addEventListener("click", function PlayRock() {
   const PlayerChoice = document.getElementById("PlayerChoice");
-  PlayerChoice.src = "photo1.png";
+  PlayerChoice.src = "photo1.webp";
   const PlayerChoiceName = document.getElementById("PlayerChoiceName");
   PlayerChoiceName.textContent = "ROCK";
 
@@ -123,7 +123,7 @@ Rock.addEventListener("click", function PlayRock() {
 // IF THE PLAYER CHOSES PAPER
 Paper.addEventListener("click", function PlayPaper() {
   const PlayerChoice = document.getElementById("PlayerChoice");
-  PlayerChoice.src = "photo2.png";
+  PlayerChoice.src = "photo2.webp";
   const PlayerChoiceName = document.getElementById("PlayerChoiceName");
   PlayerChoiceName.textContent = "PAPER";
 
@@ -168,7 +168,7 @@ Paper.addEventListener("click", function PlayPaper() {
 // IF THE PLAYER CHOSES SCISSORS
 Scissors.addEventListener("click", function PlayScissors() {
   const PlayerChoice = document.getElementById("PlayerChoice");
-  PlayerChoice.src = "photo3.png";
+  PlayerChoice.src = "photo3.webp";
   const PlayerChoiceName = document.getElementById("PlayerChoiceName");
   PlayerChoiceName.textContent = "SCISSORS";
 
