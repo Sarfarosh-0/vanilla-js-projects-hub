@@ -157,7 +157,7 @@
     selection.removeAllRanges();
     selection.addRange(range);
 
-    var copied = false;
+    var copied;
     try {
       copied = document.execCommand('copy');
     } catch (error) {
@@ -200,7 +200,7 @@
       return;
     }
 
-    var copied = false;
+    var copied;
 
     if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
       try {

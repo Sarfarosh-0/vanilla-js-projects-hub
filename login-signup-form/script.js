@@ -17,11 +17,9 @@ function validateForm() {
   const cnfPasswordValue = cnfPasswordInput ? cnfPasswordInput.value : null;
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const specialCharRegex = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+  const specialCharRegex = /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/;
 
-  let isEmailValid = false;
   let isPasswordValid = false;
-  let isCnfPasswordValid = false;
 
   // --- Email Validation ---
   if (emailValue === "") {
@@ -30,7 +28,6 @@ function validateForm() {
     showError(emailInput, emailHint, "Please enter a valid email address.");
   } else {
     showSuccess(emailInput, emailHint, "Valid Email");
-    isEmailValid = true;
   }
 
   // --- Password Validation ---
@@ -62,12 +59,8 @@ function validateForm() {
         showError(cnfPasswordInput, cnfPasswordHint, "Password Does not Match");
       } else {
         showSuccess(cnfPasswordInput, cnfPasswordHint, "Password Match");
-        isCnfPasswordValid = true;
       }
     }
-  } else {
-    // If we are on login.html, confirm password is automatically "valid"
-    isCnfPasswordValid = true;
   }
 }
 

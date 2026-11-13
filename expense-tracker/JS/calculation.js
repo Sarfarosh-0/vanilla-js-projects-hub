@@ -1,3 +1,4 @@
+/* exported clearAllTotals, runCalculations */
 // --- DOM Elements ---
 const totalIncome = document.getElementById("totalIncome");
 const totalExpense = document.getElementById("totalExpense");

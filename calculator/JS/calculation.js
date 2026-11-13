@@ -1,3 +1,4 @@
+/* exported calculateResult */
 let currentNumbers = "";
 
 const numbersDisplay = document.getElementById("numbers");
