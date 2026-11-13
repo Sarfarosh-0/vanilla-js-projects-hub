@@ -1,4 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 32" role="img">
-  <path d="M3 27C13 10 32 4 55 10" fill="none" stroke="#8baf78" stroke-width="2.5" stroke-linecap="round"/>
-  <path d="M47 3l9 6-10 4" fill="none" stroke="#8baf78" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80" width="100%" height="100%"
+     role="img" aria-labelledby="arrow-title">
+  <title id="arrow-title">Curved arrow pointing right</title>
+  <g fill="none" stroke="#709662" stroke-width="5"
+     stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 15 65 Q 80 -10 140 45" />
+    <path d="M 137 25 L 140 45 L 120 44" />
+  </g>
 </svg>
