@@ -11,8 +11,11 @@ const PLACEHOLDER_THUMBNAIL = "assets/images/thumb-placeholder.svg";
 const SITE_URL = "https://sarfarosh-0.github.io/vanilla-js-projects-hub/";
 const REPO_URL = "https://github.com/Sarfarosh-0/vanilla-js-projects-hub";
 const SITE_NAME = "Vanilla JS Projects Hub";
-const SITE_IMAGE_URL = `${SITE_URL}assets/icons/logo.png`;
-const SITE_IMAGE_ALT = "Vanilla JS Projects Hub logo";
+const SITE_IMAGE_URL = `${SITE_URL}assets/images/Vanilla-JS-Projects-Hub.png`;
+const SITE_IMAGE_ALT =
+  "Vanilla JS Projects Hub banner with a laptop showing JavaScript code";
+const SITE_IMAGE_WIDTH = 1888;
+const SITE_IMAGE_HEIGHT = 1078;
 
 // Cards shown before "View All Projects". Any project not listed here is still
 // rendered, but appears after these six and starts hidden. Keep this in sync
@@ -356,8 +359,11 @@ function renderSeoMeta(projects) {
   <meta property="og:description" content="${escapeAttr(description)}">
   <meta property="og:url" content="${SITE_URL}">
   <meta property="og:image" content="${SITE_IMAGE_URL}">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="${SITE_IMAGE_WIDTH}">
+  <meta property="og:image:height" content="${SITE_IMAGE_HEIGHT}">
   <meta property="og:image:alt" content="${escapeAttr(SITE_IMAGE_ALT)}">
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="${escapeAttr(title)}">
   <meta name="twitter:description" content="${escapeAttr(description)}">
   <meta name="twitter:image" content="${SITE_IMAGE_URL}">
