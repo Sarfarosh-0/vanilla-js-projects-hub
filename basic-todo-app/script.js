@@ -1,54 +1,64 @@
 const btn = document.getElementById("addBtn");
+const taskInput = document.getElementById("task");
 
-btn.addEventListener("click", function addTask() {
-  const task = document.getElementById("task").value;
+function addTask() {
+  const task = taskInput.value;
 
   if (task.trim() === "") {
     alert("Please enter a task");
-  } else {
-    document.getElementById("noTask").hidden = true;
-    const li = document.createElement("li");
+    return;
+  }
 
-    // createing a checkbox
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
+  document.getElementById("noTask").hidden = true;
+  const li = document.createElement("li");
 
-    // writing the task content into a span tag
-    const taskText = document.createElement("span");
-    taskText.textContent = task;
+  // createing a checkbox
+  const checkbox = document.createElement("input");
+  checkbox.type = "checkbox";
 
-    // creating a image for deleteing the task
-    const deleteTask = document.createElement("img");
-    deleteTask.src = "https://cdn-icons-png.flaticon.com/128/9790/9790368.png";
-    deleteTask.alt = "Delete task";
-    deleteTask.setAttribute("role", "button");
-    deleteTask.tabIndex = 0;
+  // writing the task content into a span tag
+  const taskText = document.createElement("span");
+  taskText.textContent = task;
 
-    // adding all the 3 elemenst into a list item
-    li.append(checkbox, taskText, deleteTask);
+  // creating a image for deleteing the task
+  const deleteTask = document.createElement("img");
+  deleteTask.src = "https://cdn-icons-png.flaticon.com/128/9790/9790368.png";
+  deleteTask.alt = "Delete task";
+  deleteTask.setAttribute("role", "button");
+  deleteTask.tabIndex = 0;
 
-    // this  creates a class so thet you can target it and style it
-    li.setAttribute("class", "userTask");
+  // adding all the 3 elemenst into a list item
+  li.append(checkbox, taskText, deleteTask);
 
-    // adding the list into the list of the html
-    const TaskList = document.getElementById("taskList");
-    TaskList.append(li);
+  // this  creates a class so thet you can target it and style it
+  li.setAttribute("class", "userTask");
 
-    //this resets the input flied
-    document.getElementById("task").value = "";
+  // adding the list into the list of the html
+  const TaskList = document.getElementById("taskList");
+  TaskList.append(li);
 
-    //function to delete the list Item
-    function removeTask() {
-      li.remove();
+  //this resets the input flied
+  taskInput.value = "";
+
+  //function to delete the list Item
+  function removeTask() {
+    li.remove();
+  }
+
+  deleteTask.addEventListener("click", removeTask);
+
+  deleteTask.addEventListener("keydown", function (event) {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      removeTask();
     }
+  });
+}
 
-    deleteTask.addEventListener("click", removeTask);
+btn.addEventListener("click", addTask);
 
-    deleteTask.addEventListener("keydown", function (event) {
-      if (event.key === "Enter" || event.key === " ") {
-        event.preventDefault();
-        removeTask();
-      }
-    });
+taskInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    addTask();
   }
 });
