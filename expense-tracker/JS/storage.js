@@ -1,5 +1,3 @@
-console.log("Expense Tracker Started");
-
 const STORAGE_KEY = "expense-tracker:transactions";
 let transactions = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 

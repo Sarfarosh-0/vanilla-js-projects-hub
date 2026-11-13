@@ -1,5 +1,3 @@
-console.log("COUNTER APP STARTED");
-
 const Decrement = document.getElementById("Decrement");
 const Increment = document.getElementById("Increment");
 const Reset = document.getElementById("Reset");

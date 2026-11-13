@@ -24,14 +24,12 @@ function CheckWinner() {
   if (playerScore >= 15) {
     setTimeout(() => {
       alert("Game is over PLAYER WON!");
-      console.log("PLAYER WON and GAME OVER");
       location.reload();
     }, 1000);
   }
   if (computerScore >= 15) {
     setTimeout(() => {
       alert("Game is Over COMPUTER WON!");
-      console.log("COMPUTER WON and GAME OVER");
       location.reload();
     }, 1000);
   }

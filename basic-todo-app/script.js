@@ -2,7 +2,6 @@ const btn = document.getElementById("addBtn");
 
 btn.addEventListener("click", function addTask() {
   const task = document.getElementById("task").value;
-  console.log(task);
 
   if (task.trim() === "") {
     alert("Please enter a task");
@@ -13,12 +12,10 @@ btn.addEventListener("click", function addTask() {
     // createing a checkbox
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    console.log(checkbox);
 
     // writing the task content into a span tag
     const taskText = document.createElement("span");
     taskText.textContent = task;
-    console.log(taskText);
 
     // creating a image for deleteing the task
     const deleteTask = document.createElement("img");
@@ -26,7 +23,6 @@ btn.addEventListener("click", function addTask() {
     deleteTask.alt = "Delete task";
     deleteTask.setAttribute("role", "button");
     deleteTask.tabIndex = 0;
-    console.log(deleteTask);
 
     // adding all the 3 elemenst into a list item
     li.append(checkbox, taskText, deleteTask);

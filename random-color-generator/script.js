@@ -1,5 +1,3 @@
-console.log("COLOR GENERATOR STARTED");
-
 const colors = [
   "#FF5733",
   "#FF6B6B",
