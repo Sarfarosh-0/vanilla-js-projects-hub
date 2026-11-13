@@ -69,10 +69,6 @@ function validateForm() {
     // If we are on login.html, confirm password is automatically "valid"
     isCnfPasswordValid = true;
   }
-
-  if (isEmailValid && isPasswordValid && isCnfPasswordValid) {
-    console.log("Form submitted successfully!");
-  }
 }
 
 function showError(inputElement, hintElement, message) {
