@@ -5,6 +5,7 @@ const ROOT_DIR = path.resolve(__dirname, '..');
 const README_PATH = path.join(ROOT_DIR, 'README.md');
 const TEMPLATE_PATH = path.join(ROOT_DIR, 'scripts', 'templates', 'index.html');
 const INDEX_PATH = path.join(ROOT_DIR, 'index.html');
+const SITEMAP_PATH = path.join(ROOT_DIR, 'sitemap.xml');
 const PLACEHOLDER_THUMBNAIL = 'assets/images/thumb-placeholder.svg';
 
 const SITE_URL = 'https://sarfarosh-0.github.io/vanilla-js-projects-hub/';
@@ -410,6 +411,42 @@ function buildIndex(projects) {
   console.log(`index.html generated with ${ordered.length} projects.`);
 }
 
+function renderSitemap(projects) {
+  const ordered = orderProjects(projects);
+  const urls = [
+    SITE_URL,
+    `${SITE_URL}how-it-works.html`,
+    ...ordered.map((project) => `${SITE_URL}${project.folder}/index.html`)
+  ];
+
+  const entries = urls
+    .map((url) => `  <url>\n    <loc>${url}</loc>\n  </url>`)
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>\n`;
+}
+
+function buildSitemap(projects) {
+  const xml = renderSitemap(projects);
+  const urlCount = 2 + projects.length;
+
+  if (CHECK_MODE) {
+    const current = fs.existsSync(SITEMAP_PATH)
+      ? fs.readFileSync(SITEMAP_PATH, 'utf8').replace(/\r\n/g, '\n')
+      : '';
+    if (current !== xml) {
+      console.error('sitemap.xml is out of date.');
+      console.error('Run `node scripts/build-index.js` and commit the result.');
+      process.exit(1);
+    }
+    console.log(`sitemap.xml is up to date (${urlCount} URLs).`);
+    return;
+  }
+
+  fs.writeFileSync(SITEMAP_PATH, xml, 'utf8');
+  console.log(`sitemap.xml generated with ${urlCount} URLs.`);
+}
+
 function generateMarkdownTable(projects) {
   let table = '| Project | Description | Difficulty | Tags |\n';
   table += '|:--|:--|:--|:--|\n';
@@ -479,6 +516,7 @@ function main() {
 
   updateReadme(projects);
   buildIndex(projects);
+  buildSitemap(projects);
 }
 
 main();
