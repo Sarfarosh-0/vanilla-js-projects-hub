@@ -3,9 +3,14 @@ const currentApiKey =
     ? apiKey
     : window.apiKey || "";
 
+const isApiKeyConfigured =
+  Boolean(currentApiKey) && currentApiKey !== "YOUR_API_KEY_HERE";
+
 const cities = ["delhi", "london", "tokyo", "dubai", "paris", "lisbon"];
 
 async function citiesWeather() {
+  if (!isApiKeyConfigured) return;
+
   for (const cityName of cities) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${currentApiKey}&units=metric`;
 
@@ -19,9 +24,10 @@ async function citiesWeather() {
       const data = await res.json();
 
       if (cityTemp) cityTemp.textContent = Math.floor(data.main.temp);
-      if (cityIcon)
+      if (cityIcon) {
         cityIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-      cityIcon.alt = `${data.weather[0].description} weather in ${data.name}`;
+        cityIcon.alt = `${data.weather[0].description} weather in ${data.name}`;
+      }
     } catch (err) {
       console.error(`Error fetching weather for ${cityName}:`, err);
     }
