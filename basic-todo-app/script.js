@@ -1,46 +1,102 @@
+const STORAGE_KEY = "basic-todo-app:tasks";
+
 const btn = document.getElementById("addBtn");
+const taskInput = document.getElementById("task");
+const taskList = document.getElementById("taskList");
+const noTask = document.getElementById("noTask");
 
-btn.addEventListener("click", function addTask() {
-  const task = document.getElementById("task").value;
-  console.log(task);
+function loadTasks() {
+  try {
+    const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    return Array.isArray(stored) ? stored : [];
+  } catch (error) {
+    return [];
+  }
+}
 
-  if (task.trim() === "") {
-    alert("Please enter a task");
-  } else {
-    document.getElementById("noTask").hidden = true;
+let tasks = loadTasks();
+
+function saveTasks() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+}
+
+function updateEmptyState() {
+  noTask.hidden = tasks.length > 0;
+}
+
+function renderTasks() {
+  taskList.innerHTML = "";
+
+  tasks.forEach((task, index) => {
     const li = document.createElement("li");
+    li.setAttribute("class", "userTask");
 
     // createing a checkbox
     const checkbox = document.createElement("input");
     checkbox.type = "checkbox";
-    console.log(checkbox);
+    checkbox.checked = task.completed;
+    checkbox.setAttribute("aria-label", `Mark "${task.text}" as done`);
+
+    checkbox.addEventListener("change", () => {
+      tasks[index].completed = checkbox.checked;
+      saveTasks();
+    });
 
     // writing the task content into a span tag
     const taskText = document.createElement("span");
-    taskText.textContent = task;
-    console.log(taskText);
+    taskText.textContent = task.text;
 
     // creating a image for deleteing the task
     const deleteTask = document.createElement("img");
     deleteTask.src = "https://cdn-icons-png.flaticon.com/128/9790/9790368.png";
-    console.log(deleteTask);
+    deleteTask.alt = "Delete task";
+    deleteTask.setAttribute("role", "button");
+    deleteTask.tabIndex = 0;
+
+    //function to delete the list Item
+    function removeTask() {
+      tasks.splice(index, 1);
+      saveTasks();
+      renderTasks();
+    }
+
+    deleteTask.addEventListener("click", removeTask);
+
+    deleteTask.addEventListener("keydown", function (event) {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        removeTask();
+      }
+    });
 
     // adding all the 3 elemenst into a list item
     li.append(checkbox, taskText, deleteTask);
+    taskList.append(li);
+  });
 
-    // this  creates a class so thet you can target it and style it
-    li.setAttribute("class", "userTask");
+  updateEmptyState();
+}
 
-    // adding the list into the list of the html
-    const TaskList = document.getElementById("taskList");
-    TaskList.append(li);
+function addTask() {
+  const task = taskInput.value.trim();
 
-    //this resets the input flied
-    document.getElementById("task").value = "";
+  if (task === "") {
+    alert("Please enter a task");
+    return;
+  }
 
-    //function to delete the list Item
-    deleteTask.addEventListener("click", function () {
-      this.closest("li").remove();
-    });
+  tasks.push({ text: task, completed: false });
+  saveTasks();
+  taskInput.value = "";
+  renderTasks();
+}
+
+btn.addEventListener("click", addTask);
+
+taskInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    addTask();
   }
 });
+
+renderTasks();

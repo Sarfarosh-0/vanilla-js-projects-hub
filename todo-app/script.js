@@ -14,7 +14,17 @@ themeToggle.addEventListener("click", () => {
 });
 
 const STORAGE_KEY = "todo-app:tasks";
-let toDoList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+function loadTasks() {
+  try {
+    const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    return Array.isArray(stored) ? stored : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+let toDoList = loadTasks();
 let currentFilter = "all";
 
 function renderTasks() {
@@ -46,12 +56,24 @@ function renderTasks() {
 
     const delImg = document.createElement("img");
     delImg.src = "https://cdn-icons-png.flaticon.com/128/9790/9790368.png";
+    delImg.alt = "Delete task";
+    delImg.setAttribute("role", "button");
+    delImg.tabIndex = 0;
     delImg.style.cursor = "pointer";
 
-    delImg.addEventListener("click", () => {
+    const deleteTask = () => {
       toDoList.splice(index, 1);
       saveData();
       renderTasks();
+    };
+
+    delImg.addEventListener("click", deleteTask);
+
+    delImg.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        deleteTask();
+      }
     });
 
     taskDiv.append(checkbox, p, delImg);
@@ -103,10 +125,23 @@ allTask.addEventListener("click", () => {
 
 function updateFilterUI(selectedButton) {
   const filterButtons = document.querySelectorAll(".list span");
-  filterButtons.forEach((btn) => btn.classList.remove("selected"));
+  filterButtons.forEach((btn) => {
+    btn.classList.remove("selected");
+    btn.setAttribute("aria-pressed", "false");
+  });
   selectedButton.classList.add("selected");
+  selectedButton.setAttribute("aria-pressed", "true");
   renderTasks();
 }
+
+[allTask, activeTask, completedTask].forEach((filterButton) => {
+  filterButton.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      filterButton.click();
+    }
+  });
+});
 
 function countTask() {
   const activeCount = toDoList.filter((task) => !task.completed).length;

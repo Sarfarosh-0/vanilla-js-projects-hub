@@ -1,5 +1,3 @@
-console.log("COLOR GENERATOR STARTED");
-
 const colors = [
   "#FF5733",
   "#FF6B6B",
@@ -166,7 +164,6 @@ document
   .getElementById("GenerateBtn")
   .addEventListener("click", function RandomColor() {
     let color = Math.floor(Math.random() * 145);
-    let HexCode = colors[color];
     document.getElementById("PreviewBody").style.backgroundColor =
       colors[color];
     // document.getElementById('CopyCode').style.backgroundColor = colors[color];

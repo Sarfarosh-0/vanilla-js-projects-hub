@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="website icon" href="https://cdn-icons-png.flaticon.com/128/2250/2250207.png" type="image/png">
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/128/2250/2250207.png" type="image/png">
     <link rel="stylesheet" href="style.css">
     <title>Login</title>
 </head>
@@ -24,7 +24,7 @@
                         <input type="email" id="userEmail" required placeholder=" ">
                         <label for="userEmail">Email</label>
                     </div>
-                    <p class="hint" id="emailHint"></p>
+                    <p class="hint" id="emailHint" role="status" aria-live="polite"></p>
                 </div>
 
                 <!-- Password Group -->
@@ -34,7 +34,7 @@
                         <button id="showPassword" type="button" aria-label="Toggle password visibility">Show</button>
                         <label for="userPassword">Password</label>
                     </div>
-                    <p class="hint" id="passwordHint"></p>
+                    <p class="hint" id="passwordHint" role="status" aria-live="polite"></p>
                 </div>
 
                 <button id="submitButton" class="submit-btn" type="submit">Login</button>

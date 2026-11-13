@@ -1,7 +1,15 @@
-console.log("Expense Tracker Started");
-
 const STORAGE_KEY = "expense-tracker:transactions";
-let transactions = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+function loadTransactions() {
+  try {
+    const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    return Array.isArray(stored) ? stored : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+let transactions = loadTransactions();
 
 document
   .getElementById("JSaddIncome")
@@ -10,6 +18,14 @@ document
 document
   .getElementById("JSaddExpense")
   .addEventListener("click", addTransaction);
+
+function generateTransactionId() {
+  if (window.crypto && typeof window.crypto.randomUUID === "function") {
+    return window.crypto.randomUUID();
+  }
+
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
 
 function addTransaction(e, forcedType) {
   const isExpense =
@@ -27,13 +43,20 @@ function addTransaction(e, forcedType) {
     return;
   }
 
+  const numericAmount = Number(amount);
+
+  if (!Number.isFinite(numericAmount) || numericAmount <= 0) {
+    alert("Amount must be a positive number.");
+    return;
+  }
+
   transactions.push({
-    id: Date.now(),
+    id: generateTransactionId(),
     date: date,
     description: description || "No description",
     type: isExpense ? "Expense" : "Income",
     category: category,
-    amount: amount,
+    amount: numericAmount,
   });
 
   saveTransactions();
@@ -46,13 +69,13 @@ function addTransaction(e, forcedType) {
   document.getElementById(`${prefix}Amt`).value = "";
 }
 
-document.getElementById("incomeModal").addEventListener("keypress", (e) => {
+document.getElementById("incomeModal").addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     addTransaction(null, "Income");
   }
 });
 
-document.getElementById("expenseModal").addEventListener("keypress", (e) => {
+document.getElementById("expenseModal").addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     addTransaction(null, "Expense");
   }
@@ -181,6 +204,9 @@ function renderTransaction(transaction) {
 
   const delImg = document.createElement("img");
   delImg.src = "https://cdn-icons-png.flaticon.com/128/9790/9790368.png";
+  delImg.alt = "Delete transaction";
+  delImg.setAttribute("role", "button");
+  delImg.tabIndex = 0;
   delImg.classList.add(
     "w-5",
     "h-5",
@@ -196,7 +222,16 @@ function renderTransaction(transaction) {
   const delTransaction = document.createElement("li");
   delTransaction.appendChild(delImg);
 
-  delImg.addEventListener("click", () => deleteTransaction(transaction.id));
+  const removeTransaction = () => deleteTransaction(transaction.id);
+
+  delImg.addEventListener("click", removeTransaction);
+
+  delImg.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      removeTransaction();
+    }
+  });
 
   transactionUl.append(
     date,
@@ -235,7 +270,6 @@ function sortByAmountAsc() {
 function sortByAmountDesc() {
   transactions.sort((a, b) => Number(b.amount) - Number(a.amount));
 }
-
 
 function applyActiveSorting() {
   const sortByElement = document.getElementById("sortBy");

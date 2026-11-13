@@ -23,12 +23,30 @@ const API_KEY = "YOUR_API_KEY_HERE";
 window.apiKey = API_KEY;
 const apiKey = API_KEY;
 
+const isApiKeyConfigured = Boolean(apiKey) && apiKey !== "YOUR_API_KEY_HERE";
+const MISSING_KEY_MESSAGE =
+  "Live weather is unavailable. Add your OpenWeatherMap API key in JS/script.js to enable it.";
+
+const weatherStatus = document.getElementById("weatherStatus");
+
+function showStatus(message) {
+  if (!weatherStatus) return;
+  weatherStatus.textContent = message;
+  weatherStatus.classList.remove("hidden");
+}
+
+function hideStatus() {
+  if (!weatherStatus) return;
+  weatherStatus.textContent = "";
+  weatherStatus.classList.add("hidden");
+}
+
 const backgroundMap = {
-  Thunderstorm: "Resources/backgrounds/Thunderstorm.png",
-  Drizzle: "Resources/backgrounds/Light-Rain.png",
-  Rain: "Resources/backgrounds/Heavy-Rain.png",
-  Snow: "Resources/backgrounds/Snowfall.png",
-  Clouds: "Resources/backgrounds/Cloudy.png",
+  Thunderstorm: "Resources/backgrounds/Thunderstorm.webp",
+  Drizzle: "Resources/backgrounds/Light-Rain.webp",
+  Rain: "Resources/backgrounds/Heavy-Rain.webp",
+  Snow: "Resources/backgrounds/Snowfall.webp",
+  Clouds: "Resources/backgrounds/Cloudy.webp",
 };
 
 const atmosphereConditions = [
@@ -44,17 +62,23 @@ const atmosphereConditions = [
 ];
 
 async function fetchWeather(queryParam = "Lucknow") {
+  if (!isApiKeyConfigured) {
+    showStatus(MISSING_KEY_MESSAGE);
+    return;
+  }
+
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${queryParam}&appid=${apiKey}&units=metric`;
 
   try {
     const res = await fetch(url);
 
     if (!res.ok) {
-      alert("City not found. Please try again.");
+      showStatus("City not found. Please try again.");
       throw new Error(`City not found (${res.status})`);
     }
 
     const data = await res.json();
+    hideStatus();
 
     const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
     const countryName = data.sys.country
@@ -73,12 +97,12 @@ async function fetchWeather(queryParam = "Lucknow") {
       weatherCard.style.backgroundImage = `url('${backgroundMap[weatherCondition]}')`;
     } else if (atmosphereConditions.includes(weatherCondition)) {
       weatherCard.style.backgroundImage =
-        "url('Resources/backgrounds/Fog.png')";
+        "url('Resources/backgrounds/Fog.webp')";
     } else if (weatherCondition === "Clear") {
       const isNight = data.weather[0].icon.includes("n");
       weatherCard.style.backgroundImage = isNight
-        ? "url('Resources/backgrounds/Clear-Night.png')"
-        : "url('Resources/backgrounds/Bright-Sunny.png')";
+        ? "url('Resources/backgrounds/Clear-Night.webp')"
+        : "url('Resources/backgrounds/Bright-Sunny.webp')";
     }
 
     // Weather Data Updates
@@ -97,6 +121,8 @@ async function fetchWeather(queryParam = "Lucknow") {
 }
 
 async function hourlyForecast(queryParam = "Lucknow") {
+  if (!isApiKeyConfigured) return;
+
   const hourlyUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${queryParam}&cnt=5&appid=${apiKey}&units=metric`;
 
   try {
@@ -143,6 +169,11 @@ async function hourlyForecast(queryParam = "Lucknow") {
 }
 
 function handleSearch() {
+  if (!isApiKeyConfigured) {
+    showStatus(MISSING_KEY_MESSAGE);
+    return;
+  }
+
   const query = searchInput.value.trim();
   if (query !== "") {
     fetchWeather(query);

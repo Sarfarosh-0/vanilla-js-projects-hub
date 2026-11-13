@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
-    <link href="src/output.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <link rel="shortcut icon" href="https://img.icons8.com/doodle/48/apple-calculator.png" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -196,6 +196,18 @@
                     stroke="currentColor" class="w-5 h-5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 9h15m-15 6h15" />
                 </svg>
+            </button>
+
+            <!-- Row 6: Parentheses -->
+            <button
+                class="greenButton text-xl font-bold uppercase rounded-xl text-slate-700 bg-white border border-slate-200/60 active:scale-95 col-span-2 w-full h-12 transition-all duration-150 flex justify-center items-center shadow-xs"
+                aria-label="Open Parenthesis">
+                (
+            </button>
+            <button
+                class="greenButton text-xl font-bold uppercase rounded-xl text-slate-700 bg-white border border-slate-200/60 active:scale-95 col-span-2 w-full h-12 transition-all duration-150 flex justify-center items-center shadow-xs"
+                aria-label="Close Parenthesis">
+                )
             </button>
 
             <audio id="clickSound" src="JS/click-sound.mp3" class="hidden"></audio>

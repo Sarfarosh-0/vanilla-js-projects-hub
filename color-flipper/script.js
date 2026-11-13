@@ -47,7 +47,7 @@ orange.addEventListener("click", function chnageOrange() {
 
 const random = document.getElementById("randomColor");
 const commonColors = [
-  "DoggerBlue",
+  "DodgerBlue",
   "White",
   "Gray",
   "Silver",
@@ -102,7 +102,7 @@ const commonColors = [
 ];
 
 random.addEventListener("click", function randomColor() {
-  let color = Math.floor(Math.random() * 50);
+  let color = Math.floor(Math.random() * commonColors.length);
   const Name = commonColors[color];
   const colorBox = document.getElementById("ColorBox");
   colorBox.style.backgroundColor = commonColors[color];

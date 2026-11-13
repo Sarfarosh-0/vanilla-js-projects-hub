@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sarfarosh-0.github.io/vanilla-js-projects-hub/sitemap.xml
