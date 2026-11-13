@@ -20,17 +20,38 @@ let computerScore = Number(document.getElementById("CompScore").textContent);
 const ComputerScore = document.getElementById("CompScore");
 
 // FUNCTION TO RELOAD THE GAME AT 15 POINTS
+let isGameOver = false;
+
+function resetGame() {
+  playerScore = 0;
+  computerScore = 0;
+  PlayerScore.textContent = "0";
+  ComputerScore.textContent = "0";
+
+  document.getElementById("PlayerChoice").src = "photo1.png";
+  document.getElementById("PlayerChoiceName").textContent = "ROCK";
+  document.getElementById("CompChoice").src = "photo3.png";
+  document.getElementById("CompChoiceName").textContent = "SCISSORS";
+  document.getElementById("WhoWins").textContent = "PLAYER WINS!";
+  document.getElementById("Beats").textContent = "ROCK Beats SCISSORS";
+
+  isGameOver = false;
+}
+
 function CheckWinner() {
+  if (isGameOver) return;
+
   if (playerScore >= 15) {
+    isGameOver = true;
     setTimeout(() => {
       alert("Game is over PLAYER WON!");
-      location.reload();
+      resetGame();
     }, 1000);
-  }
-  if (computerScore >= 15) {
+  } else if (computerScore >= 15) {
+    isGameOver = true;
     setTimeout(() => {
       alert("Game is Over COMPUTER WON!");
-      location.reload();
+      resetGame();
     }, 1000);
   }
 }
