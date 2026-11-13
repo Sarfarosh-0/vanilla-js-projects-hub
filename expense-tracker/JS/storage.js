@@ -46,13 +46,13 @@ function addTransaction(e, forcedType) {
   document.getElementById(`${prefix}Amt`).value = "";
 }
 
-document.getElementById("incomeModal").addEventListener("keypress", (e) => {
+document.getElementById("incomeModal").addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     addTransaction(null, "Income");
   }
 });
 
-document.getElementById("expenseModal").addEventListener("keypress", (e) => {
+document.getElementById("expenseModal").addEventListener("keydown", (e) => {
   if (e.key === "Enter") {
     addTransaction(null, "Expense");
   }

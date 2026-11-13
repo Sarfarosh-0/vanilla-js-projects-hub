@@ -50,8 +50,6 @@ const openExpenseMobileBtn = document.getElementById("addExpenseMobile");
 
 const clearAllData = document.getElementById("clearAllData");
 
-const viewAllTransactions = document.getElementById("viewAllTransactions");
-
 function openModal(modalType) {
   overlay.classList.remove("hidden");
 
