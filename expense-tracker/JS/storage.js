@@ -25,6 +25,13 @@ function addTransaction(e, forcedType) {
     return;
   }
 
+  const numericAmount = Number(amount);
+
+  if (!Number.isFinite(numericAmount) || numericAmount <= 0) {
+    alert("Amount must be a positive number.");
+    return;
+  }
+
   transactions.push({
     id: Date.now(),
     date: date,
