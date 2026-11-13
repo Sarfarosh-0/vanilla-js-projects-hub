@@ -457,6 +457,7 @@ function renderSitemap(projects) {
   const urls = [
     SITE_URL,
     `${SITE_URL}how-it-works.html`,
+    `${SITE_URL}issues.html`,
     ...ordered.map((project) => `${SITE_URL}${project.folder}/index.html`),
   ];
 
@@ -469,7 +470,7 @@ function renderSitemap(projects) {
 
 function buildSitemap(projects) {
   const xml = renderSitemap(projects);
-  const urlCount = 2 + projects.length;
+  const urlCount = 3 + projects.length;
 
   if (CHECK_MODE) {
     const current = fs.existsSync(SITEMAP_PATH)

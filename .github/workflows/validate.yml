@@ -36,7 +36,7 @@ jobs:
 
           # Extract top-level project folders changed
           # Root landing page files are shared site code, not a project folder
-          PROJECT_FOLDERS=$(echo "$CHANGED_FILES" | grep -v -E '^(README\.md|\.github/|docs/|LICENSE|CONTRIBUTING\.md|PROJECT_IDEAS\.md|index\.html|style\.css|project\.json|assets/)' | cut -d/ -f1 | sort -u || true)
+          PROJECT_FOLDERS=$(echo "$CHANGED_FILES" | grep -v -E '^(README\.md|\.github/|docs/|LICENSE|CONTRIBUTING\.md|PROJECT_IDEAS\.md|index\.html|style\.css|issues\.(html|css)|project\.json|assets/)' | cut -d/ -f1 | sort -u || true)
           FOLDER_COUNT=$(echo "$PROJECT_FOLDERS" | grep -v '^$' | wc -l)
 
           if [ "$FOLDER_COUNT" -gt 1 ]; then
