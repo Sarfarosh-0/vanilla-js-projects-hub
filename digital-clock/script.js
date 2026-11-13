@@ -18,56 +18,57 @@ setInterval(UpdateDate, 60000);
 let Hour12;
 let Hour24;
 
+function padTime(value) {
+  return String(value).padStart(2, "0");
+}
+
+function renderClock(hours, minutes, seconds) {
+  document.getElementById("Hour").textContent = padTime(hours);
+  document.getElementById("Minutes").textContent = padTime(minutes);
+  document.getElementById("Seconds").textContent = padTime(seconds);
+}
+
 // Function to Update AM and PM
 function UpdateMeridiem() {
   const date = new Date();
+  const meridiem = document.getElementById("Am_Pm");
 
-  if (date.getHours() >= 12) {
-    document.getElementById("AM_PM").textContent = "PM";
-  } else {
-    document.getElementById("AM_PM").textContent = "AM";
+  if (meridiem) {
+    meridiem.textContent = date.getHours() >= 12 ? "PM" : "AM";
   }
 }
 
 //Function For 24 Hour Clock
 function UpdateClock24() {
   const date = new Date();
-  clearInterval(Hour12);
 
   document.getElementById("AM_PM").style.display = "none";
-  document.getElementById("Hour").textContent = String(
-    date.getHours(),
-  ).padStart(2, "0");
-  document.getElementById("Minutes").textContent = String(
-    date.getMinutes(),
-  ).padStart(2, "0");
-  document.getElementById("Seconds").textContent = String(
-    date.getSeconds(),
-  ).padStart(2, "0");
+  renderClock(date.getHours(), date.getMinutes(), date.getSeconds());
 }
-
-UpdateMeridiem();
 
 //Function For 12 Hour Clock
 function UpdateClock12() {
   const date = new Date();
-  clearInterval(Hour24);
-  const time12Hour = date.toLocaleDateString("en-us", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-    hour12: true,
-  });
+  const hours = date.getHours() % 12 || 12;
+
   document.getElementById("AM_PM").style.display = "block";
-  document.getElementById("Hour").textContent = time12Hour
-    .slice(11, 13)
-    .padStart(2, "0");
-  document.getElementById("Minutes").textContent = time12Hour
-    .slice(14, 16)
-    .padStart(2, "0");
-  document.getElementById("Seconds").textContent = time12Hour
-    .slice(17, 19)
-    .padStart(2, "0");
+  renderClock(hours, date.getMinutes(), date.getSeconds());
+  UpdateMeridiem();
+}
+
+function startClock(format) {
+  clearInterval(Hour12);
+  clearInterval(Hour24);
+  Hour12 = null;
+  Hour24 = null;
+
+  if (format === "12") {
+    UpdateClock12();
+    Hour12 = setInterval(UpdateClock12, 1000);
+  } else {
+    UpdateClock24();
+    Hour24 = setInterval(UpdateClock24, 1000);
+  }
 }
 
 // Changing the Theme
@@ -84,12 +85,13 @@ darkBtn.addEventListener("click", () => {
 
 // Calling the 12 Hour Clock on Click
 document.getElementById("Format_12").addEventListener("click", () => {
-  UpdateClock12();
-  Hour12 = setInterval(UpdateClock12, 1000);
+  startClock("12");
 });
 
 // Calling the 24 Hour Clock on Click
 document.getElementById("Format_24").addEventListener("click", () => {
-  UpdateClock24();
-  Hour24 = setInterval(UpdateClock24, 1000);
+  startClock("24");
 });
+
+// Show the clock immediately instead of waiting for a format click.
+startClock("12");
