@@ -1,8 +1,10 @@
 /* exported calculateResult */
 let currentNumbers = "";
 
-const numbersDisplay = document.getElementById("numbers");
-const resultDisplay = document.getElementById("result");
+const numbersDisplay =
+  typeof document === "undefined" ? null : document.getElementById("numbers");
+const resultDisplay =
+  typeof document === "undefined" ? null : document.getElementById("result");
 
 // Safely evaluate a calculator expression without eval/Function.
 // Supports numbers, decimals, unary +/-, parentheses, and + - * /.
@@ -103,6 +105,10 @@ function evaluateExpression(expression) {
   return result;
 }
 
+function evaluateInput(expression) {
+  return evaluateExpression(expression.replace(/%/g, "/100"));
+}
+
 function calculateResult(isFinalCommit = false) {
   if (!currentNumbers) {
     resultDisplay.textContent = "";
@@ -110,9 +116,7 @@ function calculateResult(isFinalCommit = false) {
   }
 
   try {
-    let formattedExpr = currentNumbers.replace(/%/g, "/100");
-
-    const evaluated = evaluateExpression(formattedExpr);
+    const evaluated = evaluateInput(currentNumbers);
 
     if (
       evaluated !== undefined &&
@@ -130,4 +134,8 @@ function calculateResult(isFinalCommit = false) {
   } catch (error) {
     resultDisplay.textContent = "";
   }
+}
+
+if (typeof module !== "undefined" && module.exports) {
+  module.exports = { evaluateExpression, evaluateInput };
 }

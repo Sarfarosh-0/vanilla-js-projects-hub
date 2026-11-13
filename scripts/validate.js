@@ -9,6 +9,7 @@ const IGNORED_DIRS = new Set([
   ".github",
   "node_modules",
   "scripts",
+  "tests",
   "docs",
   "scratch",
   // Shared assets for the root landing page, not a project folder.
