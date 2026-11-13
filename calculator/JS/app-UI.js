@@ -53,6 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
       handleCommit();
     } else if (ariaLabel === "Percentage") {
       handleInput("%");
+    } else if (ariaLabel === "Open Parenthesis") {
+      handleInput("(");
+    } else if (ariaLabel === "Close Parenthesis") {
+      handleInput(")");
     } else if (ariaLabel === "Divide") {
       handleInput("/");
     } else if (ariaLabel === "Multiply") {
@@ -71,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("keydown", (event) => {
     const key = event.key;
 
-    if (/^[0-9+\-*/%.]$/.test(key)) {
+    if (/^[0-9+\-*/%().]$/.test(key)) {
       playSound();
       handleInput(key);
     } else if (key === "Enter" || key === "=") {

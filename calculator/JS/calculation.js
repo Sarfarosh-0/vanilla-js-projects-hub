@@ -4,9 +4,9 @@ const numbersDisplay = document.getElementById("numbers");
 const resultDisplay = document.getElementById("result");
 
 // Safely evaluate a calculator expression without eval/Function.
-// Supports numbers, decimals, unary +/-, and the + - * / operators.
+// Supports numbers, decimals, unary +/-, parentheses, and + - * /.
 function evaluateExpression(expression) {
-  const tokens = expression.match(/\d+\.?\d*|\.\d+|[-+*/]/g) || [];
+  const tokens = expression.match(/\d+\.?\d*|\.\d+|[()+\-*/]/g) || [];
 
   if (tokens.join("") !== expression) {
     throw new Error("Invalid expression");
@@ -35,6 +35,22 @@ function evaluateExpression(expression) {
     return value;
   }
 
+  function parsePrimary() {
+    if (peek() === "(") {
+      index += 1;
+      const value = parseExpression();
+
+      if (peek() !== ")") {
+        throw new Error("Missing closing parenthesis");
+      }
+
+      index += 1;
+      return value;
+    }
+
+    return parseNumber();
+  }
+
   function parseUnary() {
     const token = peek();
 
@@ -48,7 +64,7 @@ function evaluateExpression(expression) {
       return -parseUnary();
     }
 
-    return parseNumber();
+    return parsePrimary();
   }
 
   function parseTerm() {
