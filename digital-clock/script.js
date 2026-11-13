@@ -13,7 +13,16 @@ function UpdateDate() {
   );
 }
 UpdateDate();
-setInterval(UpdateDate, 60000);
+
+function scheduleDateUpdates() {
+  const delay = 60000 - (Date.now() % 60000);
+  setTimeout(() => {
+    UpdateDate();
+    setInterval(UpdateDate, 60000);
+  }, delay);
+}
+
+scheduleDateUpdates();
 
 let Hour12;
 let Hour24;
@@ -72,15 +81,36 @@ function startClock(format) {
 }
 
 // Changing the Theme
+const THEME_KEY = "digital-clock:theme";
 const lightBtn = document.querySelector(".light");
 const darkBtn = document.querySelector(".dark");
 
+function applyTheme(theme) {
+  document.documentElement.setAttribute("data-theme", theme);
+
+  try {
+    localStorage.setItem(THEME_KEY, theme);
+  } catch (error) {
+    // Storage can be unavailable (for example in private mode).
+  }
+}
+
+try {
+  const savedTheme = localStorage.getItem(THEME_KEY);
+
+  if (savedTheme === "light" || savedTheme === "dark") {
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }
+} catch (error) {
+  // Keep the default theme when storage is unavailable.
+}
+
 lightBtn.addEventListener("click", () => {
-  document.documentElement.setAttribute("data-theme", "light");
+  applyTheme("light");
 });
 
 darkBtn.addEventListener("click", () => {
-  document.documentElement.setAttribute("data-theme", "dark");
+  applyTheme("dark");
 });
 
 // Calling the 12 Hour Clock on Click
