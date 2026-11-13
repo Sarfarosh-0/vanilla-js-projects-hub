@@ -1,5 +1,15 @@
 const STORAGE_KEY = "expense-tracker:transactions";
-let transactions = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+function loadTransactions() {
+  try {
+    const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    return Array.isArray(stored) ? stored : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+let transactions = loadTransactions();
 
 document
   .getElementById("JSaddIncome")

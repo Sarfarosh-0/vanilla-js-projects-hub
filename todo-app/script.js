@@ -14,7 +14,17 @@ themeToggle.addEventListener("click", () => {
 });
 
 const STORAGE_KEY = "todo-app:tasks";
-let toDoList = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+
+function loadTasks() {
+  try {
+    const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    return Array.isArray(stored) ? stored : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+let toDoList = loadTasks();
 let currentFilter = "all";
 
 function renderTasks() {
