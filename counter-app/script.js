@@ -25,3 +25,14 @@ Reset.addEventListener("click", () => {
   count = 0;
   Count.textContent = count;
 });
+
+function activateWithKeyboard(e) {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    e.currentTarget.click();
+  }
+}
+
+[Decrement, Increment, Reset].forEach((control) => {
+  control.addEventListener("keydown", activateWithKeyboard);
+});
