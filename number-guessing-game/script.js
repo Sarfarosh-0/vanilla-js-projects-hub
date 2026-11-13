@@ -1,10 +1,9 @@
 // Generate random number between 1 and 100
 const compGuess = Math.floor(Math.random() * 100) + 1;
-console.log("Answer is:", compGuess);
 
 const submitButton = document.getElementById("CheckAnswer");
 submitButton.addEventListener("click", checkAnswer);
-document.getElementById("guessNum").addEventListener("keypress", (e) => {
+document.getElementById("guessNumber").addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     checkAnswer();
   }
