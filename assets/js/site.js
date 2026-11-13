@@ -292,5 +292,120 @@
     }
   });
 
+  /* -------------------------------------------------------------------------
+     Live GitHub stats
+     The markup ships neutral placeholders; these two public API reads replace
+     them with the repository's real star and commit counts. Failures leave the
+     placeholders untouched so the page still works offline.
+     ------------------------------------------------------------------------- */
+  var GITHUB_REPO = 'Sarfarosh-0/vanilla-js-projects-hub';
+  var STATS_CACHE_KEY = 'vanilla-hub:github-stats';
+  var STATS_CACHE_MS = 10 * 60 * 1000;
+
+  function readStatsCache() {
+    try {
+      var raw = sessionStorage.getItem(STATS_CACHE_KEY);
+      if (!raw) return null;
+
+      var cached = JSON.parse(raw);
+      if (Date.now() - cached.savedAt > STATS_CACHE_MS) return null;
+
+      return cached.data;
+    } catch (error) {
+      return null;
+    }
+  }
+
+  function writeStatsCache(data) {
+    try {
+      sessionStorage.setItem(
+        STATS_CACHE_KEY,
+        JSON.stringify({ savedAt: Date.now(), data: data })
+      );
+    } catch (error) {
+      // Storage can be unavailable (for example in private mode).
+    }
+  }
+
+  function formatStat(value) {
+    if (typeof value !== 'number' || !Number.isFinite(value)) return null;
+    return value.toLocaleString('en');
+  }
+
+  function fetchGitHub(url) {
+    return fetch(url, {
+      headers: { Accept: 'application/vnd.github+json' }
+    }).then(function (response) {
+      if (!response.ok) {
+        throw new Error('GitHub request failed (' + response.status + ')');
+      }
+      return response;
+    });
+  }
+
+  function countCommits(linkHeader, fallbackCount) {
+    if (!linkHeader) return fallbackCount;
+
+    var match = linkHeader.match(/[?&]page=(\d+)>;\s*rel="last"/);
+    return match ? Number(match[1]) : fallbackCount;
+  }
+
+  function renderStats(stats, starsEl, commitsEl) {
+    var stars = formatStat(stats.stars);
+    var commits = formatStat(stats.commits);
+
+    if (stars && starsEl) starsEl.textContent = stars;
+    if (commits && commitsEl) commitsEl.textContent = commits;
+  }
+
+  function loadGitHubStats() {
+    var starsEl = document.getElementById('statStars');
+    var commitsEl = document.getElementById('statCommits');
+
+    if (!starsEl && !commitsEl) return;
+
+    var cached = readStatsCache();
+    if (cached) {
+      renderStats(cached, starsEl, commitsEl);
+      return;
+    }
+
+    Promise.all([
+      fetchGitHub('https://api.github.com/repos/' + GITHUB_REPO).then(
+        function (response) {
+          return response.json();
+        }
+      ),
+      fetchGitHub(
+        'https://api.github.com/repos/' + GITHUB_REPO + '/commits?per_page=1'
+      ).then(function (response) {
+        return response.json().then(function (page) {
+          return {
+            commits: countCommits(
+              response.headers.get('Link'),
+              Array.isArray(page) ? page.length : 0
+            )
+          };
+        });
+      })
+    ])
+      .then(function (results) {
+        var stats = {
+          stars: results[0].stargazers_count,
+          commits: results[1].commits
+        };
+
+        writeStatsCache(stats);
+        renderStats(stats, starsEl, commitsEl);
+      })
+      .catch(function (error) {
+        if (window.console && console.warn) {
+          console.warn('Live GitHub stats unavailable:', error);
+        }
+      });
+  }
+
+  loadGitHubStats();
+
   render();
 })();
