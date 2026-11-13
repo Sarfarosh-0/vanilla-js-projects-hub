@@ -125,10 +125,23 @@ allTask.addEventListener("click", () => {
 
 function updateFilterUI(selectedButton) {
   const filterButtons = document.querySelectorAll(".list span");
-  filterButtons.forEach((btn) => btn.classList.remove("selected"));
+  filterButtons.forEach((btn) => {
+    btn.classList.remove("selected");
+    btn.setAttribute("aria-pressed", "false");
+  });
   selectedButton.classList.add("selected");
+  selectedButton.setAttribute("aria-pressed", "true");
   renderTasks();
 }
+
+[allTask, activeTask, completedTask].forEach((filterButton) => {
+  filterButton.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      filterButton.click();
+    }
+  });
+});
 
 function countTask() {
   const activeCount = toDoList.filter((task) => !task.completed).length;
