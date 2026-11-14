@@ -17,8 +17,10 @@
     GITHUB_REPO +
     "/issues?state=open&per_page=100&sort=updated&direction=desc";
   var ISSUES_URL = "https://github.com/" + GITHUB_REPO + "/issues";
-  var CACHE_KEY = "vanilla-hub:open-issues";
+  var CACHE_KEY = "vanilla-hub:open-issues:v2";
   var CACHE_MS = 10 * 60 * 1000;
+  var DESCRIPTION_MAX = 240;
+  var SVG_NS = "http://www.w3.org/2000/svg";
 
   // Labels that get promoted to the front of the filter bar, in this order.
   var LABEL_PRIORITY = [
@@ -50,8 +52,9 @@
 
   /* -------------------------------------------------------------------------
      Cache
-     Only the fields used by the UI are stored, so a busy repository does not
-     fill sessionStorage with issue bodies.
+     Only the fields used by the UI are stored, and descriptions are reduced to
+     a short plain-text preview, so a busy repository does not fill
+     sessionStorage with full issue bodies.
      ------------------------------------------------------------------------- */
   function readCache(allowExpired) {
     try {
@@ -92,6 +95,7 @@
       issues.push({
         number: item.number,
         title: item.title,
+        description: summarize(item.body, DESCRIPTION_MAX),
         url: item.html_url,
         comments: item.comments,
         createdAt: item.created_at,
@@ -128,6 +132,58 @@
   /* -------------------------------------------------------------------------
      Formatting helpers
      ------------------------------------------------------------------------- */
+  function summarize(text, max) {
+    if (typeof text !== "string") return "";
+
+    // Reduce Markdown to a readable plain-text preview. This is display-only
+    // text, so it is rendered with textContent and never as HTML.
+    var clean = text
+      .replace(/```[\s\S]*?```/g, " ")
+      .replace(/!\[[^\]]*\]\([^)]*\)/g, " ")
+      .replace(/\[([^\]]+)\]\([^)]*\)/g, "$1")
+      .replace(/<!--[\s\S]*?-->/g, " ")
+      .replace(/<\/?[a-z][^>]*\s[^>]*>/gi, " ")
+      .replace(/^#{1,6}[^\n]*$/gm, " ")
+      .replace(/^\s*>\s?/gm, "")
+      .replace(/^\s*[-*+]\s+\[[ xX]\]\s*/gm, "")
+      .replace(/^\s*[-*+]\s+/gm, "")
+      .replace(/(\*\*|__)(.+?)\1/g, "$2")
+      .replace(/`([^`]*)`/g, "$1")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if (!clean) return "";
+
+    if (clean.length > max) {
+      clean = clean.slice(0, max);
+      var cut = clean.lastIndexOf(" ");
+      if (cut > max * 0.6) clean = clean.slice(0, cut);
+      clean += "\u2026";
+    }
+
+    return clean;
+  }
+
+  function makeIcon(paths) {
+    var svg = document.createElementNS(SVG_NS, "svg");
+    svg.setAttribute("class", "icon icon-sm");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("fill", "none");
+    svg.setAttribute("stroke", "currentColor");
+    svg.setAttribute("stroke-width", "2");
+    svg.setAttribute("stroke-linecap", "round");
+    svg.setAttribute("stroke-linejoin", "round");
+    svg.setAttribute("aria-hidden", "true");
+
+    paths.forEach(function (d) {
+      var path = document.createElementNS(SVG_NS, "path");
+      path.setAttribute("d", d);
+      svg.appendChild(path);
+    });
+
+    return svg;
+  }
+
   function relativeTime(value) {
     var date = new Date(value);
     if (isNaN(date.getTime())) return "recently";
@@ -332,40 +388,19 @@
     var item = document.createElement("li");
     item.className = "issue-card";
 
-    var link = document.createElement("a");
-    link.className = "issue-card-link";
-    link.href = issue.url;
-    link.target = "_blank";
-    link.rel = "noopener noreferrer";
+    var card = document.createElement("article");
+    card.className = "issue-card-body";
 
-    var main = document.createElement("span");
-    main.className = "issue-card-main";
+    var top = document.createElement("div");
+    top.className = "issue-card-top";
 
-    var title = document.createElement("span");
+    var title = document.createElement("h3");
     title.className = "issue-card-title";
     title.textContent = issue.title;
-    main.appendChild(title);
-
-    var meta = document.createElement("span");
-    meta.className = "issue-card-meta";
-
-    var parts = [
-      "#" + issue.number,
-      "opened " + relativeTime(issue.createdAt) + " by " + issue.author,
-      issue.comments + (issue.comments === 1 ? " comment" : " comments"),
-    ];
-
-    parts.forEach(function (part) {
-      var piece = document.createElement("span");
-      piece.textContent = part;
-      meta.appendChild(piece);
-    });
-
-    main.appendChild(meta);
-    link.appendChild(main);
+    top.appendChild(title);
 
     if (issue.labels.length) {
-      var labels = document.createElement("span");
+      var labels = document.createElement("div");
       labels.className = "issue-card-labels";
 
       issue.labels.forEach(function (label) {
@@ -385,10 +420,62 @@
         labels.appendChild(chip);
       });
 
-      link.appendChild(labels);
+      top.appendChild(labels);
     }
 
-    item.appendChild(link);
+    card.appendChild(top);
+
+    var description = document.createElement("p");
+    description.className = "issue-card-desc";
+    description.textContent =
+      issue.description || "No description was provided for this issue.";
+    card.appendChild(description);
+
+    var footer = document.createElement("div");
+    footer.className = "issue-card-footer";
+
+    var meta = document.createElement("p");
+    meta.className = "issue-card-meta";
+
+    var parts = [
+      "#" + issue.number,
+      "opened " + relativeTime(issue.createdAt) + " by " + issue.author,
+      issue.comments + (issue.comments === 1 ? " comment" : " comments"),
+    ];
+
+    parts.forEach(function (part) {
+      var piece = document.createElement("span");
+      piece.textContent = part;
+      meta.appendChild(piece);
+    });
+
+    footer.appendChild(meta);
+
+    var action = document.createElement("a");
+    action.className = "btn btn-outline issue-card-action";
+    action.href = issue.url;
+    action.target = "_blank";
+    action.rel = "noopener noreferrer";
+    action.setAttribute(
+      "aria-label",
+      "View issue #" + issue.number + " on GitHub (opens in a new tab)",
+    );
+
+    var actionText = document.createElement("span");
+    actionText.textContent = "View issue";
+    action.appendChild(actionText);
+    action.appendChild(
+      makeIcon([
+        "M15 3h6v6",
+        "M10 14 21 3",
+        "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6",
+      ]),
+    );
+
+    footer.appendChild(action);
+    card.appendChild(footer);
+
+    item.appendChild(card);
     return item;
   }
 
